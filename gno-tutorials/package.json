@@ -1,0 +1,24 @@
+{
+  "name": "slidev",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "slidev build",
+    "dev": "slidev --open",
+    "export": "slidev export"
+  },
+  "dependencies": {
+    "@slidev/cli": "^51.6.0",
+    "@slidev/theme-default": "latest",
+    "@slidev/theme-seriph": "latest",
+    "npx": "^10.2.2",
+    "slidev-theme-academic": "^2.1.0",
+    "slidev-theme-neversink": "^0.3.6",
+    "slidev-theme-penguin": "^2.3.1",
+    "vite-svg-loader": "^5.1.0",
+    "vue": "^3.5.13"
+  },
+  "devDependencies": {
+    "playwright-chromium": "^1.52.0"
+  }
+}

@@ -1,0 +1,182 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@50;100;200;300;400;500;600;700;800;900&display=swap');
+
+:root {
+  --neversink-title-font: 'Inter', sans-serif;
+  --neversink-main-font: 'Inter', sans-serif;
+  --neversink-mono-font: 'Fira Code', monospace;
+  --neversink-quote-font: 'Fira Code', monospace;
+  --font-mono: 'Courier New', Courier, monospace;
+  @apply neversink-white-scheme; /* apply the default white scheme everywhere */
+}
+
+/* layout specific customizations are shared in the layout file (e.g., layouts/cover.vue) */
+
+/* sets the default font */
+#page-root {
+  font-family: var(--neversink-main-font);
+  font-weight: 400;
+}
+
+/* binds variable to the color of a slide*/
+.slidecolor {
+  background-color: var(--neversink-bg-color);
+  color: var(--neversink-text-color);
+}
+
+.slidev-layout p {
+  line-height: 1.2;
+}
+/* adjust default bullets */
+.slidev-layout li {
+  margin-bottom: 1em;
+  line-height: 1.5em;
+}
+
+.slidev-layout ul {
+  margin-top: 0.7em;
+}
+
+/* change the bold and strong fonts */
+.slidev-layout strong,
+.slidev-layout b {
+  font-family: var(--neversink-main-font);
+  font-weight: 700;
+}
+
+.slidev-code-wrapper {
+  width: 100%;
+}
+
+/* the highlighted terms from markdown highlighter == == */
+.slidev-layout mark {
+  @apply bg-amber-200;
+  @apply text-amber-600;
+  font-weight: 300;
+  padding-left: 0.4em;
+  padding-right: 0.4em;
+  padding-top: 0.2em;
+  padding-bottom: 0.2em;
+  border-radius: 0.4em;
+}
+
+/* inlight code blocks */
+.slidev-layout :not(pre) > code {
+  font-size: 0.9em;
+  background: var(--neversink-bg-code-color);
+  border-radius: var(--slidev-code-radius);
+  color: var(--neversink-fg-code-color);
+  padding-top: 0.125rem;
+  padding-bottom: 0.125rem;
+  padding-left: 0.375rem;
+  padding-right: 0.375rem;
+  font-weight: 300;
+}
+
+/* default layout */
+
+.my-auto p {
+  margin: 0;
+  padding: 0;
+}
+
+.slidev-layout {
+  margin-top: 0px;
+  padding-top: 1.8rem;
+}
+
+.slidev-layout p:first-child {
+  padding-top: 0;
+  margin-top: 0.5rem;
+}
+
+.slidev-layout h1 {
+  font-weight: 600;
+  font-size: 1.7em;
+  padding-bottom: 0;
+  font-family: var(--neversink-title-font);
+  margin-bottom: 0;
+}
+
+.slidev-layout h2 {
+  font-weight: 600;
+  font-size: 1.5em;
+  padding-bottom: 0;
+  font-family: var(--neversink-title-font);
+  margin-bottom: 0;
+}
+
+.slidev-layout h4 {
+  font-weight: 600;
+  font-size: 1.2em;
+  padding-bottom: 0;
+  font-family: var(--neversink-title-font);
+  margin-bottom: 0;
+}
+
+.slidev-layout h1 + p,
+.slidev-layout h2 + p,
+.slidev-layout h3 + p {
+  opacity: 0.9;
+  margin-top: 1.5em;
+}
+
+.slidev-layout h1 + ul,
+.slidev-layout h2 + ul,
+.slidev-layout h3 + ul {
+  margin-top: 1.5em;
+}
+
+.bwimg {
+  filter: grayscale(100%) contrast(150%) brightness(120%);
+  display: inline;
+}
+
+/* customize the v-clicks */
+.slidev-vclick-target {
+  transition: opacity 100ms ease;
+}
+
+.slidev-vclick-hidden {
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+html.dark {
+  /* dark mode css here */
+  .lectureno {
+    background-color: #9a9a9a;
+    color: hsl(0, 0%, 100%);
+    opacity: 1;
+  }
+
+  .invert {
+    filter: invert(1);
+  }
+
+  .slidev-layout {
+    color: #d0d0d0;
+  }
+}
+
+html:not(.dark) {
+  /* light mode css here */
+  .lectureno {
+    background-color: #e1e1e1;
+    color: #000;
+    opacity: 1;
+  }
+}
+
+/* credits */
+
+.fullpage {
+  height: 100vh;
+  display: flex;
+}
+
+/* markdown-it-footnotes */
+.footnotes-sep {
+  visibility: hidden;
+}

@@ -4,3 +4,6 @@ https://docs.gno.land/builders/anatomy-of-a-gno-package
 
 # Mini social dApp
 https://docs.gno.land/builders/example-minisocial-dapp
+
+# Effective Gno
+https://docs.gno.land/resources/effective-gno

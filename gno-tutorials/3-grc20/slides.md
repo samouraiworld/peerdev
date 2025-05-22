@@ -165,24 +165,6 @@ A common example is a borrow lender platform
 They are perfect for on demand use case
 It can be seen as a realm managing currencies
 
-- ✅ Patterns: `transfer`, `allowance`, `approval`
-
-GRC20 tokens, on the other hand, are like Ethereum's ERC20 or CosmWasm's CW20. They're flexible, composable, and perfect for DeFi protocols and DAOs. They offer more features like token-gating, vaults, and wrapping.
-
-For instance, if you're creating a voting system for a DAO, GRC20 tokens are ideal. They're programmable, can be embedded in safe Gno objects, and offer more control.
-
-Remember, GRC20 tokens are more gas-intensive and aren't IBC-ready yet. They also come with shared ownership, meaning the contract retains some control.
-
-In the end, your choice depends on your needs: simplicity and security with Coins, or flexibility and control with GRC20 tokens. And if you want the best of both worlds, you can wrap a Coins into a GRC20 compatible token.
-
-import "gno.land/p/demo/grc/grc20"
-
-var fooToken = grc20.NewBanker("Foo Token", "FOO", 4)
-
-func MyBalance() uint64 {
-	caller := std.PreviousRealm().Address()
-	return fooToken.BalanceOf(caller)
-}
 -->
 
 ---

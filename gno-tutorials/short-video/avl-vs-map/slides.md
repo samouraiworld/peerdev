@@ -1,92 +1,128 @@
 ---
-theme: seriph
-transition: none
-class: lead
-background: #fff
-paginate: true
-cover: 
-  background: https://marp.app/assets/hero-background.svg
-  color: black
-  size: cover
+title: AVL Tree vs Map in Gno
+theme: ../../theme
+colorSchema: teal
+highlight: dracula
+highlighter: shiki
+fonts:
+  sans: Inter
+  mono: Fira Code
+layout: cover
 ---
 
-# 🌳 AVL Tree Storage in Gno
+# 🌳 `avl.tree` vs `map` in Gno
 
-Efficient, deterministic smart contract storage
+Why `map` is not suitable for efficient dynamic on-chain storage\
+How Gno’s `avl.Tree` powers an efficient alternative
 
----
-
-# Why AVL Trees?
-
-- 🔥 Self-balancing binary search trees
-- ✅ Deterministic and reproducible
-- 📈 Efficient lookups, insertions, deletions
-
-> Gno uses AVL trees to **guarantee state consistency**.
+<!--
+Speaker Notes:
+Avl tree has been everywhere in gno.
+We'll explore how each data structure functions within Gno's realm environment, their advantages, and when to use one over the other.
+-->
 
 ---
 
-# How AVL Trees Work
+# Let's say we have a blog
 
-- Every **node stored by hash** 📦
-- **State updates** = creating new tree versions
-- Ensures **immutability** and **verifiability**
+<!--
+// show example of storage use case
+
+Implementation first with maps
+Then avl tree
+-->
+
+---
+
+// on the left
+
+# 🗺️ Maps in Gno
+  * Entire dataset loaded into memory
+
+
+// reverify this
+```go
+var data = make(map[string]string)
+data["key"] = "value"
+```
+
+<!--
+Map is a linear key / value data structure
+Straightforward to use and offer quick access times. 
+
+It load its data entirely into memory, leading to scalability issues. 
+can lead to out-of-gas errors in large-scale applications.
+
+-->
+
+---
+
+// on the right
+# 🌲 AVL Trees in Gno
+
+* **Pros:**
+
+  * Self-balancing binary search tree
+  * Efficient memory usage
+  * Suitable for large datasets
+  * Deterministic and reproducible
+
+* **Cons:**
+
+  * Slightly more complex implementation
+  * O(log n) access times
 
 ```go
-type Tree struct {
-  root *Node
-}
+import "gno.land/p/demo/avl"
+
+var tree avl.Tree
+tree.Set("key", "value")
+value := tree.Get("key")
 ```
 
----
+<!--
+Speaker Notes:
+AVL Trees, provide longer access time but handle large datasets more efficiently by only charging the necessary.
+Scalability and determinism, make them preferable in many scenarios.
 
-# Storage Layer in Gno
+Avl tree are self-balancing binary search trees, with their both side of the same deep.
+That's how they can achieve it
 
-    store package = Abstracts storage
-
-    Handles AVL tree structure under the hood
-
-    Powers smart contract state management
-
----
-
-# Quick Example
-
-```go {all|2|all}
-tree := NewTree()
-tree.Set([]byte("foo"), []byte("bar"))
-value, _ := tree.Get([]byte("foo"))
-fmt.Println(string(value)) // bar
-```
-
-    Simple key-value store backed by AVL logic
+-->
 
 ---
 
-# Why It Matters
+# ⚖️ Comparison: Map vs AVL Tree
 
-    🌐 Every contract's state = AVL tree
+| Operation   | **Map** (Small Data) | **AVL Tree** (Large Data) |
+| ----------- | ---------------- | --------------------- |
+| Lookup      | O(1)             | O(log n)              |
+| Insert      | O(1)             | O(log n)              |
+| Delete      | O(1)             | O(log n)              |
+| Scalability | Poor             | Excellent             |
 
-    🔒 Trustless, deterministic execution
-
-    🧠 Enables blockchain reproducibility
 
 ---
 
-# 🚀 Next Steps
+# 🧠 When to Use What?
 
-    Learn how to query and update your smart contract state
+* **Use Maps when:**
+  * Working with small constant datasets
 
-    Dive deeper into storage proofs and verifications
+* **Use AVL Trees when:**
+  * Dealing with dynamic datasets
+  * Scalability and efficiency are required
+
 ---
-layout: center
----
 
-Thanks for Learning! 🙏
+# 📚 Further Reading
 
-AVL Trees = 🔥 for blockchain scalability
+* [Why use AVL Trees in Gno](https://gno.howl.moe/avl-tree-storage/)
+* [Gno AVL Tree Documentation](https://docs.gno.land/resources/glossary)
+* [Effective Gno](https://docs.gno.land/resources/effective-gno/)
 
-Follow up:
-👉 "How to interact with Gno smart contract storage"
-
+<!--
+Speaker Notes:
+For more in-depth information, consider reading these resources. They provide detailed explanations and examples of using AVL Trees in Gno.
+-->
 

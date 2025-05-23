@@ -92,10 +92,11 @@ layout: default
 A Coin is a Gno type made of a denomination and an amount.
 
 
-```go {all|2|3|all}
+```go {all|3|4|all}
+// Defines a basic Coin with a denomination and amount
 type Coin struct {
-	Denom  string `json:"denom"`
-	Amount int64  `json:"amount"`
+	Denom  string `json:"denom"`  // e.g., "GNOT"
+	Amount int64  `json:"amount"` // e.g., 1000
 }
 ```
 

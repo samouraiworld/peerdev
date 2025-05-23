@@ -27,6 +27,7 @@ We'll explore how each data structure functions within Gno's realm environment, 
 
 <!--
 // show example of storage use case
+From episode 2, take same example
 
 Implementation first with maps
 Then avl tree
@@ -37,7 +38,10 @@ Then avl tree
 // on the left
 
 # 🗺️ Maps in Gno
-  * Entire dataset loaded into memory
+
+**In-memory key/value structure**
+
+Entire dataset loaded into memory
 
 
 // reverify this
@@ -59,16 +63,14 @@ can lead to out-of-gas errors in large-scale applications.
 
 // on the right
 # 🌲 AVL Trees in Gno
+Self-balancing binary search tree
 
 * **Pros:**
-
-  * Self-balancing binary search tree
   * Efficient memory usage
   * Suitable for large datasets
   * Deterministic and reproducible
 
 * **Cons:**
-
   * Slightly more complex implementation
   * O(log n) access times
 

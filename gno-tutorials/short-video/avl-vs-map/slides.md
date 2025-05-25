@@ -17,7 +17,7 @@ How Gno’s `avl.Tree` powers an efficient alternative
 
 <!--
 Speaker Notes:
-Avl tree has been everywhere in gno.
+Avl tree is used in every storage logic in gno.
 We'll explore how each data structure functions within Gno's realm environment, their advantages, and when to use one over the other.
 -->
 
@@ -67,6 +67,7 @@ end
 layout: top-title
 color: violet
 ---
+
 :: title::
 # 📚 Use Case: Blog Posts with `map`
 :: content ::
@@ -81,8 +82,9 @@ end
 
 ### 🤯 Unlimited gas usage
 
-
-
+<!--
+To the no return point
+-->
 
 ---
 layout: top-title
@@ -205,7 +207,6 @@ side: l
 
 ### ❌ Cons
 - Not scalable: All data is kept in memory
-- High gas cost for large datasets
 
 ```go
 var data = make(map[string]string)
@@ -279,10 +280,10 @@ color: sky
 
 # 🧠 When to Use What?
 
-* **Use Maps when:**
+* **🗺️ Use Maps when:**
   * Working with small constant datasets
 
-* **Use AVL Trees when:**
+* **🌲 Use AVL Trees when:**
   * Dealing with dynamic datasets
   * Scalability and efficiency are required
 
@@ -298,4 +299,3 @@ color: sky
 Speaker Notes:
 For more in-depth information, consider reading these resources. They provide detailed explanations and examples of using AVL Trees in Gno.
 -->
-

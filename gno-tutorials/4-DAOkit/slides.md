@@ -11,26 +11,59 @@ layout: cover
 
 # 🧠 DAOkit on Gno.land
 
-## Building Modular DAOs with Gno
-
----
-layout: center
 ---
 
-# 🏛️ What is a DAO?
+Use case
 
-A Decentralized Autonomous Organization (DAO) is a self-governing entity operating through smart contracts
-It enables decentralized transparent decision-making.
+Funding Platform
+Treasury [5$]
+
+User 1 [USER]
+User 2 [USER]
+Administrator [ADMINISTRATOR]
+
+Project [0x01234...]
+
+I want to finance {Project}[3$].
+I need at least :
+[50% Yes]
+✅ Administator approval 
+
+If the condition is satisfied before deadline, the project is satisfied ✅
+Otherwise it is closed 🟥
+
 
 <!--
+Example Use Case: A DAO wants to create a proposal to spend money from its treasury.
+
+Rules:
+
+    SpendMoney is a resource with a condition requiring:
+        50% approval from the administration board
+        Approval from the CFO
+
+Outcome:
+
+    Any user can propose to spend money
+    Only board and CFO votes are considered
+    The proposal executes only if the condition is satisfied
 
 -->
 
 ---
-// Example with a diagram
 
----
-layout: two-cols
+# 🏛️ What is a DAO?
+
+// TODO diagram of DAO
+
+
+Resource -> func {}
+Condition -> func {if (...)}
+[Proposals] -> {if Condition (exec Resource)}
+[Members] => new Proposal
+[Members] -> Roles
+
+
 ---
 
 ## 🔑 Key Concepts
@@ -40,24 +73,34 @@ layout: two-cols
 - **Condition**: Rules that must be met for a proposal to be executed.
 - **Role**: Labels assigned to users granting specific permissions.
 
----
-layout: center
----
+<!--
+A Decentralized Autonomous Organization (DAO) is a self-governing entity operating through smart contracts
+It enables decentralized transparent decision-making.
+-->
 
+
+---
+layout: top-title
+---
+:: title ::
 # 🧩 DAOkit Components
-
----
-layout: two-cols
----
+:: content ::
 
 ## 📦 DAOkit
-Core package for building DAOs.
+-> Core package [Proposals, Resource]
 
 ## 🧱 basedao
-Extension handling membership and roles.
+-> Members, Roles
 
 ## ⚙️ daocond
+-> Conditions
+
+<!--
+Core package for building DAOs.
+Extension handling membership and roles.
 Condition engine for complex proposal requirements.
+
+-->
 
 ---
 layout: center
@@ -66,53 +109,24 @@ layout: center
 # 🛠️ Implementing DAOkit
 
 ---
-layout: two-cols
----
 
-## 🧪 daocond
-
-Defines conditions like thresholds and logical operations.
+# Adding roles and members
 
 ```go
-type Condition interface {
-	Eval(votes map[string]Vote) bool
-	Signal(votes map[string]Vote) float64
-	Render() string
-	RenderWithVotes(votes map[string]Vote) string
-}
-````
+initialRoles := []basedao.RoleInfo{
+		{Name: "admin", Description: "Admin is the superuser"},
+		{Name: "public-relationships", Description: "Responsible of communication with the public"},
+		{Name: "finance-officer", Description: "Responsible of funds management"},
+	}
 
----
-
-## 🧰 daokit
-
-Manages resources and proposals.
-
-```go
-type Core struct {
-	Resources *ResourcesStore
-	Proposals *ProposalsStore
+initialMembers := []basedao.Member{
+	{Address: "g126...zlg", Roles: []string{"admin", "public-relationships"}},
+	{Address: "g1ld6...3jv", Roles: []string{"public-relationships"}},
+	{Address: "g1r69...0tth", Roles: []string{"finance-officer"}},
+	{Address: "g16jv...6e0r", Roles: []string{}},
 }
 ```
 
----
-
-## 🧑‍🤝‍🧑 basedao
-
-Handles members and roles.
-
-```go
-type Config struct {
-	Name              string
-	Description       string
-	ImageURI          string
-	Members           *MembersStore
-	InitialCondition  daocond.Condition
-}
-```
-
----
-layout: center
 ---
 
 # 🧪 Code Example: Basic DAO
@@ -124,6 +138,9 @@ var (
 )
 
 func init() {
+	initialRoles := []basedao.RoleInfo{...}
+	initialMembers := initialMembers := []basedao.Member{...}
+
 	memberStore := basedao.NewMembersStore(initialRoles, initialMembers)
 
 	condition := daocond.And(
@@ -141,7 +158,60 @@ func init() {
 ```
 
 ---
-layout: center
+
+# Other function
+
+```go
+func init() {
+	...
+}
+
+func Vote(proposalID uint64, vote daocond.Vote) {
+	DAO.Vote(proposalID, vote)
+}
+
+func Execute(proposalID uint64) {
+	DAO.Execute(proposalID)
+}
+
+func Render(path string) string {
+	return daoPrivate.Render(path)
+}
+```
+
+---
+
+## 🧪 daocond
+
+Defines new conditions.
+
+```go
+type Condition interface {
+	Eval(votes map[string]Vote) bool
+	Signal(votes map[string]Vote) float64
+	Render() string
+	RenderWithVotes(votes map[string]Vote) string
+}
+```
+
+
+
+---
+
+## 🧑‍🤝‍🧑 basedao
+
+Handles members and roles.
+
+```go
+type Config struct {
+	Name              string
+	Description       string
+	ImageURI          string
+	Members           *MembersStore
+	InitialCondition  daocond.Condition
+}
+```
+
 ---
 
 # 🧱 Creating Custom Resources
@@ -179,12 +249,3 @@ func NewPostHandler(blog *Blog) daokit.ActionHandler {
 * **Resource**: SpendMoney
 * **Condition**: Requires 50% approval from the administration board and the CFO.
 * **Execution**: Proposal is executed only if the condition is met.
-
----
-
-# 📚 Learn More
-
-Explore the full documentation and examples:
-
-* [DAOkit README](https://github.com/Davphla/gno/blob/feat/daokit/examples/gno.land/p/samourai/daokit/README.md)
-* [Gno.land](https://gno.land/)

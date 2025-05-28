@@ -1,14 +1,14 @@
 https://github.com/Davphla/gno/blob/feat/daokit/examples/gno.land/p/samourai/daokit/README.md
 
+Example ; Use case of DAO
+\diagram
 What is DAO 
 Key concepts
-Proposal
+Proposal    
 Resource
 Condition
 Role
 \diagram 
-Example ; Use case of DAO
-\diagram
 
 What is DAOkit
 How to implement theorically (And introduce the package)
@@ -23,6 +23,7 @@ Made of
 Daocond 
 Daokit
 basedao
+Configurate your DAO
 
 ## Entire together
 Code example of a DAO

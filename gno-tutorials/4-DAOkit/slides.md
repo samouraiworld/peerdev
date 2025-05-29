@@ -10,10 +10,20 @@ layout: cover
 ---
 
 # 🧠 DAOkit on Gno.land
+## Modular Governance for Gno Smart Contracts
+
+Building decentralized organizations with composable components
+
+<!-- 
+Focus on:
+- Modular architecture
+- Real-world governance patterns
+- Gno-specific implementation
+-->
 
 ---
 layout: top-title
-color: sky
+color: sky3
 ---
 
 :: title ::
@@ -166,7 +176,6 @@ color: green
 :: content ::
 
 ## 📦 DAOkit
-
 * Core package: **Proposals**, **Resources**
 
 ## 🧱 basedao

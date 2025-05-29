@@ -23,7 +23,7 @@ Focus on:
 
 ---
 layout: top-title
-color: sky3
+color: blue
 ---
 
 :: title ::
@@ -34,7 +34,11 @@ color: sky3
 <v-switch>
 <template #0>
 
-* **Proposal**: "I want to finance a Project with $3"
+* **Organisation**:  Composed of 3 **Members**
+
+* **Vault**: 5$
+
+* **Proposal**: I want to finance a Project with 3$
 
 * **Requirements**:
 
@@ -257,5 +261,16 @@ func Execute(proposalID uint64) {
 
 func Render(path string) string {
     return daoPrivate.Render(path)
+}
+```
+
+---
+
+```go
+type Condition interface {
+    Eval(votes map[string]Vote) bool
+    Signal(votes map[string]Vote) float64
+    Render() string
+    RenderWithVotes(votes map[string]Vote) string
 }
 ```

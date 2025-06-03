@@ -266,11 +266,29 @@ func Render(path string) string {
 
 ---
 
+#### 🔧 Create new Condition
+
 ```go
 type Condition interface {
     Eval(votes map[string]Vote) bool
     Signal(votes map[string]Vote) float64
     Render() string
     RenderWithVotes(votes map[string]Vote) string
+}
+```
+
+---
+
+#### 📦 Create new Resource
+
+```go
+type Action interface {
+	String() string
+	Type() string
+}
+
+type ActionHandler interface {
+	Execute(action Action)
+	Type() string
 }
 ```

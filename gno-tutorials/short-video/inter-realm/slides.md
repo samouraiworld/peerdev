@@ -107,21 +107,32 @@ kanban
 ---
 
 # But it instaure crucial flaw - Reentrency attack
-```mermaid
+
+```mermaid {scale: 0.8}
 sequenceDiagram
-  participant User as User Contract
-  participant Target as Target Contract
+  participant User as User (EOA)
+  participant Target as Vulnerable Contract
   participant Malicious as Malicious Contract
 
-  User->>Target: Send Funds (1 ETH)
-  activate Target
-  Target->>Malicious: Call External Function
+  User->>Malicious: 1. Call attack()
   activate Malicious
-  Malicious->>Target: Reenter (1 ETH)
-  Target->>Malicious: Call External Function
-  Note right of Malicious: Loop continues...
+  Malicious->>Target: 2. withdraw() 
+  activate Target
+  Target->>Malicious: 3. Send ETH (triggers fallback)
+  activate Malicious
+  Malicious->>Target: 4. withdraw() [Reentrant Call]
+  activate Target
+  Target->>Malicious: 5. Send ETH (again)
+  activate Malicious
+  Note right of Malicious: 6. Reentrancy loop continues...
+  Malicious-->>Target: 
   deactivate Malicious
   deactivate Target
+  Malicious-->>Target: 
+  deactivate Malicious
+  deactivate Target
+  Malicious-->>User: 7. Attack complete
+  deactivate Malicious
 ```
 
 ---

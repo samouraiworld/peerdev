@@ -1,4 +1,4 @@
-package daokit_demo
+package daokit
 
 import (
 	"gno.land/p/samourai/basedao"
@@ -8,8 +8,8 @@ import (
 )
 
 var (
-	DAO        daokit.DAO 
-	daoPrivate *basedao.DAOPrivate 
+	DAO        daokit.DAO
+	daoPrivate *basedao.DAOPrivate
 )
 
 func init() {
@@ -51,6 +51,10 @@ func Vote(proposalID uint64, vote daocond.Vote) {
 
 func Execute(proposalID uint64) {
 	DAO.Execute(proposalID)
+}
+
+func Propose(req daokit.ProposalRequest) {
+	DAO.Propose(req)
 }
 
 func Render(path string) string {

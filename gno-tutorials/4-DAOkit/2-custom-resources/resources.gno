@@ -1,8 +1,16 @@
+package resources
+
+import (
+	"errors"
+
+	"gno.land/p/samourai/daokit"
+)
+
 // XXX: pkg "/p/samourai/blog" - does not exist, it's just an example
 const ActionNewPostKind = "gno.land/p/samourai/blog.NewPost"
 
 type ActionNewPost struct {
-	Title string
+	Title   string
 	Content string
 }
 
@@ -27,8 +35,8 @@ func NewPostHandler(blog *Blog) daokit.ActionHandler {
 
 func init() {
 	resource := daokit.Resource{
-	    Condition: daocond.NewRoleCount(1, "CEO", daoPrivate.Members.HasRole),
-	    Handler: blog.NewPostHandler(blog),
+		Condition: daocond.NewRoleCount(1, "CEO", daoPrivate.Members.HasRole),
+		Handler:   blog.NewPostHandler(blog),
 	}
 	daoPrivate.Core.Resources.Set(&resource)
 }

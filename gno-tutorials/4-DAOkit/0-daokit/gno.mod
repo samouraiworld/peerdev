@@ -1,1 +1,1 @@
-module gno.land/r/demo/daokit
+module gno.land/r/demo/mydao

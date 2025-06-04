@@ -1,4 +1,4 @@
-package daokit
+package mydao
 
 import (
 	"gno.land/p/samourai/basedao"
@@ -20,7 +20,7 @@ func init() {
 	}
 
 	initialMembers := []basedao.Member{
-		{Address: "g126zlg", Roles: []string{"admin", "public-relationships"}},
+		{Address: "g1j9zh3ce7a5tg2esjzherfrx7m3n842k2vmj395", Roles: []string{"admin", "public-relationships"}},
 		{Address: "g1ld63jv", Roles: []string{"public-relationships"}},
 		{Address: "g1r690tth", Roles: []string{"finance-officer"}},
 		{Address: "g16jv6e0r", Roles: []string{}},

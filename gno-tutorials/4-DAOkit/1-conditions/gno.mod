@@ -1,1 +1,1 @@
-module gno.land/r/demo/conditions
+module gno.land/r/demo/mydao

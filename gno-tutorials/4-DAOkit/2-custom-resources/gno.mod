@@ -1,1 +1,1 @@
-module gno.land/r/demo/resource
+module gno.land/r/demo/mydao

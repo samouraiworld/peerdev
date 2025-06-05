@@ -1,4 +1,4 @@
-package resources
+package mydao
 
 import (
 	"errors"
@@ -31,12 +31,4 @@ func NewPostHandler(blog *Blog) daokit.ActionHandler {
 		}
 		blog.NewPost(action.Title, action.Content)
 	})
-}
-
-func init() {
-	resource := daokit.Resource{
-		Condition: daocond.NewRoleCount(1, "CEO", daoPrivate.Members.HasRole),
-		Handler:   blog.NewPostHandler(blog),
-	}
-	daoPrivate.Core.Resources.Set(&resource)
 }

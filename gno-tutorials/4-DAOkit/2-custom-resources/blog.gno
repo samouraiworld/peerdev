@@ -10,8 +10,6 @@ type Blog struct {
 }
 
 func (a *Blog) NewPost(title string, content string) {
-	crossing()
-
 	newPost := Post{
 		Title:   title,
 		Content: content,

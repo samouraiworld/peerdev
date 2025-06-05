@@ -10,9 +10,8 @@ import (
 var (
 	DAO        daokit.DAO
 	daoPrivate *basedao.DAOPrivate
+	blog       Blog
 )
-
-var blog Blog
 
 func init() {
 	initialRoles := []basedao.RoleInfo{
@@ -28,15 +27,6 @@ func init() {
 	membersMajority := daocond.MembersThreshold(0.6, memberStore.IsMember, memberStore.MembersCount)
 	adminCond := daocond.And(membersMajority)
 
-	//
-	// Resources
-	//
-	resource := daokit.Resource{
-		Condition: membersMajority,
-		Handler:   NewPostHandler(&blog),
-	}
-	daoPrivate.Core.Resources.Set(&resource)
-
 	DAO, daoPrivate = basedao.New(&basedao.Config{
 		Name:             "Demo DAOKIT DAO",
 		Description:      "This is a demo DAO built with DAOKIT",
@@ -45,6 +35,15 @@ func init() {
 		GetProfileString: profile.GetStringField,
 		SetProfileString: profile.SetStringField,
 	})
+
+	//
+	// Resources
+	//
+	resource := daokit.Resource{
+		Condition: membersMajority,
+		Handler:   NewPostHandler(&blog),
+	}
+	daoPrivate.Core.Resources.Set(&resource)
 }
 
 func Vote(proposalID uint64, vote daocond.Vote) {

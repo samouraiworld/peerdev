@@ -1,4 +1,0 @@
-{
-  "slidev.force-enabled": true,
-  "slidev.include": ["**/slides.md", "example.md", "screenshot.md"]
-}

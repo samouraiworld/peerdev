@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	// Calling my custom action
+	// Calling the custom action
 	action := mydao.NewPostAction("hello", "world")
 
 	proposal := daokit.ProposalRequest{

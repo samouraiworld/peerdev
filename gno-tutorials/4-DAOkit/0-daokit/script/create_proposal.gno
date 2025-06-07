@@ -11,7 +11,7 @@ func main() {
 	// Create payload for adding a new member with finance officer role
 	payload := basedao.ActionAddMember{
 		Address: "g1nqsjex9aguqy062wdrryvvg9u6dn6e9u44dmkm",
-		Roles: []string{"finance-officer"}
+		Roles:   []string{"finance-officer"},
 	}
 
 	// Wrap payload in a DAO action structure

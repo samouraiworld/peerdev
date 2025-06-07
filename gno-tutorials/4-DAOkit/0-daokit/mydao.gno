@@ -38,8 +38,8 @@ func init() {
 
 	// Initialize DAO with configuration
 	DAO, daoPrivate = basedao.New(&basedao.Config{
-		Name:             "Demo DAOKIT DAO",
-		Description:      "This is a demo DAO built with DAOKIT",
+		Name:             "Simple DAO",
+		Description:      "",
 		Members:          memberStore,
 		InitialCondition: adminCond,
 		GetProfileString: profile.GetStringField,
@@ -55,6 +55,7 @@ func Vote(proposalID uint64, vote daocond.Vote) {
 
 // Execute triggers the implementation of a proposal's actions
 func Execute(proposalID uint64) {
+	crossing()
 	DAO.Execute(proposalID)
 }
 

@@ -20,7 +20,7 @@ func main() {
 	// Create proposal request with metadata and action
 	proposal := daokit.ProposalRequest{
 		Title:       "Adding new member",
-		Description: "Adding new finance-officer.",
+		Description: "Adding new finance-officer member.",
 		Action:      action,
 	}
 

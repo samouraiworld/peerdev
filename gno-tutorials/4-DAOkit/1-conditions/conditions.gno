@@ -15,15 +15,13 @@ import (
 	"math"
 )
 
+// Implements a custom DAO condition requiring votes from members with no assigned roles
 type noRoleCountCond struct {
-	memberStore basedao.MembersStore
-	count       uint64
+	memberStore basedao.MembersStore // Access to DAO membership data
+	count       uint64               // Required number of yes votes from roleless members
 }
 
-func hasNoRole(memberStore basedao.MembersStore, memberId string) bool {
-	return memberStore.GetMemberRoles(memberId) == nil
-}
-
+// NoRole creates a new condition requiring votes from members with no roles
 func NoRole(memberStore basedao.MembersStore, count uint64) daocond.Condition {
 	return &noRoleCountCond{
 		memberStore: memberStore,
@@ -31,22 +29,29 @@ func NoRole(memberStore basedao.MembersStore, count uint64) daocond.Condition {
 	}
 }
 
-// Eval implements Condition.
-func (c *noRoleCountCond) Eval(ballot daocond.Ballot) bool {
-	return c.totalYes(ballot) == 0
+// Checks if a member has no assigned roles
+func hasNoRole(memberStore basedao.MembersStore, memberId string) bool {
+	return memberStore.GetMemberRoles(memberId) == nil
 }
 
-// Signal implements Condition.
+// Eval evaluates whether the condition is satisfied based on current votes
+// Returns true when at least 'count' roleless members have voted yes
+func (c *noRoleCountCond) Eval(ballot daocond.Ballot) bool {
+	return c.totalYes(ballot) >= c.count
+}
+
+// Signal calculates the completion progress of the condition (0.0 to 1.0)
+// Represents the ratio of actual yes votes to required count, capped at 1.0
 func (c *noRoleCountCond) Signal(ballot daocond.Ballot) float64 {
 	return math.Min(float64(c.totalYes(ballot))/float64(c.count), 1)
 }
 
-// Render implements Condition.
+// Displays the condition requirements for UI purposes
 func (c *noRoleCountCond) Render() string {
 	return ufmt.Sprintf("%d", c.count)
 }
 
-// RenderWithVotes implements Condition.
+// Generates a detailed vote status report
 func (c *noRoleCountCond) RenderWithVotes(ballot daocond.Ballot) string {
 	s := ""
 	s += ufmt.Sprintf("to meet the condition, %d members with no role must vote yes\n\n", c.count)
@@ -54,10 +59,11 @@ func (c *noRoleCountCond) RenderWithVotes(ballot daocond.Ballot) string {
 	return s
 }
 
-// Verify if the condition can be instanciated
-// Would cause errors if implementation are invalid
+// Verify the interface compliance
+// Ensures proper implementation
 var _ daocond.Condition = (*noRoleCountCond)(nil)
 
+// Counts valid "yes" votes from roleless members
 func (c *noRoleCountCond) totalYes(ballot daocond.Ballot) uint64 {
 	totalYes := uint64(0)
 	ballot.Iterate(func(voter string, vote daocond.Vote) {

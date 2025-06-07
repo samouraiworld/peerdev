@@ -22,7 +22,6 @@ func init() {
 	initialMembers := []basedao.Member{
 		{Address: "g1j9zh3ce7a5tg2esjzherfrx7m3n842k2vmj395", Roles: []string{"admin", "public-relationships"}},
 		{Address: "g1qkm0xhj8nsm2l3g50ttazxhlq7fs47myhxqk79", Roles: []string{"public-relationships"}},
-		{Address: "g1nqsjex9aguqy062wdrryvvg9u6dn6e9u44dmkm", Roles: []string{"finance-officer"}},
 		{Address: "g1cxqkkdydlsgs5486cdzp3amczy2w88l58hhp9v", Roles: []string{}},
 	}
 
@@ -30,10 +29,9 @@ func init() {
 
 	membersMajority := daocond.MembersThreshold(0.6, memberStore.IsMember, memberStore.MembersCount)
 	publicRelationships := daocond.RoleCount(1, "public-relationships", memberStore.HasRole)
-	financeOfficer := daocond.RoleCount(1, "finance-officer", memberStore.HasRole)
 
 	// `and` and `or` use va_args so you can pass as many conditions as needed
-	adminCond := daocond.And(membersMajority, publicRelationships, financeOfficer)
+	adminCond := daocond.And(membersMajority, publicRelationships)
 
 	DAO, daoPrivate = basedao.New(&basedao.Config{
 		Name:             "Demo DAOKIT DAO",

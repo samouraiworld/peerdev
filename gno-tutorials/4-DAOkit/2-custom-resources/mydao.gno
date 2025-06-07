@@ -25,13 +25,12 @@ func init() {
 	}
 	memberStore := basedao.NewMembersStore(initialRoles, initialMembers)
 	membersMajority := daocond.MembersThreshold(0.6, memberStore.IsMember, memberStore.MembersCount)
-	adminCond := daocond.And(membersMajority)
 
 	DAO, daoPrivate = basedao.New(&basedao.Config{
 		Name:             "Demo DAOKIT DAO",
 		Description:      "This is a demo DAO built with DAOKIT",
 		Members:          memberStore,
-		InitialCondition: adminCond,
+		InitialCondition: membersMajority,
 		GetProfileString: profile.GetStringField,
 		SetProfileString: profile.SetStringField,
 	})
@@ -40,8 +39,10 @@ func init() {
 	// Resources
 	//
 	resource := daokit.Resource{
-		Condition: membersMajority,
-		Handler:   NewPostHandler(&blog),
+		Handler:     NewPostHandler(&blog),
+		Condition:   membersMajority,
+		DisplayName: "Hello",
+		Description: "Description",
 	}
 	daoPrivate.Core.Resources.Set(&resource)
 }

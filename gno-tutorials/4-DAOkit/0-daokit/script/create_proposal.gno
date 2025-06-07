@@ -7,12 +7,12 @@ import (
 )
 
 func main() {
-	payload := basedao.ActionAddMember{Address: "g1j9zh3ce7a5tg2esjzherfrx7m3n842k2vmj395", Roles: []string{"admin", "public-relationships"}}
+	payload := basedao.ActionAddMember{Address: "g1nqsjex9aguqy062wdrryvvg9u6dn6e9u44dmkm", Roles: []string{"finance-officer"}}
 	action := basedao.NewAddMemberAction(&payload)
 
 	proposal := daokit.ProposalRequest{
-		Title:       "Sample Proposal",
-		Description: "This is a sample proposal using PrintAction.",
+		Title:       "Adding new member",
+		Description: "Adding new finance-officer.",
 		Action:      action,
 	}
 

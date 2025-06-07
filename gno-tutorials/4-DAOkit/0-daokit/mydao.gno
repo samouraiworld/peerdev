@@ -21,9 +21,9 @@ func init() {
 
 	initialMembers := []basedao.Member{
 		{Address: "g1j9zh3ce7a5tg2esjzherfrx7m3n842k2vmj395", Roles: []string{"admin", "public-relationships"}},
-		{Address: "g1ld63jv", Roles: []string{"public-relationships"}},
-		{Address: "g1r690tth", Roles: []string{"finance-officer"}},
-		{Address: "g16jv6e0r", Roles: []string{}},
+		{Address: "g1qkm0xhj8nsm2l3g50ttazxhlq7fs47myhxqk79", Roles: []string{"public-relationships"}},
+		{Address: "g1nqsjex9aguqy062wdrryvvg9u6dn6e9u44dmkm", Roles: []string{"finance-officer"}},
+		{Address: "g1cxqkkdydlsgs5486cdzp3amczy2w88l58hhp9v", Roles: []string{}},
 	}
 
 	memberStore := basedao.NewMembersStore(initialRoles, initialMembers)
@@ -46,6 +46,7 @@ func init() {
 }
 
 func Vote(proposalID uint64, vote daocond.Vote) {
+	crossing()
 	DAO.Vote(proposalID, vote)
 }
 

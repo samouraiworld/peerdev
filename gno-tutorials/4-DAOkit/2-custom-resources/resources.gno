@@ -3,6 +3,7 @@ package mydao
 import (
 	"errors"
 
+	"gno.land/p/demo/ufmt"
 	"gno.land/p/samourai/daokit"
 )
 
@@ -14,6 +15,9 @@ type ActionNewPost struct {
 	Content string
 }
 
+func (m *ActionNewPost) String() string {
+	return ufmt.Sprintf("Add member %s with roles %v", m.Title, m.Content)
+}
 func NewPostAction(title, content string) daokit.Action {
 	// def: daoKit.NewAction(kind: String, payload: interface{})
 	return daokit.NewAction(ActionNewPostKind, &ActionNewPost{

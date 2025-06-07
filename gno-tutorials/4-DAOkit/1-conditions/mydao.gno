@@ -19,9 +19,8 @@ func init() {
 
 	initialMembers := []basedao.Member{
 		{Address: "g1j9zh3ce7a5tg2esjzherfrx7m3n842k2vmj395", Roles: []string{"Role"}},
-		{Address: "g1ld63jv", Roles: []string{}},
-		{Address: "g1r690tth", Roles: []string{}},
-		{Address: "g16jv6e0r", Roles: []string{}},
+		{Address: "g1qkm0xhj8nsm2l3g50ttazxhlq7fs47myhxqk79", Roles: []string{}},
+		{Address: "g1nqsjex9aguqy062wdrryvvg9u6dn6e9u44dmkm", Roles: []string{}},
 	}
 
 	memberStore := basedao.NewMembersStore(initialRoles, initialMembers)

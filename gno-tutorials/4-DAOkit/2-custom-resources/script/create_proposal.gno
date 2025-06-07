@@ -13,11 +13,5 @@ func main() {
 		Description: "This is a sample proposal using PrintAction.",
 		Action:      action,
 	}
-
-	println("Proposal Title:", proposal.Title)
-	println("Proposal Description:", proposal.Description)
-	println("Action Type:", proposal.Action.Type())
-	println("Action String:", proposal.Action.String())
 	mydao.Propose(proposal)
-
 }

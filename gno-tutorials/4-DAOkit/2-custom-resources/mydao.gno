@@ -35,23 +35,24 @@ func init() {
 		SetProfileString: profile.SetStringField,
 	})
 
-	//
-	// Resources
-	//
+	// Create a new custom resource
 	resource := daokit.Resource{
 		Handler:     NewPostHandler(&blog),
 		Condition:   membersMajority,
 		DisplayName: "Hello",
 		Description: "Description",
 	}
+	// Add it to our DAO
 	daoPrivate.Core.Resources.Set(&resource)
 }
 
 func Vote(proposalID uint64, vote daocond.Vote) {
+	crossing()
 	DAO.Vote(proposalID, vote)
 }
 
 func Execute(proposalID uint64) {
+	crossing()
 	DAO.Execute(proposalID)
 }
 

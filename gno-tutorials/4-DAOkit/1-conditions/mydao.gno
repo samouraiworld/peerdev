@@ -36,24 +36,20 @@ func init() {
 	})
 }
 
-// Vote allows DAO members to cast their vote on a specific proposal
 func Vote(proposalID uint64, vote daocond.Vote) {
 	crossing()
 	DAO.Vote(proposalID, vote)
 }
 
-// Execute triggers the implementation of a proposal's actions
 func Execute(proposalID uint64) {
 	crossing()
 	DAO.Execute(proposalID)
 }
 
-// Execute triggers the implementation of a proposal's actions
 func Propose(req daokit.ProposalRequest) {
 	DAO.Propose(req)
 }
 
-// Render generates a UI representation of the DAO's state
 func Render(path string) string {
 	return daoPrivate.Render(path)
 }

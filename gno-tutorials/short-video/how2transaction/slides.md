@@ -15,31 +15,24 @@ layout: cover
 How to interact with the Gno blockchain
 
 ---
+layout: two-cols-title
+---
 
+:: title ::
 # 🔄 What are Transactions?
 
-<div class="grid grid-cols-2 gap-8 mt-6">
-<div>
+:: left ::
 
 **Blockchain Interactions**
 - 📝 Signed operations
-- 🔐 Require gas fees
 - 📦 Change blockchain state
+- 🔐 Require gas fees
 
-<br>
+:: right ::
 
-**Key Components:**
-1. Sender (signer)
-2. Action (`call`, `run`, etc.)
-3. Arguments
-4. Gas fee
-
-</div>
-<div class="text-center">
-
-```mermaid
+```mermaid {scale: 0.7}
 sequenceDiagram
-    participant User
+    actor User
     participant Wallet
     participant Blockchain
     
@@ -48,9 +41,6 @@ sequenceDiagram
     Blockchain->>Blockchain: Process Tx
     Blockchain-->>User: Result
 ```
-
-</div>
-</div>
 
 ---
 
@@ -118,7 +108,7 @@ layout: default
 # 📞 <span class="text-blue-500">Call</span> Transactions
 ## Execute Specific Functions
 
-```bash {all|1-3|4-5|all}
+```bash {all|1|2|3|4|5|all}
 gnokey maketx call \
   --pkgpath "gno.land/r/demo/boards" \
   --func "CreateThread" \
@@ -148,7 +138,7 @@ layout: default
 # 🏃 <span class="text-green-500">Run</span> Transactions
 ## Execute Complete Scripts
 
-```bash {all|1-3|4-5|all}
+```bash {all|2|3|4|all}
 gnokey maketx run \
   --pkgpath "gno.land/r/demo/my_script" \
   --gas-fee 2gnot \
@@ -177,7 +167,7 @@ layout: default
 # 📦 <span class="text-purple-500">AddPkg</span> Transactions
 ## Deploy New Contracts
 
-```bash {all|1-3|4-5|all}
+```bash {all|2|3|4|all}
 gnokey maketx addpkg \
   --pkgpath "gno.land/r/myapp/mytoken" \
   --deposit "1000gnot" \
@@ -205,35 +195,11 @@ gnokey maketx addpkg \
 
 | Feature          | 📞 Call          | 🏃 Run           | 📦 AddPkg        |
 |------------------|------------------|------------------|------------------|
-| State Change     | ✅               | ❌ (Temporary)   | ✅               |
-| Gas Cost         | Low              | Medium           | High             |
+| Gas Cost         | Low              | Low              | High             |
 | Persistence      | Permanent        | Ephemeral        | Permanent        |
 | Deployment       | Not required     | Not required     | Required         |
 | Best For         | Contract methods | One-off scripts  | Deploying code   |
 
----
-
-# 🔄 Transaction Lifecycle
-
-```mermaid {scale: 0.6}
-sequenceDiagram
-    actor U as User
-    participant W as Wallet
-    participant N as Node
-    participant B as Blockchain
-    
-    U->>W: Create tx (call/run/addpkg)
-    W->>W: Sign tx
-    W->>N: Broadcast tx
-    N->>B: Validate & Execute
-    alt Success
-        B-->>U: Tx Hash
-        B->>B: State Update
-    else Failure
-        B-->>U: Error Message
-        B->>B: Revert Changes
-    end
-```
 
 ---
 

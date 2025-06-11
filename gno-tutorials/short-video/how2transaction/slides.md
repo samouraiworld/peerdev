@@ -191,15 +191,27 @@ gnokey maketx addpkg \
 
 ---
 
-# ⚖️ Transaction Comparison
+# 🔄 Transaction Lifecycle
 
-| Feature          | 📞 Call          | 🏃 Run           | 📦 AddPkg        |
-|------------------|------------------|------------------|------------------|
-| Gas Cost         | Low              | Low              | High             |
-| Persistence      | Permanent        | Ephemeral        | Permanent        |
-| Deployment       | Not required     | Not required     | Required         |
-| Best For         | Contract methods | One-off scripts  | Deploying code   |
-
+```mermaid {scale: 0.6}
+sequenceDiagram
+    actor U as User
+    participant W as Wallet
+    participant N as Node
+    participant B as Blockchain
+    
+    U->>W: Create tx (call/run/addpkg)
+    W->>W: Sign tx
+    W->>N: Broadcast tx
+    N->>B: Validate & Execute
+    alt Success
+        B-->>U: Tx Hash
+        B->>B: State Update
+    else Failure
+        B-->>U: Error Message
+        B->>B: Revert Changes
+    end
+```
 
 ---
 

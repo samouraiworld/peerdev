@@ -15,32 +15,15 @@ layout: cover
 How to interact with the Gno blockchain
 
 ---
-layout: two-cols-title
----
 
-:: title ::
 # 🔄 What are Transactions?
 
-:: left ::
 
 **Blockchain Interactions**
 - 📝 Signed operations
 - 📦 Change blockchain state
 - 🔐 Require gas fees
 
-:: right ::
-
-```mermaid {scale: 0.7}
-sequenceDiagram
-    actor User
-    participant Wallet
-    participant Blockchain
-    
-    User->>Wallet: Create Transaction
-    Wallet->>Blockchain: Sign & Send
-    Blockchain->>Blockchain: Process Tx
-    Blockchain-->>User: Result
-```
 
 ---
 
@@ -53,7 +36,6 @@ sequenceDiagram
     <th class="p-3 text-left">Type</th>
     <th class="p-3 text-left">Command</th>
     <th class="p-3 text-left">Purpose</th>
-    <th class="p-3 text-left">State Change</th>
   </tr>
 </thead>
 <tbody>
@@ -61,44 +43,29 @@ sequenceDiagram
     <td class="p-3 font-bold">📞 Call</td>
     <td class="p-3 font-mono">maketx call</td>
     <td class="p-3">Execute specific function</td>
-    <td class="p-3">✅ Permanent</td>
   </tr>
   <tr class="border-b hover:bg-green-50">
     <td class="p-3 font-bold">🏃 Run</td>
     <td class="p-3 font-mono">maketx run</td>
     <td class="p-3">Execute entire script</td>
-    <td class="p-3">❌ Temporary</td>
   </tr>
   <tr class="border-b hover:bg-purple-50">
     <td class="p-3 font-bold">📦 AddPkg</td>
     <td class="p-3 font-mono">maketx addpkg</td>
     <td class="p-3">Deploy new contract</td>
-    <td class="p-3">✅ Permanent</td>
   </tr>
   <tr class="border-b hover:bg-amber-50">
     <td class="p-3 font-bold">💸 Send</td>
     <td class="p-3 font-mono">maketx send</td>
     <td class="p-3">Transfer coins</td>
-    <td class="p-3">✅ Permanent</td>
   </tr>
   <tr class="border-b hover:bg-teal-50">
     <td class="p-3 font-bold">⚙️ Exec</td>
     <td class="p-3 font-mono">maketx exec</td>
     <td class="p-3">Run local file</td>
-    <td class="p-3">❌ Temporary</td>
-  </tr>
-  <tr class="border-b hover:bg-pink-50">
-    <td class="p-3 font-bold">🔍 Query</td>
-    <td class="p-3 font-mono">query</td>
-    <td class="p-3">Read state</td>
-    <td class="p-3">❌ Read-only</td>
   </tr>
 </tbody>
 </table>
-</div>
-
-<div class="mt-4 p-4 bg-gray-100 rounded-lg">
-💡 <strong>Key Difference:</strong> Permanent transactions change blockchain state, temporary transactions don't persist
 </div>
 
 ---
@@ -193,7 +160,7 @@ gnokey maketx addpkg \
 
 # 🔄 Transaction Lifecycle
 
-```mermaid {scale: 0.6}
+```mermaid 
 sequenceDiagram
     actor U as User
     participant W as Wallet
@@ -204,13 +171,7 @@ sequenceDiagram
     W->>W: Sign tx
     W->>N: Broadcast tx
     N->>B: Validate & Execute
-    alt Success
-        B-->>U: Tx Hash
-        B->>B: State Update
-    else Failure
-        B-->>U: Error Message
-        B->>B: Revert Changes
-    end
+    B->>U: TX hash or Error message
 ```
 
 ---

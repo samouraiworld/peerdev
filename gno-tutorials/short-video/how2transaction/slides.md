@@ -59,11 +59,6 @@ How to interact with the Gno blockchain
     <td class="p-3 font-mono">maketx send</td>
     <td class="p-3">Transfer coins</td>
   </tr>
-  <tr class="border-b hover:bg-teal-50">
-    <td class="p-3 font-bold">⚙️ Exec</td>
-    <td class="p-3 font-mono">maketx exec</td>
-    <td class="p-3">Run local file</td>
-  </tr>
 </tbody>
 </table>
 </div>
@@ -158,6 +153,35 @@ gnokey maketx addpkg \
 
 ---
 
+# 💸 <span class="text-amber-500">Send</span> Transactions  
+## Transfer Native Currency
+
+```bash {all|1|2|3|4|all}
+gnokey maketx send \
+  --to g1myreceiveraddress \
+  --send "100gnot" \
+  --gas-fee 1gnot
+```
+
+<div class="grid grid-cols-2 gap-4 mt-6">
+<div class="p-4 bg-amber-50 rounded border-l-4 border-amber-400">
+✅ <strong>Use Cases</strong>
+- Simple token transfers
+- Paying users
+- Funding accounts
+- Gas-efficient transfers
+</div>
+
+<div class="p-4 bg-red-50 rounded border-l-4 border-red-400">
+⚠️ <strong>Limitations</strong>
+- Only transfers native currency
+- Cannot call smart contracts
+- No complex logic
+</div>
+</div>
+
+---
+
 # 🔄 Transaction Lifecycle
 
 ```mermaid 
@@ -167,7 +191,7 @@ sequenceDiagram
     participant N as Node
     participant B as Blockchain
     
-    U->>W: Create tx (call/run/addpkg)
+    U->>W: Create tx (call/run/addpkg/send)
     W->>W: Sign tx
     W->>N: Broadcast tx
     N->>B: Validate & Execute
@@ -178,26 +202,25 @@ sequenceDiagram
 
 # 🛠 Practical Examples
 
-**1. Deploy a Token Contract**
+
+**1. Deploy Contract**
 ```bash
-gnokey maketx addpkg \
-  --pkgpath "gno.land/r/mydapp/token" \
-  --pkgdir "./token-contract"
+gnokey maketx addpkg --pkgpath "gno.land/r/mydapp/token"
 ```
 
-**2. Mint New Tokens**
+**2. Mint Tokens**
 ```bash
-gnokey maketx call \
-  --pkgpath "gno.land/r/mydapp/token" \
-  --func "Mint" \
-  --args "g1myaddress" "1000000"
+gnokey maketx call --pkgpath "gno.land/r/mydapp/token" --func "Mint"
 ```
 
 **3. Run Setup Script**
 ```bash
-gnokey maketx run \
-  --pkgpath "gno.land/r/mydapp/setup" \
-  --gas-fee 3gnot
+gnokey maketx run ./script.gno
+```
+
+**4. Transfer Funds**
+```bash
+gnokey maketx send --to g1friendaddress --send "50gnot"
 ```
 
 ---

@@ -10,7 +10,7 @@ layout: cover
 ---
 
 # ⚡ Gnoland Transaction Types  
-## Understanding `call`, `run`, `addpkg` and more
+## Understanding `call`, `run`, `addpkg` and `send`
 
 How to interact with the Gno blockchain
 
@@ -23,6 +23,7 @@ How to interact with the Gno blockchain
 - 📝 Signed operations
 - 📦 Change blockchain state
 - 🔐 Require gas fees
+- 🌐 Must be broadcasted to be on network
 
 
 ---
@@ -70,28 +71,31 @@ layout: default
 # 📞 <span class="text-blue-500">Call</span> Transactions
 ## Execute Specific Functions
 
-```bash {all|1|2|3|4|5|all}
+````md magic-move
+```bash {all|1|3|4|5|7-9|11-12|all}
+gnokey maketx call \
+  # Required parameters
+  --pkgpath "gno.land/r/demo/boards" \
+  --func "CreateThread" \
+  --args "Crypto" \
+
+  # Gas fees
+  --gas-fee 1gnot \
+  --gas-wanted 10000 \
+
+  # Key
+  mykeyname # or address e.g.: g1tdqr....
+```
+```bash
 gnokey maketx call \
   --pkgpath "gno.land/r/demo/boards" \
   --func "CreateThread" \
-  --args "Crypto" "Market News" "BTC up 10%" \
-  --gas-fee 1gnot
+  --args "Crypto" \
+  --gas-fee 1gnot \
+  --gas-wanted 10000 \
+  mykeyname
 ```
-
-<div class="grid grid-cols-2 gap-4 mt-6">
-<div class="p-4 bg-blue-50 rounded border-l-4 border-blue-400">
-✅ <strong>Use Cases</strong>
-- Modify contract state
-- Payable functions
-- Gas-efficient
-</div>
-
-<div class="p-4 bg-red-50 rounded border-l-4 border-red-400">
-⚠️ <strong>Limitations</strong>
-- Must know function signature
-- Package must be deployed
-</div>
-</div>
+````
 
 ---
 layout: default
@@ -100,85 +104,55 @@ layout: default
 # 🏃 <span class="text-green-500">Run</span> Transactions
 ## Execute Complete Scripts
 
-```bash {all|2|3|4|all}
+```bash {all|2-4|6-7|9-10|all}
 gnokey maketx run \
-  --pkgpath "gno.land/r/demo/my_script" \
-  --gas-fee 2gnot \
-  --broadcast
+  # Gas fees
+  --gas-fee 1gnot \
+  --gas-wanted 10000 \
+
+  # Key
+  mykeyname \
+
+  # Transaction Script
+  ./myscript
 ```
-
-<div class="grid grid-cols-2 gap-4 mt-6">
-<div class="p-4 bg-green-50 rounded border-l-4 border-green-400">
-✅ <strong>Use Cases</strong>
-- One-time computations
-- Script-like operations
-- Initialize contracts
-</div>
-
-<div class="p-4 bg-red-50 rounded border-l-4 border-red-400">
-⚠️ <strong>Limitations</strong>
-- No persistent state
-- Higher gas cost
-</div>
-</div>
 
 ---
 layout: default
 ---
 
 # 📦 <span class="text-purple-500">AddPkg</span> Transactions
-## Deploy New Contracts
+## Deploy New Realm
 
-```bash {all|2|3|4|all}
+```bash {all|3|4|5|7-10|all}
 gnokey maketx addpkg \
-  --pkgpath "gno.land/r/myapp/mytoken" \
+  # Required parameters
+  --pkgpath "gno.land/r/demo/token" \
+  --pkgdir "." \
   --deposit "1000gnot" \
-  --pkgdir "./mytoken" 
+
+  # Gas fees + Key
+  --gas-fee 1gnot \
+  --gas-wanted 10000 \
+   mykeyname
 ```
-
-<div class="grid grid-cols-2 gap-4 mt-6">
-<div class="p-4 bg-purple-50 rounded border-l-4 border-purple-400">
-✅ <strong>Use Cases</strong>
-- Deploy new realms
-- Update existing packages
-- Store contract code
-</div>
-
-<div class="p-4 bg-red-50 rounded border-l-4 border-red-400">
-⚠️ <strong>Limitations</strong>
-- Requires deposit
-- Complex deployment
-</div>
-</div>
 
 ---
 
 # 💸 <span class="text-amber-500">Send</span> Transactions  
 ## Transfer Native Currency
 
-```bash {all|1|2|3|4|all}
+```bash {all|2-4|3|4|6-9|all}
 gnokey maketx send \
-  --to g1myreceiveraddress \
+  # Required parameters
   --send "100gnot" \
-  --gas-fee 1gnot
+  --to g1qkm0xhj8nsm2l3g50ttazxhlq7fs47myhxqk79 \
+
+  # Gas fees + Key
+  --gas-fee 1gnot \
+  --gas-wanted 10000 \
+   mykeyname
 ```
-
-<div class="grid grid-cols-2 gap-4 mt-6">
-<div class="p-4 bg-amber-50 rounded border-l-4 border-amber-400">
-✅ <strong>Use Cases</strong>
-- Simple token transfers
-- Paying users
-- Funding accounts
-- Gas-efficient transfers
-</div>
-
-<div class="p-4 bg-red-50 rounded border-l-4 border-red-400">
-⚠️ <strong>Limitations</strong>
-- Only transfers native currency
-- Cannot call smart contracts
-- No complex logic
-</div>
-</div>
 
 ---
 
@@ -200,108 +174,51 @@ sequenceDiagram
 
 ---
 
+
+# 📡 Broadcasting Transactions
+
+**Required Flags for Every Broadcast:**
+```bash {1,2,3|1|2|3|all}
+--broadcast             # Enable network transmission
+--chainid "testchain"   # Specify blockchain network
+--remote "localhost:26657" # Connect to node RPC
+```
+
+
+---
+
 # 🛠 Practical Examples
 
 
 **1. Deploy Contract**
 ```bash
-gnokey maketx addpkg --pkgpath "gno.land/r/mydapp/token"
+gnokey maketx addpkg --pkgpath "gno.land/r/mydapp/token" --gas-fee 1gnot --gas-wanted 10000 \
+  --broadcast --chainid "staging" --remote "https://rpc.gno.land:443" key
 ```
 
 **2. Mint Tokens**
 ```bash
-gnokey maketx call --pkgpath "gno.land/r/mydapp/token" --func "Mint"
+gnokey maketx call --pkgpath "gno.land/r/mydapp/token" --func "Mint" --gas-fee 1gnot --gas-wanted 10000 \
+  --broadcast -chainid "dev" -remote "tcp://127.0.0.1:26657" key
 ```
 
 **3. Run Setup Script**
 ```bash
-gnokey maketx run ./script.gno
+gnokey maketx run ./script.gno --gas-fee 1gnot --gas-wanted 10000 \
+  --broadcast -chainid "dev" -remote "tcp://127.0.0.1:26657" key
 ```
 
 **4. Transfer Funds**
 ```bash
-gnokey maketx send --to g1friendaddress --send "50gnot"
+gnokey maketx send --to g1friendaddress --send "50gnot" --gas-fee 1gnot --gas-wanted 10000 \
+  --broadcast --chainid "staging" --remote "https://rpc.gno.land:443" key
 ```
-
----
-
-# 🚨 Common Errors & Fixes
-
-<div class="grid grid-cols-2 gap-4 mt-6">
-<div class="p-4 bg-red-50 rounded-lg">
-<strong>❌ "out of gas"</strong>
-```bash
-# Solution:
-Increase gas:
---gas-wanted 2000000 \
---gas-fee 5gnot
-```
-</div>
-
-<div class="p-4 bg-red-50 rounded-lg">
-<strong>❌ "invalid pkgpath"</strong>
-```bash
-# Solution:
-Verify exact path:
-gno.land/r/demo/boards
-```
-</div>
-
-<div class="p-4 bg-red-50 rounded-lg">
-<strong>❌ "function not found"</strong>
-```bash
-# Solution:
-Check function name:
---func "CreateBoard"
-```
-</div>
-
-<div class="p-4 bg-red-50 rounded-lg">
-<strong>❌ "insufficient deposit"</strong>
-```bash
-# Solution:
-Add more funds:
---deposit "2000gnot"
-```
-</div>
-</div>
-
----
-
-# 💡 Pro Tips
-
-1. **Dry Run First**
-   ```bash
-   gnokey maketx call ... --dry-run
-   ```
-
-2. **Estimate Gas**
-   ```bash
-   gnokey query estimate-gas --tx <tx-file>
-   ```
-
-3. **View Tx History**
-   ```bash
-   gnokey query txs --tags call
-   ```
-
-4. **Test Locally**
-   ```bash
-   gnokey maketx run --pkgpath localfile.gno
-   ```
-
 ---
 
 # 📚 Resources & Next Steps
 
 **Official Documentation**  
-[gno.land Transactions Guide](https://docs.gno.land/guides/transactions)  
-
-**Next Steps:**
-1. Try all transaction types
-2. Build a full dApp workflow
-3. Explore advanced gas management
-4. Implement transaction batching
+[gno.land Transactions Guide](https://docs.gno.land/users/interact-with-gnokey/)  
 
 ```bash
 # View help for all commands

@@ -20,10 +20,10 @@ How to interact with the Gno blockchain
 
 
 **Blockchain Interactions**
-- 📝 Signed operations
 - 📦 Change blockchain state
+- 📝 Signed operations
 - 🔐 Require gas fees
-- 🌐 Must be broadcasted to be on network
+- 🌐 Must be broadcasted on network
 
 
 ---
@@ -53,7 +53,7 @@ How to interact with the Gno blockchain
   <tr class="border-b hover:bg-purple-50">
     <td class="p-3 font-bold">📦 AddPkg</td>
     <td class="p-3 font-mono">maketx addpkg</td>
-    <td class="p-3">Deploy new contract</td>
+    <td class="p-3">Deploy new realm</td>
   </tr>
   <tr class="border-b hover:bg-amber-50">
     <td class="p-3 font-bold">💸 Send</td>
@@ -115,6 +115,37 @@ gnokey maketx run \
 
   # Transaction Script
   ./myscript
+```
+
+---
+
+# 🏃 <span class="text-green-500">Run</span> Transactions
+## Execute Complete Scripts
+
+```go
+package main
+
+import (
+	"gno.land/p/samourai/daokit"
+	"gno.land/r/demo/mydao"
+)
+
+// Proposal to add a new member in the DAO
+func main() {
+	action := ...
+
+	// Create proposal request with metadata and action
+	proposal := daokit.ProposalRequest{
+		Title:       "Adding new member",
+		Description: "Adding new finance-officer member.",
+		Action:      action,
+	}
+
+  // Submit the proposal to our DAO
+  mydao.Propose(proposal)
+  // Execute it a second time ?
+  mydao.Propose(proposal)
+}
 ```
 
 ---

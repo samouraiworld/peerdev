@@ -34,6 +34,21 @@ func hasNoRole(memberStore basedao.MembersStore, memberId string) bool {
 	return memberStore.GetMemberRoles(memberId) == nil
 }
 
+// Counts valid "yes" votes from roleless members
+func (c *noRoleCountCond) totalYes(ballot daocond.Ballot) uint64 {
+	totalYes := uint64(0)
+	ballot.Iterate(func(voter string, vote daocond.Vote) {
+		if vote != daocond.VoteYes {
+			return
+		}
+		if !hasNoRole(c.memberStore, voter) {
+			return
+		}
+		totalYes += 1
+	})
+	return totalYes
+}
+
 // Eval evaluates whether the condition is satisfied based on current votes
 // Returns true when at least 'count' roleless members have voted yes
 func (c *noRoleCountCond) Eval(ballot daocond.Ballot) bool {
@@ -62,18 +77,3 @@ func (c *noRoleCountCond) RenderWithVotes(ballot daocond.Ballot) string {
 // Verify the interface compliance
 // Ensures proper implementation
 var _ daocond.Condition = (*noRoleCountCond)(nil)
-
-// Counts valid "yes" votes from roleless members
-func (c *noRoleCountCond) totalYes(ballot daocond.Ballot) uint64 {
-	totalYes := uint64(0)
-	ballot.Iterate(func(voter string, vote daocond.Vote) {
-		if vote != daocond.VoteYes {
-			return
-		}
-		if !hasNoRole(c.memberStore, voter) {
-			return
-		}
-		totalYes += 1
-	})
-	return totalYes
-}

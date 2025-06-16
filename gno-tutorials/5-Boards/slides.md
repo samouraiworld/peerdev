@@ -10,7 +10,7 @@ layout: cover
 ---
 
 # 🏗️ Building Decentralized Forums  
-## Complete gno.land Boards Tutorial
+## Gno.land Boards Tutorial
 
 Create Reddit-like communities on-chain  
 Manage content with crypto payments

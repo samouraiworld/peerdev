@@ -21,7 +21,7 @@ color: blue-light
 ---
 
 :: title ::
-# 🌐 What is gno.land Boards?
+# 🌐 What is Boards?
 :: left ::
 
 **Decentralized Bulletin Board System**  
@@ -52,15 +52,3 @@ color: yellow-light
 - Monetization built-in
 - Transparent moderation
 
----
-layout: top-title
-color: green-light
----
-
-:: title ::
-# 🧩 How It Works
-
-:: content ::
-**Technical Foundation**
-- ⛓️ Built on Gno blockchain
-- 📜 Smart contracts (realms)

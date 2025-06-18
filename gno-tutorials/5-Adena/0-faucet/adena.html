@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adena Wallet Integration Demo</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 600px; margin: 2rem auto; padding: 20px; }
+        button { padding: 12px 20px; font-size: 16px; margin: 10px; cursor: pointer; }
+        #status { 
+            padding: 15px; 
+            border-radius: 8px;
+            margin: 20px 0;
+            font-weight: bold;
+        }
+        .connected { background: #d4edda; color: #155724; }
+        .disconnected { background: #f8d7da; color: #721c24; }
+        .not-installed { background: #fff3cd; color: #856404; }
+    </style>
+</head>
+<body>
+    <h1>Adena Wallet Integration</h1>
+    
+    <div id="status">Checking for Adena Wallet...</div>
+    
+    <button id="connectBtn" disabled>Connect Wallet</button>
+    <button id="disconnectBtn" disabled>Disconnect</button>
+    
+    <div id="accountInfo"></div>
+
+    <script>
+        // DOM elements
+        const statusDiv = document.getElementById('status');
+        const connectBtn = document.getElementById('connectBtn');
+        const disconnectBtn = document.getElementById('disconnectBtn');
+        const accountInfo = document.getElementById('accountInfo');
+
+        // Detect wallet on page load
+        window.addEventListener('load', async () => {
+            if (window.adena) {
+                statusDiv.textContent = '✅ Adena Wallet detected!';
+                statusDiv.className = 'status connected';
+                connectBtn.disabled = false;
+            } else {
+                statusDiv.innerHTML = '⚠️ Adena Wallet not installed. <br>Get it at: <a href="https://adena.app/" target="_blank">adena.app</a>';
+                statusDiv.className = 'status not-installed';
+            }
+        });
+
+        // Connect wallet handler
+        connectBtn.addEventListener('click', async () => {
+            try {
+                // Establish connection
+                const response = await window.adena.AddEstablish({
+                    hostname: window.location.hostname,
+                    network: 'mainnet', // Or 'testnet'
+                    chainId: 'gnoland'
+                });
+                
+                // Get account info
+                const account = await window.adena.GetAccount();
+                
+                // Update UI
+                accountInfo.innerHTML = `
+                    <h3>Wallet Connected</h3>
+                    <p>Address: ${account.address}</p>
+                    <p>Chain ID: ${account.chainId}</p>
+                    <p>Network: ${account.network}</p>
+                `;
+                
+                statusDiv.textContent = `✅ Connected to ${account.address.substring(0, 12)}...`;
+                disconnectBtn.disabled = false;
+                
+            } catch (error) {
+                console.error('Connection error:', error);
+                statusDiv.textContent = '❌ Connection failed: ' + error.message;
+                statusDiv.className = 'status disconnected';
+            }
+        });
+
+        // Disconnect handler
+        disconnectBtn.addEventListener('click', () => {
+            accountInfo.innerHTML = '';
+            statusDiv.textContent = '🛑 Wallet disconnected';
+            statusDiv.className = 'status disconnected';
+            disconnectBtn.disabled = true;
+        });
+    </script>
+</body>
+</html>

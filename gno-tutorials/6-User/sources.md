@@ -1,0 +1,1 @@
+https://docs.gno.land/resources/users-and-teams/

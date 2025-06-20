@@ -165,6 +165,7 @@ gno.land/[p|r]/[owner]/[package]
 ### Ownership Rules:
 1. **Registered users**: `gno.land/p/david/math`
 2. **Anonymous users**: `gno.land/p/g1abc...xyz/math`
+3. **System packages**: `gno.land/r/sys/vals`
 
 ### Deployment Rights:
 - Only namespace owner can deploy

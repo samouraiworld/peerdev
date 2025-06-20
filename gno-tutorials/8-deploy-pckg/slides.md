@@ -212,9 +212,3 @@ layout: center
 4. **Verify transactions** after deployment
 5. **Optimize gas** through iteration
 6. **Secure your keys** with proper storage
-
-**Resources:**
-- [Gno Documentation](https://docs.gno.land)
-- [Examples Repository](https://github.com/gnolang/gno/examples)
-- [Testnet Explorer](https://testnet.gno.land)
-- [Community Discord](https://discord.gg/gnoland)

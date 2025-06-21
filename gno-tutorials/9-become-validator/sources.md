@@ -1,0 +1,1 @@
+https://gnops.io/articles/guides/become-testnet-validator/

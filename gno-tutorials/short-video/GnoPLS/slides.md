@@ -1,6 +1,6 @@
 ---
 title: Gnopls - LSP for Gno
-theme: ../theme
+theme: ../../theme
 highlight: dracula
 highlighter: shiki
 fonts:

@@ -1,6 +1,6 @@
 ---
 title: User and teams - How to customize your profile
-theme: ../theme
+theme: ../../theme
 highlight: dracula
 highlighter: shiki
 fonts:

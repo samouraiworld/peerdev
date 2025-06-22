@@ -71,7 +71,7 @@ gnokey maketx addpkg \
   --gas-fee "1gnot" \
   --gas-wanted 200 \
   --broadcast \
-  --chainid "test6"
+  --chainid "test6" \
   --remote "test6.testnets.gno.land:36657" \
   MyKey
 ```

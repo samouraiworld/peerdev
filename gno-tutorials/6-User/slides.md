@@ -11,8 +11,6 @@ layout: cover
 
 
 # 👤 Users & Teams in Gno.land
-## Identity and Collaboration on the Gno Blockchain
-
 Building decentralized identities and collaborative namespaces
 
 <!-- 

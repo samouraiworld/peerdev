@@ -1,0 +1,3 @@
+[submodule "gno-tutorials/7-GnoPLS/gnopls"]
+	path = gno-tutorials/7-GnoPLS/gnopls
+	url = https://github.com/gnoverse/gnopls

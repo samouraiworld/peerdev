@@ -65,14 +65,14 @@ color: green
 ### Package Deployment
 ```bash
 gnokey maketx addpkg \
-  --pkgpath "gno.land/r/demo/counter" \ # Or "gno.land/p/..."
+  --pkgpath "gno.land/r/demo/counter" \
   --pkgdir "./counter" \
   --deposit "1gnot" \
   --gas-fee "1gnot" \
   --gas-wanted 200 \
   --broadcast \
-  --chainid "test6" \
-  --remote "test6.testnets.gno.land:36657" \
+  --chainid "staging" \
+  --remote "https://rpc.gno.land:443" \
   MyKey
 ```
 

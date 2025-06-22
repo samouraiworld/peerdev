@@ -72,13 +72,8 @@ gnokey maketx addpkg \
   --gas-wanted 200 \
   --broadcast \
   --chainid "testnet"
-  --remote "testnet.gno.land:36657" \
+  --remote "test6.testnets.gno.land:36657" \
   MyKey
-```
-
-### Initialization Arguments
-```bash
---args '{"initial_value": 100}'
 ```
 
 ---

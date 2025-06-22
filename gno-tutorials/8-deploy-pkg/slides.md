@@ -71,7 +71,7 @@ gnokey maketx addpkg \
   --gas-fee "1gnot" \
   --gas-wanted 200 \
   --broadcast \
-  --chainid "testnet"
+  --chainid "test6"
   --remote "test6.testnets.gno.land:36657" \
   MyKey
 ```
@@ -93,7 +93,7 @@ gno.land/[p|r]/[owner]/[package]
 #### Ownership Rules:
 1. **Registered users**: `gno.land/p/david/math`
 2. **Anonymous users**: `gno.land/p/g1abc...xyz/math`
-3. **System packages**: `gno.land/r/sys/vals`
+3. **Gno owned packages**: `gno.land/r/sys/vals`
 
 #### Deployment Rights:
 - Only namespace owner can deploy

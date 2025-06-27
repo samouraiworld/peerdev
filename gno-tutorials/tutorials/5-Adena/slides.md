@@ -1,6 +1,6 @@
 ---
 title: Adena Wallet
-theme: ../theme
+theme: ../../theme
 highlight: dracula
 highlighter: shiki
 fonts:

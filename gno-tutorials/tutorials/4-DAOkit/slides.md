@@ -1,6 +1,6 @@
 ---
 title: DAOkit on Gno.land
-theme: ../theme
+theme: ../../theme
 highlight: dracula
 highlighter: shiki
 fonts:

@@ -1,6 +1,6 @@
 ---
 title: GRC20 vs Coins on Gno.land
-theme: ../theme
+theme: ../../theme
 colorSchema: teal
 highlight: dracula
 highlighter: shiki

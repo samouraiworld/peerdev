@@ -21,12 +21,13 @@ type Proposal struct {
 	Title    string
 	Content  string
 	Deadline time.Time
+	Members []avl.tree
 
 	Action    *Action
 	Condition *Condition
 }
 
-func CreateProposal(Title: string, 
+func CreatePublicProposal(Title: string, 
 	Content: string, 
 	Deadline: time.Time, 
 	Action: uint64, 

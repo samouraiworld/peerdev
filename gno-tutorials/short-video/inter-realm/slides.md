@@ -100,7 +100,7 @@ flowchart LR
 ```mermaid
 kanban
   column1[Provenance stack]
-        Top[Current Realm: **A**]
+        Top[Current Realm: *A**]
         C[Origin: **User Realm**]
 ```
 

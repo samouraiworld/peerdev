@@ -55,6 +55,8 @@ type Proposal struct {
 }
 
 var (
+	actions *avl.Tree = avl.NewTree()
+	condition *avl.Tree = avl.NewTree()
 	proposals *avl.Tree = avl.NewTree()
 )
 
@@ -64,8 +66,8 @@ func init() {
 func CreatePublicProposal(title string, 
 	content string, 
 	deadline time.Time, 
-	conditionID uint64,
 	actionID uint64,
+	conditionID uint64,
 	roles map[std.Address]Role) Proposal {
 		newProposal := Proposal{}
 }
@@ -73,8 +75,8 @@ func CreatePublicProposal(title string,
 func CreateProposal(title string, 
 	content string, 
 	deadline time.Time, 
-	conditionID uint64,
 	actionID uint64, 
+	conditionID uint64,
 	allowedVoters []std.Address,
 	roles map[std.Address]Role) Proposal {
 		newProposal := Proposal{}
@@ -82,7 +84,12 @@ func CreateProposal(title string,
 
 
 
-func CastVote() {
+func CastVote(proposalID uint64, vote Ballot) {
+	var proposal Proposal = proposals.Get(proposalID)
+
+	if !proposal.IsPublic {
+		
+	} 
 
 }
 

@@ -12,15 +12,17 @@ import (
 type Action struct {
 	Id            uint64
 	Title         string
-	Content       string
+	Description   string
 	ExecuteAction func(interface{})
+	Payload       interface{}
 }
 
 type Condition struct {
 	Id              uint64
 	Title           string
-	Content         string
+	Description     string
 	VerifyCondition func(interface{}) bool
+	Payload         interface{}
 }
 
 type Ballot int
@@ -167,11 +169,11 @@ func ExecuteProposal(proposalID uint64) {
 	if proposal.Executed {
 		panic("Proposal already executed.")
 	}
-	if proposal.Condition != nil && !proposal.Condition.VerifyCondition() {
+	if proposal.Condition != nil && !proposal.Condition.VerifyCondition(proposal.Condition.Payload) {
 		panic("Condition not met for execution.")
 	}
 	if proposal.Action != nil {
-		proposal.Action.ExecuteAction()
+		proposal.Action.ExecuteAction(proposal.Action.Payload)
 	}
 	proposal.Executed = true
 }

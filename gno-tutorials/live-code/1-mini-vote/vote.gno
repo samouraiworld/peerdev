@@ -2,6 +2,7 @@ package vote
 
 import (
 	"std"
+	"strconv"
 	"time"
 
 	"gno.land/p/demo/avl"
@@ -188,16 +189,16 @@ func Render(_ string) string {
 	for i := 0; i < proposals.Len(); i++ {
 		prop := proposals.Get(i).(Proposal)
 		out += "-----------------------------\n"
-		out += "ID: " + std.Itoa(int(prop.Id)) + "\n"
+		out += "ID: " + strconv.Itoa(int(prop.Id)) + "\n"
 		out += "Title: " + prop.Title + "\n"
 		out += "Content: " + prop.Content + "\n"
 		out += "Deadline: " + prop.Deadline.String() + "\n"
-		out += "Closed: " + std.FormatBool(prop.Closed) + "\n"
-		out += "Executed: " + std.FormatBool(prop.Executed) + "\n"
-		out += "Public: " + std.FormatBool(prop.IsPublic) + "\n"
+		out += "Closed: " + strconv.FormatBool(prop.Closed) + "\n"
+		out += "Executed: " + strconv.FormatBool(prop.Executed) + "\n"
+		out += "Public: " + strconv.FormatBool(prop.IsPublic) + "\n"
 		out += "Votes:\n"
-		prop.Voters.Iter(func(key string, value any) bool {
-			out += "  " + key + ": " + std.Itoa(int(value.(Ballot))) + "\n"
+		prop.Voters.IterateByOffset(0, prop.Voters.Size(), func(key string, value any) bool {
+			out += "  " + key + ": " + strconv.Itoa(int(value.(Ballot))) + "\n"
 			return true
 		})
 		out += "\n"

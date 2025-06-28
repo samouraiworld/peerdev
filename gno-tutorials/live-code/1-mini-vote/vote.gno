@@ -12,14 +12,14 @@ type Action struct {
 	Id            uint64
 	Title         string
 	Content       string
-	ExecuteAction func(args ...any)
+	ExecuteAction func(interface{})
 }
 
 type Condition struct {
 	Id              uint64
 	Title           string
 	Content         string
-	VerifyCondition func(args ...any) bool
+	VerifyCondition func(interface{}) bool
 }
 
 type Ballot int

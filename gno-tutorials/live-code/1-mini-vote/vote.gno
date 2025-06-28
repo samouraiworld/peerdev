@@ -71,24 +71,25 @@ func CreatePublicProposal(title string,
 	actionID uint64,
 	conditionID uint64,
 	roles map[std.Address]Role,
-) Proposal {
-	roles := avl.NewTree()
+) {
+	new_roles := avl.NewTree()
 	for addr, role := range roles {
-		roles.Set(addr, role)
+		new_roles.Set(addr.String(), role)
 	}
 	newProposal := Proposal{
-		Id:        uint64(proposals.Len()),
+		Id:        uint64(proposals.Len() - 1),
 		Title:     title,
 		Content:   content,
 		Deadline:  deadline,
-		Roles:     roles,
+		Roles:     new_roles,
 		Voters:    avl.NewTree(),
-		Action:    actions.Get(actionID),
-		Condition: condition.Get(conditionID),
+		Action:    actions.Get(int(actionID)).(*Action),
+		Condition: condition.Get(int(conditionID)).(*Condition),
 		Closed:    false,
 		Executed:  false,
 		IsPublic:  true,
 	}
+	proposals.Append(newProposal)
 }
 
 func CreateProposal(title string,
@@ -97,37 +98,35 @@ func CreateProposal(title string,
 	actionID uint64,
 	conditionID uint64,
 	allowedVoters []std.Address,
-	roles map[std.Address]Role) Proposal {
-	roles := avl.NewTree()
+	roles map[std.Address]Role) {
+	new_roles := avl.NewTree()
 	for addr, role := range roles {
-		roles.Set(addr, role)
+		new_roles.Set(addr.String(), role)
 	}
 	voters := avl.NewTree()
-	for i, addr := range allowedVoters {
+	for _, addr := range allowedVoters {
 		voters.Set(addr.String(), Elligible)
 	}
 	newProposal := Proposal{
-		Id:        uint64(proposals.Len()),
+		Id:        uint64(proposals.Len() - 1),
 		Title:     title,
 		Content:   content,
 		Deadline:  deadline,
-		Roles:     roles,
+		Roles:     new_roles,
 		Voters:    voters,
-		Action:    actions.Get(actionID),
-		Condition: condition.Get(conditionID),
+		Action:    actions.Get(int(actionID)).(*Action),
+		Condition: condition.Get(int(conditionID)).(*Condition),
 		Closed:    false,
 		Executed:  false,
 		IsPublic:  false,
 	}
+	proposals.Append(newProposal)
 }
 
 func CastVote(proposalID uint64, vote Ballot) {
-	var proposal Proposal = proposals.Get(proposalID)
-	if !proposal {
-		panic("Proposal does not exist.")
-	}
+	proposal := getProposal(proposalID)
 	addr := std.PreviousRealm().Address()
-	ballot, hasBallot := proposal.Voters.Get(addr)
+	ballot, hasBallot := proposal.Voters.Get(addr.String())
 
 	// Only allowed voters can vote on private proposals
 	if proposal.IsPublic {
@@ -142,14 +141,14 @@ func CastVote(proposalID uint64, vote Ballot) {
 			panic("Address already voted.")
 		}
 	}
-	proposal.Voters.Set(addr, vote)
+	proposal.Voters.Set(addr.String(), vote)
 }
 
 func CloseProposal(proposalID uint64) {
-	var proposal Proposal = proposals.Get(proposalID)
+	proposal := getProposal(proposalID)
 
 	prevAddr := std.PreviousRealm().Address()
-	role, hasRole = proposal.Roles.Get(prevAddr)
+	role, hasRole := proposal.Roles.Get(prevAddr.String())
 	if !hasRole {
 		panic(prevAddr.String() + " has no role.")
 	}
@@ -157,14 +156,51 @@ func CloseProposal(proposalID uint64) {
 	case Admin, CanClose:
 		proposal.Closed = true
 		break
+	default:
+		panic(prevAddr.String() + " has not enough permissions.")
 	}
-	panic(prevAddr.String() + " has not enough permissions.")
 }
 
 func ExecuteProposal(proposalID uint64) {
-	// proposal :=
+	proposal := getProposal(proposalID)
+	if proposal.Executed {
+		panic("Proposal already executed.")
+	}
+	if proposal.Condition != nil && !proposal.Condition.VerifyCondition() {
+		panic("Condition not met for execution.")
+	}
+	if proposal.Action != nil {
+		proposal.Action.ExecuteAction()
+	}
+	proposal.Executed = true
+}
+
+func getProposal(proposalID uint64) Proposal {
+	var proposal = proposals.Get(int(proposalID))
+	if proposal == nil {
+		panic("Proposal does not exist.")
+	}
+	return proposal.(Proposal)
 }
 
 func Render(_ string) string {
-	return ""
+	out := "Proposals:\n"
+	for i := 0; i < proposals.Len(); i++ {
+		prop := proposals.Get(i).(Proposal)
+		out += "-----------------------------\n"
+		out += "ID: " + std.Itoa(int(prop.Id)) + "\n"
+		out += "Title: " + prop.Title + "\n"
+		out += "Content: " + prop.Content + "\n"
+		out += "Deadline: " + prop.Deadline.String() + "\n"
+		out += "Closed: " + std.FormatBool(prop.Closed) + "\n"
+		out += "Executed: " + std.FormatBool(prop.Executed) + "\n"
+		out += "Public: " + std.FormatBool(prop.IsPublic) + "\n"
+		out += "Votes:\n"
+		prop.Voters.Iter(func(key string, value any) bool {
+			out += "  " + key + ": " + std.Itoa(int(value.(Ballot))) + "\n"
+			return true
+		})
+		out += "\n"
+	}
+	return out
 }

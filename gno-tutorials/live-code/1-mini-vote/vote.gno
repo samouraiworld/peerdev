@@ -33,9 +33,9 @@ type Role int
 
 const (
 	None Role = iota
-	Admin // Delete + Edit
+	Admin // Edit + Delete + Close
 	CanEdit
-	CanDelete
+	CanClose
 )
 
 type Proposal struct {
@@ -77,6 +77,7 @@ func CreateProposal(title string,
 	actionID uint64, 
 	allowedVoters []std.Address,
 	roles map[std.Address]Role) Proposal {
+		newProposal := Proposal{}
 }
 
 
@@ -87,9 +88,18 @@ func CastVote() {
 
 func CloseProposal(proposalID uint64) {
 	var proposal Proposal = proposals.Get(proposalID)
-
-	if (std.PreviousRealm().Address() == proposal. )
-	proposal.Closed = true
+	
+	prevAddr := std.PreviousRealm().Address()
+	role, hasRole = proposal.Roles.Get(prevAddr)
+	if (!hasRole) {
+		panic(prevAddr.String() + " has no role.")
+	} 
+	switch role {
+	case Admin, CanClose:
+		proposal.Closed = true
+		break
+	}
+	panic(prevAddr.String() + " has not enough permissions.")
 }
 
 func ExecuteProposal(proposalID uint64) {

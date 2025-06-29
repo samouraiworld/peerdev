@@ -5,8 +5,6 @@ import "strconv"
 var counter int
 
 func Increment() {
-	crossing()
-
 	counter++
 }
 

@@ -23,12 +23,11 @@ This sets the foundation for understanding interrealm behavior.
 
 # What is a Realm?
 
-* A **realm** is an isolated execution and storage context 🌍
-* Each realm has:
-  - Its own **state and authority**
-  - Rules for **entry** and **data modification**
-* Realms enforce:
-  - **Security**, **Traceability** and **Isolation** 
+* A **Realm** is an isolated mutable state space within the GnoVM
+* Each realm:
+  - Owns its global variables (storage)
+  - Controls mutation access through realm context
+  - Has a dedicated coin address
 
 ```mermaid 
 flowchart TD
@@ -118,11 +117,11 @@ sequenceDiagram
   activate Malicious
   Malicious->>Target: 2. withdraw() 
   activate Target
-  Target->>Malicious: 3. Send ETH (triggers fallback)
+  Target->>Malicious: 3. Send GNOT (triggers fallback)
   activate Malicious
   Malicious->>Target: 4. withdraw() [Reentrant Call]
   activate Target
-  Target->>Malicious: 5. Send ETH (again)
+  Target->>Malicious: 5. Send GNOT (again)
   activate Malicious
   Note right of Malicious: 6. Reentrancy loop continues...
   Malicious-->>Target: 
@@ -140,10 +139,12 @@ sequenceDiagram
 # Let's introduce **Borrowing**
 ### Less permissive call for a more secure environment.
 
-* **Borrowing** = calling a method on an object in another realm.
-* You **implicitly visit** the object's realm for that method call.
-* You can **read and modify** the receiver and its reachable state.
-* **Limit**: You cannot freely create new root-level objects.
+* **Borrowing** = calling a method on an external realm's object
+* You temporarily enter the object's storage realm
+* You can modify:
+  - The receiver object itself
+  - Objects reachable from receiver (same realm)
+* **Cannot** create new root-level objects
 
 ---
 
@@ -219,35 +220,28 @@ kanban
 #### Realm A
 ````md magic-move
 ```go
-func CallCreatePost(title, content string) {
-    CreatePost(title, content)
-}
+realmB.CreatePost("Hello Gno")
 ```
 ```go
-func CallCreatePost(title, content string) {
-    cross(CreatePost)(title, content)
-}
+realmB.CreatePost(cross, "Hello Gno")
 ```
 ````
 
 #### Realm B
 ````md magic-move
 ```go
-func CreatePost(title, content string) {
+func CreatePost(title string) {
 	newPost := Post{
 		Title: title,
-        Content: content,
 	}
 	Posts = append(Posts, *newPost)
 }
 ```
 ```go
-func CreatePost(title, content string) {
-    crossing()
+func CreatePost(cur realm, title string) {
 	newPost := Post{
 		Title: title,
-        Content: content,
-	}
+  }
 	Posts = append(Posts, *newPost)
 }
 ````
@@ -283,30 +277,20 @@ book.SetTitle("Hello Gno")
 
 ```go
 // In realmB
-func CreateUser(name string) {
-  crossing()
+func CreateUser(cur realm, name string) {
   user := &User{Name: name}
   users[name] = user  // Global storage in realmB
 }
 
 // In realmA
-cross(realmB.CreateUser)("alice")
+realmB.CreateUser(cross, "alice")
 ```
-
----
-
-# Best Practices
-
-1. Default to **non-crossing** methods.
-2. Use **borrowing** for object-specific ops.
-3. Reserve **crossing** for realm-level state changes.
-4. Always mark public crossable functions with `crossing()`.
-
 ---
 
 # Summary
 
-* **Realms** = isolated worlds.
-* **Borrowing** = temporary, object-scoped access.
-* **Crossing** = explicit realm switch for full access.
+* **Realms** = isolated code.
+* **Borrowing** = temporary, object-scoped access (Object operations)
+* **Crossing** = explicit realm switch for full access (Public mutators)
 * Choose the right approach for **security** and **clarity**.
+

@@ -65,7 +65,30 @@ var (
 	proposals list.List
 )
 
-func init() {
+func CreateAction(title string, description string, executeAction func(interface{}), payload interface{}) uint64 {
+	id := uint64(actions.Len())
+	action := &Action{
+		Id:            id,
+		Title:         title,
+		Description:   description,
+		ExecuteAction: executeAction,
+		Payload:       payload,
+	}
+	actions.Append(action)
+	return id
+}
+
+func CreateCondition(title string, description string, verifyCondition func(interface{}) bool, payload interface{}) uint64 {
+	id := uint64(condition.Len())
+	cond := &Condition{
+		Id:              id,
+		Title:           title,
+		Description:     description,
+		VerifyCondition: verifyCondition,
+		Payload:         payload,
+	}
+	condition.Append(cond)
+	return id
 }
 
 func CreatePublicProposal(title string,
@@ -176,6 +199,7 @@ func ExecuteProposal(proposalID uint64) {
 		proposal.Action.ExecuteAction(proposal.Action.Payload)
 	}
 	proposal.Executed = true
+	proposal.Closed = true
 }
 
 func getProposal(proposalID uint64) Proposal {

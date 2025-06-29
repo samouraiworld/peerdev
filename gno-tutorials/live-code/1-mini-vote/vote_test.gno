@@ -2,10 +2,11 @@ package vote
 
 import (
 	"std"
+	"testing"
 	"time"
 )
 
-func TestCreatePublicProposal() {
+func TestCreatePublicProposal(t *testing.T) {
 	// Setup roles
 	roles := map[std.Address]Role{
 		std.Address("addr1"): 1, // Admin
@@ -39,7 +40,7 @@ func TestCreatePublicProposal() {
 	if proposals.Len() != 1 {
 		panic("Proposal was not created.")
 	}
-	p := proposals.Get(0).(*Proposal)
+	p := proposals.Get(0).(Proposal)
 	if p.Title != "Test Proposal" {
 		panic("Proposal title mismatch.")
 	}

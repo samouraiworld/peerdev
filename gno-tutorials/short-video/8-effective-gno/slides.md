@@ -107,6 +107,15 @@ func Transfer(to std.Address, amount int) {
 }
 ```
 
+---
+layout: top-title
+color: green
+---
+
+:: title ::
+# 📝 Documentation & Design
+:: content ::
+
 ### 🧱 Design Realms as Public APIs
 * Treat all exposed functions as public endpoints
 * Validate all inputs
@@ -192,6 +201,16 @@ func GetUser(id string) *User {
 }
 ```
 
+---
+layout: top-title
+color: teal
+---
+
+:: title ::
+# 💾 State Management
+:: content ::
+
+
 ### 📡 Emit Events for Off-chain Use
 * Indexable by external services
 * Key-value format for filtering
@@ -223,6 +242,16 @@ color: orange
 | **Gas Costs**     | Lower                     | Higher                    |
 | **Use Cases**     | Native currency, IBC      | DeFi, DAOs, token-gating  |
 
+---
+layout: top-title
+color: orange
+---
+
+:: title ::
+# 💰 Token Strategies
+:: content ::
+
+
 ### 🎁 Wrapping Coins
 ```go
 import "gno.land/p/demo/grc20"
@@ -232,10 +261,12 @@ var wrappedCoin = grc20.NewBanker("Wrapped Coin", "WRAP", 6)
 ```
 
 ---
-layout: section
+layout: top-title
 ---
 
+:: title ::
 # 📦 Package Structure Best Practices
+:: content ::
 
 ### 📂 Organization
 ```text
@@ -250,6 +281,14 @@ gno.land/p/myproject/
 └── internal/        # Private packages
     └── helpers.gno
 ```
+---
+layout: top-title
+---
+
+:: title ::
+# 📦 Package Structure Best Practices
+:: content ::
+
 
 ### 📜 Key Rules
 1. Match package name to directory name
@@ -259,16 +298,10 @@ gno.land/p/myproject/
 5. Prefer small, focused packages
 
 ---
-layout: cover
----
 
 # 🏁 Conclusion
 
-### ✅ Embrace Gno-specific patterns
-### ✅ Prioritize security and access control
-### ✅ Design for users and composability
-### ✅ Choose appropriate storage solutions
-
-**Resources**:  
-[docs.gno.land/resources/effective-gno](https://docs.gno.land/resources/effective-gno)  
-`gno.land/p/demo/daokit`
+- ✅ Embrace Gno-specific patterns
+- ✅ Prioritize security and access control
+- ✅ Design for users and composability
+- ✅ Choose appropriate storage solutions

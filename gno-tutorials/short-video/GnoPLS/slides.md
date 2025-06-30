@@ -34,6 +34,15 @@ color: blue
 - **Decouples** language intelligence from editor implementation
 - Supported by VS Code, Neovim, Emacs, Sublime, etc.
 
+---
+layout: top-title
+color: blue
+---
+
+:: title ::
+# 🤔 What is LSP?
+:: content ::
+
 **Key capabilities:**
 - Code completion
 - Error checking

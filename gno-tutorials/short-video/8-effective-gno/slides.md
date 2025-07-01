@@ -56,7 +56,7 @@ func Transfer(amount int) {
 
 <template #2>
 
-### �️ init() is Crucial
+### init() is Crucial
 * Acts as realm constructor
 * Executed once during deployment
 * Sets initial state and registers realms
@@ -97,7 +97,6 @@ color: green
 ### 📖 Documentation is for Users
 * Write for end-users, not just developers
 * Include clear endpoint explanations
-* Smart wallets use docs for UX
 ```go
 // Transfer moves tokens between accounts
 // - to: recipient address
@@ -268,33 +267,12 @@ layout: top-title
 # 📦 Package Structure Best Practices
 :: content ::
 
-### 📂 Organization
-```text
-gno.land/r/myproject/
-├── main.gno         # Primary realm
-├── governance.gno   # Governance subsystem
-└── treasury.gno     # Treasury management
-
-gno.land/p/myproject/
-├── types.gno        # Shared types
-├── utils.gno        # Utilities
-└── internal/        # Private packages
-    └── helpers.gno
-```
----
-layout: top-title
----
-
-:: title ::
-# 📦 Package Structure Best Practices
-:: content ::
-
 
 ### 📜 Key Rules
 1. Match package name to directory name
-2. Use `internal/` for private packages
-3. Define interfaces and types in `p/`
-4. Keep realms in `r/` focused on business logic
+2. Define interfaces and types in `p/`
+3. Keep realms in `r/` focused on business logic
+4. Use `internal/` for private packages
 5. Prefer small, focused packages
 
 ---

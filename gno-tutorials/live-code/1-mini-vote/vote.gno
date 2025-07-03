@@ -170,6 +170,31 @@ func CastVote(proposalID uint64, vote Ballot) {
 	proposal.Voters.Set(addr.String(), vote)
 }
 
+func EditProposal(proposalID uint64, title string, content string, deadline time.Time) {
+	proposal := getProposal(proposalID)
+
+	prevAddr := std.PreviousRealm().Address()
+	role, hasRole := proposal.Roles.Get(prevAddr.String())
+	if !hasRole {
+		panic(prevAddr.String() + " has no role.")
+	}
+	switch role {
+	case Admin, CanEdit:
+		if title != "" && title != proposal.Title {
+			proposal.Title = title
+		}
+		if content != "" && content != proposal.Content {
+			proposal.Content = content
+		}
+		if !deadline.Equal(proposal.Deadline) && !deadline.IsZero() {
+			proposal.Deadline = deadline
+		}
+		break
+	default:
+		panic(prevAddr.String() + " has not enough permissions.")
+	}
+}
+
 func CloseProposal(proposalID uint64) {
 	proposal := getProposal(proposalID)
 

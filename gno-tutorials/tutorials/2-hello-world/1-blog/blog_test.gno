@@ -44,7 +44,7 @@ func TestCreatePostPanic(t *testing.T) {
 	content := "No title available."
 
 	// should panic
-	CreatePost(title, content)
+	CreatePost(cross, title, content)
 
 	// If CreatePost fails to panic, the test will fail above.
 	// The following render should not be reached.

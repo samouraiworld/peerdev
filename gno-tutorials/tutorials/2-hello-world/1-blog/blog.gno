@@ -18,10 +18,7 @@ var Posts []Post
 
 // CreatePost appends a new post to the Posts list.
 // Title should present.
-func CreatePost(title, content string) {
-	// Necessary when calling our contract from another space
-	crossing()
-
+func CreatePost(cur realm, title, content string) {
 	if title == "" {
 		panic("No title")
 	}

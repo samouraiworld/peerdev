@@ -46,17 +46,15 @@ func init() {
 	daoPrivate.Core.Resources.Set(&resource)
 }
 
-func Vote(proposalID uint64, vote daocond.Vote) {
-	crossing()
+func Vote(cur realm, proposalID uint64, vote daocond.Vote) {
 	DAO.Vote(proposalID, vote)
 }
 
-func Execute(proposalID uint64) {
-	crossing()
+func Execute(cur realm, proposalID uint64) {
 	DAO.Execute(proposalID)
 }
 
-func Propose(req daokit.ProposalRequest) {
+func Propose(cur realm, req daokit.ProposalRequest) {
 	DAO.Propose(req)
 }
 

@@ -6,8 +6,7 @@ import "strconv"
 
 var counter int
 
-func Increment() {
-	crossing()
+func Increment(cur realm) {
 	counter++
 }
 

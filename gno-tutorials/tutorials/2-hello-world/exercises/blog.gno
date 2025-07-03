@@ -17,7 +17,7 @@ type Post struct {
 var Posts []Post
 
 // AddPost appends a new post to the Posts list.
-func AddPost(title, content string) {
+func AddPost(cur realm, title, content string) {
 	newPost := &Post{
 		Title:   title,
 		Content: content,
@@ -30,7 +30,7 @@ func AddPost(title, content string) {
 
 // TODO Complete this function
 // Comment allows users to add a comment to a specific post by its index.
-func Comment(index int, comment string) {
+func Comment(cur realm, index int, comment string) {
 }
 
 // Render displays all posts in a readable format.

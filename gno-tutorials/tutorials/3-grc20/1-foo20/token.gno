@@ -23,62 +23,44 @@ func init() {
 	cross(grc20reg.Register)(Token, "")
 }
 
-func TotalSupply() int64 {
-	crossing()
-
+func TotalSupply(cur realm) int64 {
 	return UserTeller.TotalSupply()
 }
 
-func BalanceOf(owner std.Address) int64 {
-	crossing()
-
+func BalanceOf(cur realm, owner std.Address) int64 {
 	return UserTeller.BalanceOf(owner)
 }
 
-func Transfer(to std.Address, amount int64) {
-	crossing()
-
+func Transfer(cur realm, to std.Address, amount int64) {
 	checkErr(UserTeller.Transfer(to, amount))
 }
 
-func Allowance(owner, spender std.Address) int64 {
-	crossing()
-
+func Allowance(cur realm, owner, spender std.Address) int64 {
 	return UserTeller.Allowance(owner, spender)
 }
 
-func Approve(spender std.Address, amount int64) {
-	crossing()
-
+func Approve(cur realm, spender std.Address, amount int64) {
 	checkErr(UserTeller.Approve(spender, amount))
 }
 
-func TransferFrom(from, to std.Address, amount int64) {
-	crossing()
-
+func TransferFrom(cur realm, from, to std.Address, amount int64) {
 	checkErr(UserTeller.TransferFrom(from, to, amount))
 }
 
 // Faucet is distributing foo20 tokens without restriction (unsafe).
 // For a real token faucet, you should take care of setting limits are asking payment.
-func Faucet() {
-	crossing()
-
+func Faucet(cur realm) {
 	caller := std.PreviousRealm().Address()
 	amount := int64(1_000 * 10_000)
 	checkErr(privateLedger.Mint(caller, amount))
 }
 
-func Mint(to std.Address, amount int64) {
-	crossing()
-
+func Mint(cur realm, to std.Address, amount int64) {
 	Ownable.AssertOwnedByCurrent()
 	checkErr(privateLedger.Mint(to, amount))
 }
 
-func Burn(from std.Address, amount int64) {
-	crossing()
-
+func Burn(cur realm, from std.Address, amount int64) {
 	Ownable.AssertOwnedByCurrent()
 	checkErr(privateLedger.Burn(from, amount))
 }

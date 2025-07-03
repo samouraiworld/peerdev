@@ -19,7 +19,7 @@ func TestAddPost(t *testing.T) {
 	title := "Hello World!"
 	content := "My first post. I hope you like it."
 
-	CreatePost(title, content)
+	CreatePost(cross, title, content)
 
 	// Get the rendered page
 	got := Render("")

@@ -48,19 +48,17 @@ func init() {
 }
 
 // Vote allows DAO members to cast their vote on a specific proposal
-func Vote(proposalID uint64, vote daocond.Vote) {
-	crossing()
+func Vote(cur realm, proposalID uint64, vote daocond.Vote) {
 	DAO.Vote(proposalID, vote)
 }
 
 // Execute triggers the implementation of a proposal's actions
-func Execute(proposalID uint64) {
-	crossing()
+func Execute(cur realm, proposalID uint64) {
 	DAO.Execute(proposalID)
 }
 
 // Execute triggers the implementation of a proposal's actions
-func Propose(req daokit.ProposalRequest) {
+func Propose(cur realm, req daokit.ProposalRequest) {
 	DAO.Propose(req)
 }
 

@@ -33,7 +33,11 @@ set -gx PATH $PATH $HOME/go/bin
 ```
 
 ## Test locally 
-In the directory of your project containing `*.gno` and `gnomod.toml` files, run:
+```bash
+git clone git@github.com:samouraiworld/peerdev.git
+```
+
+In the directory of a project containing the `*.gno` and `gnomod.toml` files (`/tutorials/1-initialisation`), run:
 ```bash
 gnodev .
 ```

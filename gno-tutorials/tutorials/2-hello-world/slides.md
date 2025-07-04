@@ -4,8 +4,6 @@ paginate: true
 title: Hello Gno World !
 background: https://marp.app/assets/hero-background.svg
 mdc: true
-aspectRatio: 16/9
-canvasWidth: 800
 ---
 
 # 🎓 2 - <span class="text-teal-500">Hello Gno World 🌍</span>

@@ -1,4 +1,4 @@
-# Initialisation - Episode 1
+# Initialisating Gno.land project
 ## Goals
 - Install gno.land
 - Test a counter **Realm** in local

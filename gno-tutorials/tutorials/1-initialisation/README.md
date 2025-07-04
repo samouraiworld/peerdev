@@ -14,6 +14,7 @@ git clone git@github.com:gnolang/gno.git
 ```
 Then run
 ```bash
+cd gno
 make install
 ```
 Binaries are available in `~/go/bin` after installation.
@@ -21,13 +22,13 @@ Binaries are available in `~/go/bin` after installation.
 ## Export environment variable 
 To be able to access `gnodev`, `gnokey`, `gno`  necessary for developing, you will need to add in your shell config:
 
+For bash, zsh, etc.
 ```bash
-# For bash, zsh, etc.
 export PATH=$PATH:$HOME/go/bin
 ```
 
+For fish shell users
 ```bash
-# For fish shell users
 set -gx PATH $PATH $HOME/go/bin
 ```
 

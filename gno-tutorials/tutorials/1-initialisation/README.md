@@ -37,7 +37,7 @@ In the directory of your project containing `*.gno` and `gnomod.toml` files, run
 gnodev .
 ```
 
-If done great, you can explore Gno using Gnoweb, hosted by `gnodev .`.
+If done great, you can explore Gno using Gnoweb, hosted by `gnodev .`
 
 ```bash
 [I] davd@davd ~/P/p/gno-tutorials (main)> gnodev .
@@ -51,14 +51,17 @@ Event       ┃ I sending event to clients clients=0 type=NODE_RESET event={}
 GnoWeb      ┃ I gnoweb started lisn=http://127.0.0.1:8888
 ```
 
-## Your first realm: Counter realm -- 0_counter.gno
+## Your first realm: Counter realm `0_counter.gno`
+
+This Realm display the value of the `counter` variable.
+When calling `Increment`, it add +1 to its result.
 
 ```go
 package counter 
 
 import "strconv"
 
-var counter int
+var counter int = 0
 
 func Increment(cur realm) {
 	counter++
@@ -69,8 +72,8 @@ func Render(_ string) string {
 }
 ```
 
-`package` -> Name of your package
-`import` -> Library imported from `gno.land/p/...`, available on the official gno.land repository.
-`Increment` -> Increment `counter` variable. 
-Only available for *crossing* realm `(cur realm)`, necessary when interacting with public realm.
-`Render` -> Display a markdown rendered content
+- `package` -> Name of your package
+- `import` -> Library imported from `gno.land/p/...`, available on the [official gno.land repository](https://github.com/gnolang/gno)
+- `Increment` -> Increment `counter` variable. 
+Function only callable by *crossing* function `(cur realm)`, necessary when interacting with public function
+- `Render` -> Display a markdown rendered content

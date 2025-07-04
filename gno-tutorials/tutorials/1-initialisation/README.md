@@ -72,8 +72,9 @@ func Render(_ string) string {
 }
 ```
 
-- `package` -> Name of your package
+- `package` -> Name of your package.
 - `import` -> Library imported from `gno.land/p/...`, available on the [official gno.land repository](https://github.com/gnolang/gno)
 - `Increment` -> Increment `counter` variable. 
-Function only callable by *crossing* function `(cur realm)`, necessary when interacting with public function
-- `Render` -> Display a markdown rendered content
+Function only callable by *crossing* function necessary when interacting with public function.
+ `func Increment(cur realm)` is set as crossing by adding `cur realm` to its parameters,
+- `Render` -> Display a markdown rendered content.

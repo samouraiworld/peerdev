@@ -1,2 +1,2 @@
 # Gnoland
-https://docs.gno.land/resources/effective-gno/i
+- https://docs.gno.land/resources/effective-gno/i

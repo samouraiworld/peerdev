@@ -1,2 +1,2 @@
 # Gnoland
-https://gno.land/r/docs
+- https://gno.land/r/docs

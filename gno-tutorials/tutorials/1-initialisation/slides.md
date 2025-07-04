@@ -86,7 +86,7 @@ set -gx PATH $PATH $HOME/go/bin
 </div>
 
 <div class="bg-yellow-50 p-4 rounded-xl border-l-4 border-yellow-400 shadow-sm">
-📦 Understand the <code>gno.mod</code> system  
+📦 Understand the <code>gnomod.toml</code> system  
 🌐 Interact with Gnoweb  
 🧪 Write and run smart contract tests  
 </div>

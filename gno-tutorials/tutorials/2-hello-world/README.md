@@ -118,61 +118,7 @@ func Render(_ string) string {
 ```
 
 ## Exercise: Add Comment Feature
-Extend the blog to allow comments on posts:
-
-1. Create a Comment struct:
-```go
-type Comment struct {
-    PostID    int       // Reference to post index
-    Content   string
-    Author    std.Address
-    CreatedAt time.Time
-}
-```
-
-2. Add global comments slice:
-```go
-var Comments []Comment
-```
-
-3. Implement AddComment function:
-```go
-func AddComment(postID int, content string) {
-    if content == "" {
-        panic("Comment cannot be empty")
-    }
-    if postID < 0 || postID >= len(Posts) {
-        panic("Invalid post ID")
-    }
-    
-    newComment := Comment{
-        PostID:    postID,
-        Content:   content,
-        Author:    std.OriginCaller(),
-        CreatedAt: time.Now(),
-    }
-    Comments = append(Comments, newComment)
-}
-```
-
-4. Update Render function to show comments:
-```go
-func Render(_ string) string {
-    // ... existing post rendering ...
-    
-    // Add comments section
-    for i, post := range Posts {
-        result += "\n### Comments for Post #" + strconv.Itoa(i) + "\n"
-        for _, comment := range Comments {
-            if comment.PostID == i {
-                result += "- " + comment.Content + "\n"
-                result += "  _by " + comment.Author.String() + "_\n\n"
-            }
-        }
-    }
-    return result
-}
-```
+Extend the blog to allow comments on posts.
 
 ## Resources
 - [Gno Documentation](https://docs.gno.land)

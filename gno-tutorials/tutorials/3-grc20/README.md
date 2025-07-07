@@ -2,14 +2,6 @@
 
 This guide explains the key differences between native coins and GRC20 tokens in the Gno ecosystem, their use cases, and implementation considerations.
 
-## Table of Contents
-1. [Native Coins](#native-coins)
-2. [GRC20 Tokens](#grc20-tokens)
-3. [Key Differences](#key-differences)
-4. [Use Cases](#use-cases)
-5. [Implementation](#implementation)
-6. [Resources](#resources)
-
 ## Native Coins
 Native coins are the fundamental currency type in Gno.land, managed by the built-in `banker` module.
 

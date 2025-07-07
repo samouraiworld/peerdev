@@ -106,15 +106,11 @@ func CreatePost(...) {
 
 ### 3. Prioritize Readability
 ```go
-// Clear function names and structure
-func Render(_ string) string {
-    // Simple, readable rendering logic
-    for _, post := range Posts {
-        result += "# Title: " + post.Title + "\n\n"
-        // ...
-    }
-    return result
-}
+// Good: Clear, descriptive names
+func CalculateUserReward(user std.Address) int
+
+// Avoid: Cryptic abbreviations
+func CalcUsrRwrd(u std.Address) int
 ```
 
 ## Exercise: Add Comment Feature

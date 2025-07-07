@@ -345,7 +345,6 @@ align : c
 | Native to chain     | ✅               | ❌                   |
 | Composable in dApps | ❌               | ✅                   |
 | Custom Logic        | ❌               | ✅                   |
-| Governance Control  | Centralized      | Decentralized        |
 | Efficiency          | ✅               | ⚠️ Slight overhead   |
 
 

@@ -113,6 +113,55 @@ func CalculateUserReward(user std.Address) int
 func CalcUsrRwrd(u std.Address) int
 ```
 
+## Testing our realm
+
+# Comprehensive Testing Guide for Gno Smart Contracts
+
+Testing is a critical part of smart contract development. This guide covers Gno's testing framework and best practices for ensuring your contracts are secure and reliable.
+
+### Naming Convention
+- Test files must end with `_test.gno`
+- Test files reside in the same package as the contract
+
+```bash
+blog.gno         # Main contract
+blog_test.gno    # Test file
+```
+
+### Test Function Requirements
+1. **Public Function**: Name must start with a capital letter
+2. **Parameter**: Must accept `t *testing.T` as first parameter
+3. **Naming**: Should start with `Test` followed by descriptive name
+
+```go
+// Correct test function
+func TestCreatePost(t *testing.T) {
+    // Test logic
+}
+
+// Incorrect (will not run)
+func testCreatePost(t *testing.T) {}      // Not public
+func TestCreatePost() {}                  // Missing testing.T parameter
+func TestCreatePost(t *test.T) {}         // Wrong type
+```
+
+## Test Execution
+
+Run all tests in a package:
+```bash
+gno test
+```
+
+Run specific tests:
+```bash
+gno test -run TestCreatePost
+```
+
+Verbose output with test timing:
+```bash
+gno test -v
+```
+
 ## Exercise: Add Comment Feature
 Extend the blog to allow comments on posts.
 

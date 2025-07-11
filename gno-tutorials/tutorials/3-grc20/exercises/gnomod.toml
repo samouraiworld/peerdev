@@ -1,0 +1,2 @@
+module = "gno.land/r/demo/mycoin"
+gno = "0.9"

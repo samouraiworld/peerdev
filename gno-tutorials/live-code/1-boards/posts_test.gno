@@ -32,13 +32,6 @@ func TestAddPost(t *testing.T) {
 
 // It is not possible anymore to recover after defer
 func TestCreatePostPanic(t *testing.T) {
-	// defer func() {
-	// 	// r should contain panic error
-	// 	if r := recover(); r == nil {
-	// 		t.Fatal("expected CreatePost to panic, but it did not")
-	// 	}
-	// }()
-
 	// Attempt to create a post with an empty title (invalid)
 	title := ""
 	content := "No title available."

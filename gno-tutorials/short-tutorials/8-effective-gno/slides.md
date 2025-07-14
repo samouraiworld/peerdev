@@ -10,7 +10,7 @@ layout: cover
 ---
 
 # 🚀 Effective Gno
-## Gno.land Development Best Practices
+## Best Development Practices in Gno.land 
 
 ---
 layout: top-title

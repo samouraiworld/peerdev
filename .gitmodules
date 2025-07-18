@@ -1,3 +1,6 @@
 [submodule "gno-tutorials/7-GnoPLS/gnopls"]
 	path = gno-tutorials/7-GnoPLS/gnopls
 	url = https://github.com/gnoverse/gnopls
+[submodule "gno-tutorials/short-tutorials/9-tx-indexer/tx-indexer"]
+	path = gno-tutorials/short-tutorials/9-tx-indexer/tx-indexer
+	url = https://github.com/gnolang/tx-indexer

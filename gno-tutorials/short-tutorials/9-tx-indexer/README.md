@@ -1,5 +1,15 @@
 # [TX-indexer](https://github.com/gnolang/tx-indexer)
 
+## Goals
+- Launch tx-indexer
+- Example of GraphQL on test network
+- Some cool example
+- Let’s index in local our token
+- Get block
+- Get value of tx of x user
+- Filter some specific result (all tx of x user of our token)
+- Subscribe to a feed
+
 ## Getting Started
 
 This section guides you through setting up and running the `tx-indexer`.

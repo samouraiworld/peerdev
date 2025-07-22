@@ -66,22 +66,12 @@ sequenceDiagram
     participant I as Indexer
     participant D as dApp
     
-    U->>B: Receive first transaction
+    U->>B: Submit transaction
     B->>I: New block with transaction
     I->>I: Process transaction
     I->>D: Real-time balance update
     D->>U: Show updated balance
 ```
-
----
-
-# 🧾 Use Case: New User Balance
-
-1. User receives first transaction
-2. Indexer detects new address
-3. Calculates starting balance
-4. Updates database in real-time
-5. dApp displays accurate balance immediately
 
 ---
 
@@ -91,10 +81,8 @@ sequenceDiagram
 graph LR
     A[Gnoland Node] --> B[Block Stream]
     B --> C[Parser]
-    C --> D[PostgreSQL]
-    C --> E[Redis Cache]
+    C --> D[PebbleDB]
     D --> F[API Server]
-    E --> F
     F --> G[User Interface]
 ```
 

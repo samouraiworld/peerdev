@@ -10,151 +10,109 @@ fonts:
 layout: cover
 ---
 
-# 🛠️ Interact with Gnokey
-## The Command-Line Interface for Gno.land
 
-Essential commands to manage keys and transactions
+# 🛠️ Mastering Gnokey
+## Essential CLI for Gno.land
 
-Working with local and remote signers
+Key management, transactions, and queries
+Advanced features for power users
 
 <!--
-Gnokey is the primary CLI tool for interacting with the Gno chain
-It handles key management, transaction signing, and querying
+Gnokey is the primary CLI tool for interacting with Gno chains
+Handles key management, transaction signing, and querying
 -->
 
 ---
 
-# 🔑 Key Management Basics
+# 🛠️ What is Gnokey?
 
-<div class="grid gap-4 mt-4">
 
-```bash {all|1|2|3|all}
-gnokey add mykey                  # Create new key
-gnokey add mykey --recover        # Recover from mnemonic
-gnokey list                       # List all local keys
-```
+### The Essential CLI Tool for:
+- 🔑 Key management
+- 💰 Coin transfers
+- 🔍 Blockchain queries
+- 📡 Smart contract interactions
 
-</div>
-
-<div class="mt-6 bg-blue-50 p-4 rounded-xl border-l-4 border-blue-400 shadow-sm">
-🔐 <strong>Key Storage</strong><br>
-Keys are stored in <code>~/.gnokey/</code> by default<br>
-Secured with passphrase encryption
-</div>
-
-<!--
-Key management is the foundation of blockchain interaction
-All transactions require cryptographic signatures
--->
 
 ---
-layout: top-title
+layout: top-title-two-cols 
 color: sky-light
 ---
 
 :: title ::
-# 🔄 Working with Remote Signers
-:: content ::
+# 📡 Core Operations
+:: left ::
 
-Connect to remote key management services:
 
-```bash {1|2|3}
-gnokey add remotesigner --remote gno.land:26657
-gnokey add ledgerkey --ledger
-gnokey add multisig --multisig thresh=2,keys=key1,key2
+#### Query
+Read-only state inspection  
+```bash
+gnokey query vm/qrender \
+  --data "gno.land/r/demo/boards"
 ```
 
-<div class="mt-4 bg-amber-50 p-4 rounded-xl border-l-4 border-amber-400 shadow-sm">
-⚠️ <strong>Security Note</strong><br>
-Remote signers never expose private keys locally<br>
-Ideal for high-security environments
+- ✅ No gas cost - Safe for exploration
+
+
+:: right ::
+
+#### Call
+Execute realm functions  
+```bash
+gnokey maketx call \
+  --func "Transfer" \
+  --args "g1abc.." --args "1000"
+```
+<div class="ns-c-tight">
+
+- ⚠️ Uses gas  
+- 📦 For predefined interactions
+</div>
+
+#### Run
+Execute custom scripts  
+```bash
+gnokey maketx run ./script.gno
+```
+
+<div class="ns-c-tight">
+
+- ⚠️ Uses gas  
+- ✨ Flexible complex operations  
+- 🧪 Supports loops and custom logic
 </div>
 
 ---
-layout: default
----
-
-# 💰 Managing Coins
-
-## Query Balances
-
-```bash
-gnokey query auth/accounts/<address> \
-  --remote gno.land:26657
-```
-
-## Send Transactions
-
-```bash {1|1-2|1-3|1-4}
-gnokey maketx send --to g1xyz... --send 100ugnot \
-  --chain-id testchain --remote gno.land:26657 \
-  --gas-fee 1ugnot --gas-wanted 200000 \
-  mykey | gnokey broadcast -
-```
-
-<!--
-Breakdown:
-1. Create send transaction
-2. Specify chain parameters
-3. Set gas parameters
-4. Sign and broadcast
--->
-
----
-layout: top-title
-color: emerald
+layout: top-title-two-cols 
+color: sky-light
 ---
 
 :: title ::
-# 📡 Broadcast Options
-:: content ::
+# 📡 Core Operations
+:: left ::
 
-Different ways to send transactions:
-
+#### Send
+Coin transfers  
 ```bash
-# Direct broadcast (online required)
-gnokey maketx ... | gnokey broadcast -
-
-# Generate signed tx file (offline)
-gnokey maketx ... > signed.tx
-
-# Broadcast later
-gnokey broadcast signed.tx
+gnokey maketx send \
+  --to g1xyz.. --send "100ugnot"
 ```
 
-<div class="mt-4 bg-green-50 p-4 rounded-xl border-l-4 border-green-400 shadow-sm">
-✅ <strong>Offline Signing</strong><br>
-Sign transactions on air-gapped machines<br>
-Broadcast from online terminals
-</div>
+- ⚠️ Uses gas  
+- ⚡️ Direct banker module access
 
----
-layout: default
----
+:: right ::
 
-# 🔍 Querying the Blockchain
-
-Common query commands:
-
-```bash {1|2|3|4|5|6}
-gnokey query vm/qrender gno.land/r/demo/boards
-gnokey query auth/accounts/g1...
-gnokey query bank/balances/g1...
-gnokey query vm/qfile gno.land/p/demo/foo
-gnokey query tm/block 7531
-gnokey query vm/qeval gno.land/r/demo/calc
+#### Addpkg 
+Deploy code
+```bash
+gnokey maketx addpkg \
+  --pkgpath "gno.land/p/myapp" \
+  --pkgdir "./mycode"
 ```
 
-<div class="mt-4 text-sm op75">
-🔍 Use <code>--data</code> flag for complex queries<br>
-📖 See all options with <code>gnokey query --help</code>
-</div>
+- ⚠️ das  
 
----
-layout: center
----
-
-# ⚙️ Advanced Features
 
 ---
 layout: top-title
@@ -162,95 +120,77 @@ color: purple
 ---
 
 :: title ::
-# 📝 Call Realm Functions
+# 🔒 Airgap Transactions
 :: content ::
 
-Execute functions in smart contracts:
+### Secure Workflow for Sensitive Operations
 
-```bash
-gnokey maketx call \
-  --pkg-path "gno.land/r/demo/mygrc20" \
-  --func "Transfer" \
-  --args "g1recipient" --args "1000" \
-  --gas-fee 1ugnot \
-  --gas-wanted 200000 \
-  mykey | gnokey broadcast -
+```mermaid
+sequenceDiagram
+    participant O as Online Machine
+    participant F as Air-Gapped Machine
+    O->>F: 1. Create unsigned transaction
+    F->>F: 2. Sign offline (keys never exposed)
+    F->>O: 3. Return signed transaction
+    O->>Network: 4. Broadcast signed tx
 ```
 
-<!--
-Arguments are passed in order
-Complex types require JSON formatting
--->
+<div class="grid grid-cols-2 gap-4 mt-6">
+<div class="bg-green-50 p-4 rounded border-l-4 border-green-400">
+✅ Step-by-step:
+1. `gnokey maketx ... > unsigned.tx`
+2. `gnokey sign --tx unsigned.tx`
+3. Transfer signed.tx to online machine
+4. `gnokey broadcast signed.tx`
+</div>
 
----
-layout: top-title
-color: amber
----
-
-:: title ::
-# 🛡️ Multisig Transactions
-:: content ::
-
-Create transactions requiring multiple signatures:
-
-```bash
-# Create initial transaction
-gnokey maketx send ... > tx.json
-
-# First signature
-gnokey sign --tx tx.json --signer key1 > tx-signed1.json
-
-# Second signature
-gnokey sign --tx tx-signed1.json --signer key2 > tx-final.json
-
-# Broadcast
-gnokey broadcast tx-final.json
-```
-
----
-layout: top-title
-color: rose
----
-
-:: title ::
-# 💻 Development Tips
-:: content ::
-
-Workflow for testing:
-
-```bash
-# Local testnet
-gno test
-
-# Generate test coins
-gnokey add testkey --insecure-password-stdin <<<"test123"
-
-# Query testnet
-gnokey query ... --remote 127.0.0.1:26657
-```
-
-<div class="mt-4 bg-rose-50 p-4 rounded-xl border-l-4 border-rose-400 shadow-sm">
-⚠️ <strong>Never use insecure mode in production</strong><br>
-Test keys have no real security
+<div class="bg-purple-50 p-4 rounded border-l-4 border-purple-400">
+🔐 Security Advantages:
+- Private keys never touch internet
+- Isolated signing environment
+- Protection against remote attacks
+- Physical transfer required
+</div>
 </div>
 
 ---
-layout: center
+layout: top-title
+color: emerald
 ---
 
-# 🔗 Resources
+:: title ::
+# 🛡️ Why Airgap is Secure
+:: content ::
 
-- [📖 Full Gnokey Documentation](https://docs.gno.land/users/interact-with-gnokey)
-- [💻 GitHub Repository](https://github.com/gnolang/gno)
-- [💬 Gno Discord Community](https://discord.gg/gno)
-- [🐦 Twitter @gnoland](https://twitter.com/gnoland)
+<div class="grid grid-cols-2 gap-8">
+<div>
 
-```bash
-# Always check for updates
-go install github.com/gnolang/gno/gnokey@latest
+### 🔐 Private Key Protection
+```mermaid
+graph LR
+    A[Internet] --> B[Online Machine]
+    F[Air-Gapped Machine] -->|No Connection| A
 ```
+- Keys generated and stored offline
+- Zero network exposure
+- Physical separation
+</div>
 
-<!--
-Keep your CLI tools updated for new features
--->
+<div>
+
+### 🛡️ Attack Surface Reduction
+```mermaid
+graph TD
+    H[Hacker] --> O[Online Machine]
+    O -->|Cannot Reach| F[Air-Gapped]
+    F -->|No Vulnerabilities| H
 ```
+- Malware cannot access signing device
+- No remote execution possible
+- Transaction verification before signing
+</div>
+</div>
+
+<div class="mt-8 bg-amber-50 p-4 rounded border-l-4 border-amber-400">
+⚠️ Critical for: Exchange operations, large transfers, and governance actions
+</div>

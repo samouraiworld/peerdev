@@ -39,7 +39,7 @@ func TestCreatePostPanic(t *testing.T) {
 	// 	}
 	// }()
 
-	// Attempt to create a post with an empty title (invalid)
+	// Attempt to create a post with an empty title (invalid state)
 	title := ""
 	content := "No title available."
 

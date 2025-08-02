@@ -12,10 +12,10 @@ layout: cover
 
 
 # 🛠️ Mastering Gnokey
-## Essential CLI for Gno.land
+## Secure your transaction with Gnokey
 
 Key management, transactions, and queries
-Advanced features for power users
+Security measure: Air gap transactions, 
 
 <!--
 Gnokey is the primary CLI tool for interacting with Gno chains

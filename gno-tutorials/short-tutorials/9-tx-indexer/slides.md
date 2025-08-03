@@ -11,19 +11,18 @@ layout: cover
 ---
 
 # 🚀 Gnolang Transaction Indexer  
-### Real-time Blockchain Data Processing
 
 How tx-indexer transforms raw blockchain data  
 Into query-friendly structured information
 
 ---
 
-# 🤔 What is a Blockchain Indexer?
+# What is a Blockchain Indexer?
 
 <div class="grid grid-cols-2 gap-8">
 <div>
 
-### 🧱 Raw Blockchain Data
+### Raw Blockchain Data
 ```json
 {
   "height": 12345,
@@ -40,13 +39,13 @@ Into query-friendly structured information
 </div>
 <div>
 
-### 🔍 Indexer Transforms Data
+### Indexer Transforms Data
 ```json
 {
   "address": "g1...xyz",
   "balance": "250ugnot",
   "tx_count": 5,
-  "first_seen": "2023-10-01"
+  "first_seen": "2025-10-01"
 }
 ```
 </div>
@@ -57,37 +56,60 @@ Transforms raw chain data into query-friendly format
 
 ---
 
-# 🧾 Use Case: New User Balance
+# ⭐ Use Case: Decentralized Social Search
 
 ```mermaid
 sequenceDiagram
-    participant U as New User
+    participant U as User
     participant B as Blockchain
     participant I as Indexer
-    participant D as dApp
+    participant D as Search dApp
     
-    U->>B: Submit transaction
-    B->>I: New block with transaction
-    I->>I: Process transaction
-    I->>D: Real-time balance update
-    D->>U: Show updated balance
+    U->>B: Post social content
+    B->>I: New block with post
+    I->>I: Index tx/metadata
+    I->>D: Update search database
+    D->>U: Show instant results
 ```
 
 ---
 
-# ⚙️ How tx-indexer Works
+# `tx-indexer` the official TM2 minimalist indexer 
 
-```mermaid
-graph LR
-    A[Gnoland Node] --> B[Block Stream]
-    B --> C[Parser]
-    C --> D[PebbleDB]
-    D --> F[API Server]
-    F --> G[User Interface]
+```mermaid {scale: 0.9}
+graph LR 
+A[Tendermint Chain] --> B(tx-indexer)
+B --> C[PebbleDB<br/><small>Embedded Storage</small>r]
+B --> D[GraphQL API]
+B --> E[JSON-RPC API]
+D --> H[Real-time Dashboards]
+D --> F[dApps/Explorers]
+D --> I[Complex Transaction Queries]
+E --> G[Existing Web3 tool integration]
 ```
+- **High Performance**: Concurrent block processing pipeline
 
-1. **Ingest**: Listens to new blocks
-2. **Parse**: Extracts transactions and accounts
-3. **Store**: Saves structured data to database
-4. **Serve**: Provides query API for dApps
+---
 
+# Implement data visualizer through `tx-indexer`
+### Foo20 - GRC20 basic token visualizer
+ 
+
+- 1. Create your GraphQL subscription of foo20's transactions
+- 2. Parse out useful metrics (amount transfered, block height, ...)
+- 3. Pushes those metrics into your data-base (Like Prometheus)
+- 4. Your application (Like Grafana) queries that database to display real-time charts
+
+
+---
+
+# Implement advanced indexer through `tx-indexer`
+ 
+<div style="text-align: center; margin: 2rem 0;">
+```mermaid {scale: 1.5}
+graph TD
+subgraph my-indexer
+tx-indexer
+end
+```
+</div>

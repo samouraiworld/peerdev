@@ -6,3 +6,7 @@
 
 # GraphQL
 - https://graphql.org/
+
+# Grafana
+- https://prometheus.io/docs/introduction/overview/
+- https://grafana.com/docs/plugins/yesoreyeram-infinity-datasource/latest/graphql/

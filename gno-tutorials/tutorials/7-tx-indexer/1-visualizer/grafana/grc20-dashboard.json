@@ -1,0 +1,38 @@
+{
+  "title": "GRC20 Dashboard",
+  "panels": [
+    {
+      "type": "stat",
+      "title": "Block Height",
+      "gridPos": {"x":0, "y":0, "w":6, "h":4},
+      "targets": [{"expr": "gno_block_height"}]
+    },
+    {
+      "type": "graph",
+      "title": "GRC20 Transfers",
+      "gridPos": {"x":6, "y":0, "w":12, "h":8},
+      "targets": [
+        {
+          "expr": "sum by (token) (rate(grc20_transfers[5m]))",
+          "legendFormat": "{{token}}"
+        }
+      ]
+    },
+    {
+      "type": "gauge",
+      "title": "Transactions/s",
+      "gridPos": {"x":0, "y":4, "w":6, "h":4},
+      "targets": [{"expr": "gno_tps"}]
+    },
+    {
+      "type": "table",
+      "title": "Recent Transfers",
+      "gridPos": {"x":0, "y":8, "w":18, "h":8},
+      "targets": [{
+        "expr": "topk(10, grc20_transfers)",
+        "instant": true,
+        "format": "table"
+      }]
+    }
+  ]
+}

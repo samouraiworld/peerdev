@@ -12,7 +12,7 @@ layout: cover
 
 
 # 🛠️ Secure transaction
-## Airgap tx and Hardware key
+## Airgap transaction and Hardware key
 
 <!--
 Gnokey is the primary CLI tool for interacting with Gno chains
@@ -46,12 +46,12 @@ sequenceDiagram
 
 # Why using safe transaction? 
 
-**Risks of Signing in an Online environment**:
+**Risks of Signing in an Online environment**: Malware ⚠️
 - 🔑 Memory scraping attacks
 - ⌨️ Keyloggers capturing passwords
 - 🌐 MITM transaction hijacking
 - 📧 Phishing fake transaction prompts
-- ...
+- etc...
 
 <!--
 When signing in an online environment, you risk 
@@ -75,7 +75,7 @@ sequenceDiagram
     participant B as Offline Machine
     participant C as Blockchain
     
-    C-->>A: User Auth (Account nb + nonce)
+    C-->>A: User Auth (Account id + nonce)
     Note right of A: Prevent replay attacks
     A->>B: User Auth
     B->>B: Construct & Sign TX (locally)
@@ -100,13 +100,14 @@ color: blue
 
 <div style="text-align: center">
 
-```mermaid
-sequenceDiagram 
+```mermaid {scale: 0.9}
+sequenceDiagram  
     participant A as Online Machine
     participant B as Hardware Key
     participant C as Blockchain
 
-    A->>B: Unsigned TX details
+    C-->>A: User Auth (Account id + nonce)
+    A->>B: User Auth + Unsigned TX details
     Note right of A: Depends on the firmware
     B->>B: Construct & Sign TX (locally)
     B-->>A: Signed TX
@@ -126,41 +127,87 @@ What is an hardware key?
 - 🔋 Portable security
 -->
 
+
+---
+layout: top-title
+color: cyan
+---
+
+:: title ::
+# 🛡️ Hardware key + Airgap Security
+:: content ::
+
+<div style="text-align: center">
+
+```mermaid {scale: 0.9}
+sequenceDiagram
+    participant A as Online Machine
+    participant B as Airgapped Hardware Key
+    participant C as Blockchain
+    
+    C-->>A: User Auth (Account id + nonce)
+    A->>B: Unsigned TX (via QR)
+    Note right of B: Keys NEVER touch networked devices
+    B->>B: Signs TX (verified on device screen)
+    B-->>A: Signed TX (via QR)
+    A->>C: Broadcast
+```
+</div>
+
+---
+layout: top-title
+color: cyan
+---
+
+:: title ::
+# 🛡️ Hardware key + Airgap Security
+:: content ::
+
+
+| **Advantages** ✅                          | **Limitations** ⚠️                     | 
+|-----------------------------------------|-------------------------------------|
+| **Isolation** (No USB/Bluetooth) |  **Slower** (Manual transfers)    |
+| **Physical verification** (On-device display) | **Complex setup** (QR workflow) |
+| **Immune to malware** (No driver exploits) | **Dependent on device security** (Firmware risks remain) |
+
+⚠️ **Airgap ≠ Perfect Security**
+- Always verify TX details **on the hardware key’s screen**.  
+
 ---
 layout: top-title-two-cols
 color: orange
 ---
 
 :: title ::
-# Hardware Key vs Airgap Transaction
+# Hardware Key vs Airgap Environment
 
 :: left ::
 ## 🛡️ Hardware Key
 **Pros:**
 <div class="ns-c-tight">
 
-- Instant signing process
+- **Instant signing process**
+- **Tamper-proof hardware**
 - Private keys never exposed
 - Portable (works with any computer)
-- Tamper-proof hardware
 - Physical confirmation required
 </div>
 
 **Cons:**
 <div class="ns-c-tight">
 
-- Hardware cost 💰
-- Limited to supported blockchains
+- **Hardware cost** 💰
+- **Limited to supported blockchains**
 - Firmware updates needed
 </div>
 
 :: right ::
-## 🔒 Airgap Transaction
+## 🔒 Airgap Environment
 **Pros:**
 <div class="ns-c-tight">
 
-- Works with any offline device
-- No special hardware needed
+- **Works with any offline device**
+- **No special hardware needed**
 - Flexible for any blockchain
 - Complete network isolation
 - Can store multiple key types
@@ -169,12 +216,11 @@ color: orange
 **Cons:**
 <div class="ns-c-tight">
 
-- Multi-step process
+- **Multi-step process**
 - Requires data transfer method
 - Dependent on offline device security
 - Manual setup complexity
 </div>
-
 
 ---
 layout: top-title
@@ -182,19 +228,36 @@ color: light
 ---
 
 :: title ::
-# Possible Setup
-
+# What you should go for
 :: content :: 
-#### Hardware Key - Recommended way ✅
-- Ledger, Trezor, YubiKey, ...
+
+#### Hardware Key - Most Secure + Convenient 
+##### Recommended way ✅
+- Ledger **(Gno compatible)**, Trezor, YubiKey, ...
 
 #### AirGap Vault - Secure but inconvenient 🔒
-- Mobile based 
-- VM based 
-- Hardware based 
+##### Must be offline ⚠️
+- **Virtual Machine** - QEMU/KVM -- Or lighter with container
+- **USB** - Tails OS (Amnesic system)
+- **Hardware based** - Old smartphone, Old Laptop, dedicated Raspberry Pi
+- **Mobile (IOS/Android)** - e.g.: AirGap 
 
-#### Native Way - Convenient but vulnerable 🏪
+#### Native Way - Convenient but vulnerable 👾
 - Gnokey
+
+<!--
+QR code signing, offline OS mode 
+
+I'm not affiliated to any of this company, they are just example.
+https://www.ledger.com/
+https://trezor.io/
+https://www.yubico.com/
+
+Tails OS on USB (amnesic system)
+Old smartphone (permanently offline)
+Dedicated Raspberry Pi (~$35)
+-->
+
 
 ---
 layout: top-title
@@ -229,9 +292,9 @@ sequenceDiagram
 
 Code part - What to demonstrate:
 
-- How to do a simple transaction
+- How to do a simple transaction 
 - How to do an airgap transaction (in local)
-- In a VM
-- Hardware key
-- Multi-sign
+- In a VM (To simulate hardware)
+- Hardware key https://github.com/gnolang/gno/issues/1119
+- Multi-sign using the script
 -->

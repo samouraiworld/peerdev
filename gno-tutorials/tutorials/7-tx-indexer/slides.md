@@ -105,7 +105,7 @@ E --> G[Existing Web3 tool integration]
 
 # Implement advanced indexer through `tx-indexer`
  
-<div style="text-align: center; margin: 2rem 0;">
+<div style="text-align: center">
 ```mermaid {scale: 1.5}
 graph TD
 subgraph my-indexer

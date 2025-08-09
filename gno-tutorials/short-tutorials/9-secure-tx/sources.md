@@ -1,6 +1,6 @@
 # Gnolang Github
 - https://docs.gno.land/users/interact-with-gnokey/
-
+- https://github.com/gnolang/gno/pull/4346#issuecomment-2995959113
 
 # Gnops
 - https://gnops.io/articles/guides/gnokms/

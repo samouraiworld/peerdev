@@ -12,13 +12,23 @@ layout: cover
 aspectRatio: 16/9
 ---
 
-# 🎬 Episode 1: <span class="text-teal-500">Initializing Gno</span>
+# 🎬 <span class="text-teal-500">Initializing Gno</span>
 
 * ✅ Installing Gno
 * ⚙️ Setting up a local environment
 
 <div class="text-sm op75 mt-2">📎 Helpful links available in the episode description</div>
 
+<!--
+Hello everyone, welcome to the Gnoland tutorial series.
+We will cover up every aspect of Gno in short efficient video.
+They are meant to treat a subject independantly using visual and running example. They should be watched along the documentation and your own exercises.
+
+As for myself, my name is David and I'm a Devrel in Samourai Coop. My job is basically to help you in your journey, so for any questions I'm available in the official Gnoland server.
+If you feel I miss an important subject, you can tag me on discord and I will recommand an existing video, and if not make a video.
+
+As of today, we will cover the installation of Gno and go through your first project.
+-->
 ---
 
 # ✅ <span class="text-blue-500">Prerequisites</span>
@@ -35,6 +45,10 @@ aspectRatio: 16/9
 
 </div>
 
+<!--
+To be able to go through Gnoland, you will need basic programming knowledge in Go. 
+It is a programming language made by Google, known to be easy to learn with a simple synthax.
+-->
 ---
 
 # 🌐 What is <span class="text-green-500">Gno.Land?</span>

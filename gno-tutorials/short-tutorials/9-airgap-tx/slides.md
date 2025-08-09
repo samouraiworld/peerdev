@@ -11,8 +11,8 @@ layout: cover
 ---
 
 
-# 🛠️ Airgap transactions
-## Secure your transaction with Gnokey
+# 🛠️ Secure transaction
+## Airgap tx and Hardware key
 
 <!--
 Gnokey is the primary CLI tool for interacting with Gno chains
@@ -29,6 +29,29 @@ Handles key management, transaction signing, and querying
 - 🌐 MITM transaction hijacking
 - 📧 Phishing fake transaction prompts
 
+<!--
+When signing in an online environment, you risk 
+
+-->
+
+---
+layout: top-title
+color: green
+---
+
+:: title ::
+# 🔑 How to do a Transactions?
+:: content ::
+
+```mermaid 
+sequenceDiagram
+    participant A as Machine
+    participant B as Blockchain
+    
+    A->>A: Construct & Sign TX (locally)
+    A->>B: Broadcast
+```
+
 
 ---
 layout: top-title
@@ -39,36 +62,51 @@ color: purple
 # 🔒 Airgap Transactions
 :: content ::
 
-## Secure Workflow
 
-```mermaid
+```mermaid {scale: 0.8}
 sequenceDiagram
-    participant A as Machine A
-    participant B as Machine B
+    participant A as Online Machine
+    participant B as Offline Machine
+    participant C as Blockchain
     
-    A->>B: Retreive user auth
-    B->>B: Create local transaction
-    B->>B: Sign of the transaction
-    B->>A: Broadcast it
+    C-->>A: User Auth (Account nb + nonce)
+    Note right of A: Prevent replay attacks
+    A->>B: User Auth
+    B->>B: Construct & Sign TX (locally)
+    B-->>A: Signed TX
+    A->>C: Broadcast 
 ```
-
-
-// Graph of the workflow
 
 ---
+layout: top-title
+color: blue
+---
 
+:: title ::
 ## 🛡️ Hardware Keys
-
-### When Airgap Isn't Practical
+:: content ::
 
 ```mermaid
-graph TD
-    U[User] -->|Initiate| O[Online Machine]
-    O -->|Unsigned TX| H[Hardware Key]
-    H -->|Secure Signing| S[Signed TX]
-    S --> O
-    O -->|Broadcast| N[Network]
+sequenceDiagram 
+    participant A as Online Machine
+    participant B as Hardware Key
+    participant C as Blockchain
+
+    A->>B: Unsigned TX details
+    Note right of A: Depends on the firmware
+    B->>B: Construct & Sign TX (locally)
+    B-->>A: Signed TX
+    A->>C: Broadcast
 ```
+
+---
+layout: top-title
+color: blue
+---
+
+:: title ::
+## 🛡️ Hardware Keys
+:: content ::
 
 <div class="grid grid-cols-2 gap-4 mt-6">
 <div class="ns-bg-success ns-border-success">
@@ -89,3 +127,8 @@ graph TD
 - AirGap Vault (mobile-based)
 </div>
 </div>
+
+---
+
+# Hardware key VS airgap transaction
+

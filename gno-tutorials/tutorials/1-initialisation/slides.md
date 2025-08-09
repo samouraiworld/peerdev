@@ -25,9 +25,9 @@ We will cover up every aspect of Gno in short efficient video.
 They are meant to treat a subject independantly using visual and running example. They should be watched along the documentation and your own exercises.
 
 As for myself, my name is David and I'm a Devrel in Samourai Coop. My job is basically to help you in your journey, so for any questions I'm available in the official Gnoland server.
-If you feel I miss an important subject, you can tag me on discord and I will recommand an existing video, and if not make a video.
+If you feel I didn't cover an important subject, you can tag me on discord and I will do my best to recommend, or make a video to suit your needs!
 
-As of today, we will cover the installation of Gno and go through your first project.
+As of today, we will cover the installation of Gno and go through your first Gno project.
 -->
 ---
 
@@ -46,7 +46,7 @@ As of today, we will cover the installation of Gno and go through your first pro
 </div>
 
 <!--
-To be able to go through Gnoland, you will need basic programming knowledge in Go. 
+To go through Gnoland, you will need basic programming knowledge of Go, the langage Gno got its syntax inspired.
 It is a programming language made by Google, known to be easy to learn with a simple synthax.
 -->
 ---
@@ -68,6 +68,9 @@ It is a programming language made by Google, known to be easy to learn with a si
 💰 Native Token: <strong>GnoT</strong>
 </div>
 
+<!--
+A layer 1 blockchain is a chain no
+-->
 ---
 
 # ⚙️ <span class="text-purple-500">Go Environment Setup</span>

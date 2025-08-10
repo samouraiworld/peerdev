@@ -22,7 +22,7 @@ aspectRatio: 16/9
 <!--
 Hello everyone, welcome to the Gnoland tutorial series.
 We will cover up every aspect of Gno in short efficient video.
-They are meant to treat a subject independantly using visual and running example. They should be watched along the documentation and your own exercises.
+They are meant to treat a subject independantly using visual and working example. They should be watched along the documentation and your own exercises.
 
 As for myself, my name is David and I'm a Devrel in Samourai Coop. My job is basically to help you in your journey, so for any questions I'm available in the official Gnoland server.
 If you feel I didn't cover an important subject, you can tag me on discord and I will do my best to recommend, or make a video to suit your needs!

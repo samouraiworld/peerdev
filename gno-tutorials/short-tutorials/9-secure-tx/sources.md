@@ -8,3 +8,6 @@
 # bitbox
 - https://blog.bitbox.swiss/en/does-airgap-make-bitcoin-hardware-wallets-more-secure/
 - https://blog.bitbox.swiss/en/remote-multisig-theft-attack-on-the-coldcard-hardware-wallet/
+
+# adena
+- https://www.adena.app/

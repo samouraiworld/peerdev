@@ -1,62 +1,77 @@
-# Initialisating Gno.land project
+# Welcome to Gnoland!
+
+## 🚀 Initializing a Gno.land Project
+
 ## Goals
 - Install gno.land
 - Test a counter **Realm** in local
 
-## Dependency
-- make
-- go
-- git
+## ⚙️ Dependencies
+- `make`
+- `go` (v1.21+ recommended)
+- `git`
 
-## Clone gnoland 
-```
-git clone git@github.com:gnolang/gno.git
-```
-Then run
+---
+
+
+## 🛠️ Installation Steps
+
+### 1. Clone the Gno Repository
 ```bash
+git clone git@github.com:gnolang/gno.git
 cd gno
+```
+
+### 2. Build and Install
+```bash
 make install
 ```
-Binaries are available in `~/go/bin` after installation.
+This installs binaries in `~/go/bin`:
+- `gnodev`: Local development environment
+- `gnokey`: Key management
+- `gno`: Gno toolchain
 
-## Export environment variable 
-To be able to access `gnodev`, `gnokey`, `gno`  necessary for developing, you will need to add in your shell config:
+### 3. Configure Environment
+Add to your shell config:
 
-For bash, zsh, etc.
 ```bash
+# Bash/Zsh
 export PATH=$PATH:$HOME/go/bin
-```
 
-For fish shell users
-```bash
+# Fish
 set -gx PATH $PATH $HOME/go/bin
 ```
 
-## Test locally 
+---
+
+## 🧪 Test Your First Realm
+
+### 1. Clone Sample Project
 ```bash
 git clone git@github.com:samouraiworld/peerdev.git
+cd peerdev/tutorials/1-initialisation
 ```
 
-In the directory of a project containing the `*.gno` and `gnomod.toml` files (`/tutorials/1-initialisation`), run:
+### 2. Start Local Node
+In the directory containing the `*.gno` and `gnomod.toml` files (`/tutorials/1-initialisation`), run:
 ```bash
 gnodev .
 ```
 
-If done great, you can explore Gno using Gnoweb, hosted by `gnodev .`
-
+Output:
 ```bash
-[I] davd@davd ~/P/p/gno-tutorials (main)> gnodev .
-Accounts    ┃ W default address created name=_default#g1jg8m addr=g1jg8mtutu9khhfwc4nxmuhcpftf0pajdhfvsqf5 mnemonic="source bonus chronic canvas draft south burst lottery vacant surface solve popular case indicate oppose farm nothing bullet exhibit title speed wink action roast"
-Proxy       ┃ I lazy loading is enabled. packages will be loaded only upon a request via a query or transaction. loader=root<gno-tutorials>/root<examples>
+~/P/p/gno-tutorials > gnodev .
+Accounts    ┃ W default address created 
 GnoWeb      ┃ I gnoweb started lisn=http://127.0.0.1:8888
 --- READY   ┃ I for commands and help, press `h` took=1.825930883s
-Event       ┃ I sending event to clients clients=0 type=NODE_RESET event={}
-```
-```
-GnoWeb      ┃ I gnoweb started lisn=http://127.0.0.1:8888
 ```
 
-## Your first realm: Counter realm `0_counter.gno`
+### 3. Access GnoWeb
+Open in browser: [http://127.0.0.1:8888](http://127.0.0.1:8888)
+
+---
+
+## 🧱 Your first realm: Counter realm (`0_counter.gno`)
 
 This Realm display the value of the `counter` variable.
 When calling `Increment`, it add +1 to its result.
@@ -77,9 +92,9 @@ func Render(_ string) string {
 }
 ```
 
-- `package` -> Name of your package.
-- `import` -> Library imported from `gno.land/p/...`, available on the [official gno.land repository](https://github.com/gnolang/gno)
-- `Increment` -> Increment `counter` variable. 
-Function only callable by *crossing* function necessary when interacting with public function.
- `func Increment(cur realm)` is set as crossing by adding `cur realm` to its parameters,
-- `Render` -> Display a markdown rendered content.
+| Component         | Description                                                                 |
+|-------------------|-----------------------------------------------------------------------------|
+| `package counter` | Realm name (deployed as `gno.land/r/counter`)                               |
+| `strconv`         | Pure package imported from `gno.land/p/...`, available on the [official gno.land repository](https://github.com/gnolang/gno)|
+| `cur realm`       | Marks `Increment()` as a state-modifying function (requires transaction fee)|
+| `Render()`        | Returns markdown content shown on the Realm's page                          |

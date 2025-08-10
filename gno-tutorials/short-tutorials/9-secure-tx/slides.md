@@ -301,36 +301,39 @@ color: purple
 # ✍️ Multi-Signature Setup
 :: content ::
 
-```mermaid{scale: 0.5}
+<div style="text-align: center">
+
+```mermaid{scale: 0.6}
 sequenceDiagram
     participant A as Alice
-    participant KB as Keybase
-    participant BC as Blockchain
     participant B as Bob
     participant C as Charlie
+    participant KB as Keybase
 
-        note over A: Keybase Initialization
-        A->>KB: Create Alice keybase (alice-kb)
-        A->>KB: Add Bob's pubkey (multisig-bob)
-        A->>KB: Add Charlie's pubkey (multisig-charlie)
-        A->>KB: Create multisig-abc (2/3 threshold)
-        
-        B->>KB: Create Bob keybase (bob-kb)
-        B->>KB: Add Alice's pubkey (multisig-alice)
-        B->>KB: Add Charlie's pubkey (multisig-charlie)
-        B->>KB: Create multisig-abc
-        
-        C->>KB: Create Charlie keybase (charlie-kb)
-        C->>KB: Add Alice's pubkey (multisig-alice)
-        C->>KB: Add Bob's pubkey (multisig-bob)
-        C->>KB: Create multisig-abc
+    note over A: Initial Setup (All Participants)
+    A->>KB: 1. Create alice-kb
+    B->>KB: 1. Create bob-kb
+    C->>KB: 1. Create charlie-kb
+
+    note over A: Exchange Public Keys
+    A->>KB: 2. Add bob+charlie keys
+    B->>KB: 2. Add alice+charlie keys
+    C->>KB: 2. Add alice+bob keys
+
+    note over A: Finalize Multisig
+    A->>KB: 3. Create 2/3 multisig-abc
+    B->>KB: 3. Confirm multisig-abc
+    C->>KB: 3. Confirm multisig-abc
 ```
+
+</div>
 
 <!--
 ### 1. Create Multisig Account
 ### 2. Fund the Account
 ### 3. Verify Setup
 -->
+
 
 ---
 layout: top-title
@@ -345,15 +348,15 @@ color: purple
 
 ```mermaid {scale: 0.7}
 sequenceDiagram
-    participant A as Initiator
-    participant B as Cosigner 1
-    participant C as Cosigner 2
+    participant A as Alice
+    participant B as Bob
+    participant C as Charlie
     participant D as Blockchain
     
     A->>B: Unsigned TX
     A->>C: Unsigned TX
-    B->>B: Signs locally
-    C->>C: Signs locally
+    B->>B: Signs locally (Airgap/HW)
+    C->>C: Signs locally (Airgap/HW)
     B-->>A: Partial signature
     C-->>A: Partial signature
     A->>A: Combines signatures
@@ -389,24 +392,15 @@ graph TD
 
 </div>
 
+<!--
 ### Core Concept
 - **Split** secrets into `N` shares
 - **Reconstruct** with any `M` shares (`M ≤ N`)
 - **Single shares** reveal *zero* information about original secret
+-->
 
 ---
 
-## 📐 Mathematical Foundation
-### Polynomial Secret Encoding
-```math
-f(x) = a_0 + a_1x + a_2x^2 + ... + a_{k-1}x^{k-1}
-```
-Where:
-- $a_0$ = **Secret**
-- $a_1..a_{k-1}$ = Random coefficients
-- Shares = Points $(x, f(x))$
-
----
 
 ## 🛡️ Security Advantages
 
@@ -443,104 +437,6 @@ Share 3: 1-8feb3d4c9a
 Result: MyCryptoSecret
 ```
 
----
-
-## 🔐 Blockchain Applications
-
-1. **Multisig Wallet Recovery**
-   - Split seed phrase into 5 shares (3 needed to recover)
-   
-2. **Validator Key Safeguarding**
-   - Distribute consensus keys across team members
-   
-3. **Enterprise Secret Management**
-   - Board members hold key shares for treasury access
-
-```mermaid
-pie
-    title Share Distribution
-    “Safe Deposit Box” : 1
-    “Lawyer” : 1
-    “Spouse” : 1
-    “Bank” : 1
-    “Trusted Friend” : 1
-```
-
----
-```mermaid
-graph TB
-    LB[Load Balancer] --> HSM1[HSM 1]
-    LB --> HSM2[HSM 2]
-    LB --> HSM3[HSM 3]
-    
-    HSM1 -->|Sync| HSMC[HSM Cluster]
-    HSM2 -->|Sync| HSMC
-    HSM3 -->|Sync| HSMC
-    
-    HSMC --> DB[Audit Database]
-    
-    style HSMC fill:#1565c0,stroke:#0d47a1
-```
-
-```mermaid
-graph LR
-    H[HSM] -->|Secure Proof Generation| Z[zk-Rollup]
-    H -->|MPC Integration| M[Multisig]
-```
-
----
-
-## ⚠️ Critical Considerations
-
-1. **Secure Generation Environment**
-   - Perform splitting on airgapped device
-
-2. **Share Verification**
-   ```python
-   from ssss import verify_share
-   assert verify_share(share, public_params)
-   ```
-
-3. **Physical Security**
-   - Use tamper-evident storage for shares
-
-4. **Redundancy**
-   - Store multiple copies of critical shares
-
----
-
-## 🚀 Advanced: Proactive SSSS
-
-**Rotate shares periodically without changing secret:**
-```mermaid
-sequenceDiagram
-    participant H as Holder 1
-    participant C as Coordinator
-    participant H2 as Holder 2
-    participant H3 as Holder 3
-    
-    H->>C: Current Share
-    H2->>C: Current Share
-    H3->>C: Current Share
-    C->>H: New Share (encrypted)
-    C->>H2: New Share (encrypted)
-    C->>H3: New Share (encrypted)
-```
-
-*Mitigates long-term share compromise through periodic refresh*
-
----
-
-# 🔑 When to Use SSSS
-
-| Scenario                  | Recommendation     |
-|---------------------------|--------------------|
-| Personal Key Backup       | ✅ 3-of-5          |
-| Enterprise Treasury       | ✅ 5-of-9          |
-| Validator Key Management  | ✅ 7-of-12         |
-| Single Device Storage     | ❌ (Use HSMs)      |
-
-
 <!--
 
 Code part - What to demonstrate:
@@ -570,7 +466,7 @@ color: amber
 ### Advanced Topics:
 - Hardware wallet integration (Ledger)
 - Transaction monitoring tools -- Using `tx-indexer`
-- Secure key rotation procedures
+- Secure key rotation procedures (Useful for multisign)
 
 <div class="mt-8 text-center">
 <a href="https://github.com/gnolang/gno" target="_blank" class="!no-underline">

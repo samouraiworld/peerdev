@@ -128,3 +128,14 @@ set -gx PATH $PATH $HOME/go/bin
 <div class="text-center mt-4 text-sm op75">
 📌 <strong>Example Project</strong>: Mini social application
 </div>
+
+<!--
+Next steps:
+- Show environment variable + addition in fish/bash
+- Present:
+  - gnomod.toml
+  - 0_counter.gno
+- Gnokey
+- Gnoweb
+- First transaction
+-->

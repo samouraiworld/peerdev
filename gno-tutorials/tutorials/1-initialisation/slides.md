@@ -36,7 +36,7 @@ As of today, we will cover the installation of Gno and go through your first Gno
 <div class="grid  gap-6 mt-6">
 
 <div class="bg-blue-50 p-6 rounded-xl border-l-4 border-blue-400 shadow-sm">
-🧠 Basic programming knowledge  
+🧠 Basic programming knowledge in Go
 </div>
 
 <div class="bg-indigo-50 p-6 rounded-xl border-l-4 border-indigo-400 shadow-sm">
@@ -46,15 +46,20 @@ As of today, we will cover the installation of Gno and go through your first Gno
 </div>
 
 <!--
-To go through Gnoland, you will need basic programming knowledge of Go, the langage Gno got its syntax inspired.
-It is a programming language made by Google, known to be easy to learn with a simple synthax.
+Gno is based on the syntax of Go, which is known to be easy to learn with a simple syntax.
+
+To go through Gnoland, you will need basic programming knowledge of Go.
+Good understanding of Blockchain / web3 concept.
+- Blockchain 
+- Wallet
+...
 -->
 ---
 
 # 🌐 What is <span class="text-green-500">Gno.Land?</span>
 
 * 🔗 A **Layer 1** Blockchain
-* 📝 Uses **Gno language** — an interpreted version of Go
+* 📝 Uses **Gno language** — a smart contract oriented version of Go
 * 🧠 Focus on readable, open-source smart contracts
 
 <br/>
@@ -62,14 +67,22 @@ It is a programming language made by Google, known to be easy to learn with a si
 ### 🧱 Core Components
 
 * **Realms** → Smart contracts
-* **Packages** → Reusable libraries
+* **Pure Packages** → Reusable libraries
 
 <div class="mt-6 p-4 bg-green-50 border-l-4 border-green-400 rounded shadow">
 💰 Native Token: <strong>GnoT</strong>
 </div>
 
 <!--
-A layer 1 blockchain is a chain no
+Gnoland is a layer 1 blockchain. 
+Not relying underlying chain as it is done in layer 2 
+It has its own node and validators to confirm transaction
+
+Uses gno language
+
+To compare it with solidity
+Natively, Every code you deploy will have its visual interface, and available source code since it is interpreted.
+Which enforce a more readable environment, ...
 -->
 ---
 

@@ -11,7 +11,7 @@ layout: cover
 ---
 
 
-# 🛠️ Secure transaction
+# 🛠️ Secure your wallet
 ## Airgap transaction and Hardware key
 
 <!--
@@ -46,15 +46,21 @@ sequenceDiagram
 
 # Why using safe transaction? 
 
-**Risks of Signing in an Online environment**: Malware ⚠️
 - 🔑 Memory scraping attacks
 - ⌨️ Keyloggers capturing passwords
 - 🌐 MITM transaction hijacking
 - 📧 Phishing fake transaction prompts
 - etc...
 
+**Risks when Signing in an Online environment** ⚠️
+
 <!--
-When signing in an online environment, you risk 
+
+Gnokey is a non custodial wallet, it means it is only secured by cryptography.
+
+By being so, you are vulnerable
+Being careful is not everything, 
+
 
 -->
 
@@ -234,7 +240,7 @@ color: green
 
 #### Hardware Key - Most Secure + Convenient 
 ##### Recommended way ✅
-- Ledger **(Gno compatible)**, Trezor, YubiKey, ...
+- Ledger, Trezor, ...
 
 #### AirGap Vault - Secure but inconvenient 🔒
 ##### Must be offline ⚠️
@@ -380,14 +386,12 @@ color: purple
 ```mermaid
 graph TD
     S[Original Secret] -->|Split| S1(Share 1)
-    S -->|Split| S2(Share 2)
-    S -->|Split| S3(Share 3)
-    S -->|Split| S4(Share 4)
-    S -->|Split| S5(Share 5)
+    S -->|Split| S3(Share 2)
+    S -->|Split| S5(Share 3)
     
-    S1 -->|2 of 5| R[Reconstruct Secret]
-    S3 -->|2 of 5| R
-    S5 -->|2 of 5| R
+    S1 -->|1 of 3| R[Reconstruct Secret]
+    S3 -->|1 of 3| R
+    S5 -->|1 of 3| R
 ```
 
 </div>
@@ -440,10 +444,8 @@ Result: MyCryptoSecret
 <!--
 
 Code part - What to demonstrate:
-
 - How to do a simple transaction 
 - How to do an airgap transaction (in local)
-- In a Virtual VM (To simulate hardware)
 - Hardware key https://github.com/gnolang/gno/issues/1119
 - Using Adena Wallet https://www.adena.app/
 - Multi-sign using the script
@@ -459,7 +461,7 @@ color: amber
 :: content ::
 
 ### Practical Exercises:
-1. Setup airgap environment with QEMU
+1. Setup airgap environment
 2. Create 2/3 multisig wallet
 3. Perform secure contract deployment
 

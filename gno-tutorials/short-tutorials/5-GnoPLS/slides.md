@@ -9,10 +9,8 @@ fonts:
 layout: cover
 ---
 
-# 🧩 Gnopls
+# Gnopls
 ## Language Server Protocol for Gno
-
-Bringing IDE capabilities to Gno development
 
 <!-- 
 Focus on:
@@ -26,22 +24,16 @@ color: blue
 ---
 
 :: title ::
-# 🤔 What is LSP?
+# Language Server Protocol (LSP)
 :: content ::
 
-**Language Server Protocol (LSP)** is an open standard created by Microsoft
+Open standard created by Microsoft
 - Enables **rich code editing features** in any editor
 - **Decouples** language intelligence from editor implementation
-- Supported by VS Code, Neovim, Emacs, Sublime, etc.
+- Supported by most code editor
 
----
-layout: top-title
-color: blue
----
-
-:: title ::
-# 🤔 What is LSP?
-:: content ::
+<!--
+VS Code, Neovim, Emacs, Sublime, etc.
 
 **Key capabilities:**
 - Code completion
@@ -49,6 +41,7 @@ color: blue
 - Go-to-definition
 - Refactoring tools
 - Documentation on hover
+-->
 
 ---
 layout: top-title
@@ -56,14 +49,14 @@ color: green
 ---
 
 :: title ::
-# 🚀 What is Gnopls?
+# Gnopls
 :: content ::
 
 **Gnopls** is the official LSP implementation for Gno
-- Built specifically for **Gno.land ecosystem**
 - Based on **Gopls**
 - Provides **smart code analysis** for `.gno` files
 
+<!--
 **Core architecture:**
 - Written in Go
-- Editor-agnostic implementation
+-->

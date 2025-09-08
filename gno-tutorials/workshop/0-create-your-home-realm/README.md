@@ -93,7 +93,7 @@ Let's start by creating the proper structure for your **Home Realm project**:
 gno mod init gno.land/r/[your-username]/home
 ```
 
-This creates a `gnomod.toml` and a `home.gno` files.
+This creates a `gnomod.toml`. You should also create a `home.gno` files.
 ```
 ├── gnomod.toml      # Module configuration (auto-generated)
 └── home.gno         # Your main realm code 

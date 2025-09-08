@@ -208,5 +208,5 @@ Let's consolidate your learning in the Gno.land ecosystem by reading the next gu
 ### Don't forget to share your realm with the community and inspire the next generation of builders! 🥷
 
 ## Authors
-| [<img src="https://github.com/Davphla.png?size=85" width=85><br><sub>David</sub>](https://github.com/RahulCHANDER25) | [<img src="https://github.com/moonia.png?size=85" width=85><br><sub>Moonia</sub>](https://github.com/moonia)
+| [<img src="https://github.com/Davphla.png?size=85" width=85><br><sub>David</sub>](https://github.com/Davphla) | [<img src="https://github.com/moonia.png?size=85" width=85><br><sub>Moonia</sub>](https://github.com/moonia)
 | :---: | :---: |

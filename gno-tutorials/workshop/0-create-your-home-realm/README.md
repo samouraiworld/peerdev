@@ -11,7 +11,7 @@ In this session, you’ll learn how to build your own Home Realm — a personali
 
 By the end of this guide, you’ll have a functioning realm deployed and the knowledge to continue experimenting and building on Gno.land.
 
-> **Note**: During this workshop, we will use the **latest testnet network** (**Test 7** as of today). If any part seems unusual or broken, don't hesitate to ask questions in the [Official Discord server](https://discord.com/invite/ubN5NXaMYZ) and create issues in this repositories!
+> **Note**: During this workshop, we will use the **latest testnet network** (**Test 8** as of today). If any part seems unusual or broken, don't hesitate to ask questions in the [Official Discord server](https://discord.com/invite/ubN5NXaMYZ) and create issues in this repositories!
 We are available there to answer any question.
 
 ## Step 0 - Prerequisites & Setup
@@ -207,6 +207,6 @@ Let's consolidate your learning in the Gno.land ecosystem by reading the next gu
 
 ### Don't forget to share your realm with the community and inspire the next generation of builders! 🥷
 
-# Made with ❤️ by:
-- [David](https://github.com/Davphla)
-- [Moonia](https://github.com/moonia)
+## Authors
+| [<img src="https://github.com/Davphla.png?size=85" width=85><br><sub>David</sub>](https://github.com/RahulCHANDER25) | [<img src="https://github.com/moonia.png?size=85" width=85><br><sub>Moonia</sub>](https://github.com/moonia)
+| :---: | :---: |

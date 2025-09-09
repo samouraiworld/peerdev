@@ -159,7 +159,7 @@ gno test /path/to/your/realm/directory
 Now that you have a basic Home Realm, let's enhance it with powerful packages and add interactive elements! 
 
 **You are now autonomous** to build whatever sparks your creativity. **Experiment, play, and iterate** until you've created something that you feel proud of! 
-Everything possible in Go **is also possible in Gno**, so take inspiration from existing sources.
+*Almost everything* possible in Go **is also possible in Gno**, so take inspiration from existing sources.
 
 ### 📚 Documentation:
 - [SVG Generation Library](https://gno.land/p/demo/svg)

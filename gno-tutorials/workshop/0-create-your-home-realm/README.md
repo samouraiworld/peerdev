@@ -75,7 +75,7 @@ Before building your realm, you need:
 - Request tokens
 
 ### Register Username
-- Visit: [gno.land/r/gnoland/users](https://test7.testnets.gno.land/r/gnoland/users)
+- Visit: [gno.land/r/gnoland/users](https://test8.testnets.gno.land/r/gnoland/users)
 - Choose a unique username (lowercase, no special characters)
 - Register using your wallet
 
@@ -149,7 +149,7 @@ gno test /path/to/your/realm/directory
 ```
 
 ### 📺 Watch:
-- [Build and test your first dApp](https://www.youtube.com/watch?v=nzo6QgxQHgw&t=161s)
+- [Build and test your first dApp](https://www.youtube.com/watch?v=nzo6QgxQHgw)
 
 ### 📚 Documentation:
 - [Running & testing Gno code](https://docs.gno.land/resources/gno-testing)
@@ -169,7 +169,7 @@ Now that you have a basic Home Realm, let's enhance it with powerful packages an
 
 ## Step 6 - Save Your Realm in the Hall of Realms (HOR)
 
-Let's deploy your realm to Gno.land and register it in the [**Hall of Realms**](https://test7.testnets.gno.land/r/leon/hor) 👑 so the entire community can discover and interact with your creation.
+Let's deploy your realm to Gno.land and register it in the [**Hall of Realms**](https://test8.testnets.gno.land/r/leon/hor) 👑 so the entire community can discover and interact with your creation.
 
 Simply import the Hall of Realms in your code, and call the `Register()` function inside your realm `init()`, as shown below:
 ```go
@@ -184,7 +184,7 @@ func init() {
 
 And then deploy your realm using the `maketx addpkg` command by following the next guides.
 
-If done correctly, it should appear in the [Hall](https://test7.testnets.gno.land/r/leon/hor:hall).
+If done correctly, it should appear in the [Hall](https://test8.testnets.gno.land/r/leon/hor:hall).
 
 ### 📺 Watch:
 - [Deploying Gno Packages](https://www.youtube.com/watch?v=B7bSreCwIls)
@@ -192,7 +192,7 @@ If done correctly, it should appear in the [Hall](https://test7.testnets.gno.lan
 ### 📚 Documentation:
 - [Deploying Gno Packages](https://docs.gno.land/builders/deploy-packages)
 
-> 💡 **Note**: Be mindful to always interact with the same network, so `test7.testnets.gno.land`
+> 💡 **Note**: Be mindful to always interact with the same network, so `test8.testnets.gno.land`
 
 ## Step 7 - Conclusion & Wrap-Up
 

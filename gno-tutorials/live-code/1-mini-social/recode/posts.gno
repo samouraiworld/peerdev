@@ -1,99 +1,83 @@
 package minisocial
 
 import (
-	"errors"
 	"std"
 	"strconv"
-	"time"
 
-	"gno.land/p/demo/avl"
-	"gno.land/p/demo/avl/pager"
-	"gno.land/p/demo/seqid"
-	"gno.land/p/demo/ufmt"
 	"gno.land/p/moul/md"
+	"gno.land/p/nt/avl"
+	"gno.land/p/nt/avl/pager"
+	"gno.land/p/nt/seqid"
+	"gno.land/p/nt/ufmt"
 )
-
-type Post struct {
-	id        seqid.ID
-	content   string
-	author    std.Address
-	createdAt time.Time
-	editedAt  time.Time
-}
 
 var (
 	postID seqid.ID
 	posts  = avl.NewTree()
 	pag    = pager.NewPager(posts, 5, true)
-
-	NoContentPost   = errors.New("CreatePost called with no content")
-	InvalidPost     = errors.New("EditPost Invalid ID")
-	ErrUnauthorized = errors.New("EditPost You're not authorized to edit this post")
 )
 
-// Create a new post objcect with a content
-func CreatePost(cur realm, content string) error {
-	if content == "" {
-		return NoContentPost
+func CreatePost(_ realm, title string, content string) {
+	if title == "" {
+		panic("CreatePost: invalid title")
 	}
-
 	id := postID.Next()
-
-	post := &Post{
-		id:        id,
-		content:   content,
-		author:    std.OriginCaller(),
-		createdAt: time.Now(),
-		editedAt:  time.Now(),
+	post := Post{
+		id:      id,
+		title:   title,
+		content: content,
+		author:  std.PreviousRealm().Address(),
 	}
 
-	posts.Set(id.String(), post)
-	return nil
+	posts.Set(id.String(), &post)
 }
 
-func EditPost(cur realm, id seqid.ID, newContent string) error {
-	raw, isValid := posts.Get(id.String())
-
-	if !isValid {
-		return InvalidPost
+func DeletePost(_ realm, id string) {
+	raw, ok := posts.Get(id)
+	if !ok {
+		panic("DeletePost: Post not found")
 	}
 
 	post := raw.(*Post)
-
-	if post.author != std.OriginCaller() {
-		return ErrUnauthorized
+	if std.PreviousRealm().Address() != post.author {
+		panic("DeletePost: Unauthorized")
 	}
-	post.content = newContent
-	return nil
+
+	posts.Remove(id)
 }
 
-func DeletePost(cur realm, id seqid.ID) error {
-	raw, isValid := posts.Get(id.String())
-
-	if !isValid {
-		return InvalidPost
+func UpdatePost(_ realm, id string, content string) {
+	raw, ok := posts.Get(id)
+	if !ok {
+		panic("UpdatePost: Post not found")
 	}
 
 	post := raw.(*Post)
-
-	if post.author != std.OriginCaller() {
-		return ErrUnauthorized
+	if std.PreviousRealm().Address() != post.author {
+		panic("UpdatePost: Unauthorized")
 	}
-	posts.Remove(id.String())
-	return nil
+
+	post.content = content
 }
 
 func Render(path string) string {
-	out := md.H1("My blog")
-	if postID == 0 {
-		out += "No post available\n"
+	out := md.H1("MiniSocial")
+	if posts.Size() == 0 {
+		out += "No posts yet!\n\n"
 		return out
+	}
+
+	if path == "?hello" {
+		return "hello world"
 	}
 	page := pag.MustGetPageByPath(path)
 
 	for _, item := range page.Items {
 		post := item.Value.(*Post)
-		out += md.H4(ufmt.Sprintf("Post #%d - %s %s\n\n", int(post.id), post.content, post.author))
+
+		out += md.H4(ufmt.Sprintf("Post #%d\n\n", int(post.id)))
+
+		out += post.String()
 		out += md.HorizontalRule()
 	}
 

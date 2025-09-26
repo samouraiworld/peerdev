@@ -30,7 +30,7 @@ func TestAddPost(t *testing.T) {
 	}
 }
 
-// It is not possible anymore to recover after defer
+// It is not possible anymore to recover after defer from a cross function
 func TestCreatePostPanic(t *testing.T) {
 	// defer func() {
 	// 	// r should contain panic error

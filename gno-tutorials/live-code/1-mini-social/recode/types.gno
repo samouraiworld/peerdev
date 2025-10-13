@@ -1,8 +1,6 @@
 package minisocial
 
 import (
-	"std"
-
 	"gno.land/p/nt/seqid"
 	"gno.land/p/nt/ufmt"
 	"gno.land/r/sys/users"
@@ -12,7 +10,7 @@ type Post struct {
 	id      seqid.ID
 	title   string
 	content string
-	author  std.Address
+	author  address
 }
 
 func (p Post) String() string {

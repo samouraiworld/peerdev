@@ -1,7 +1,7 @@
 package faucet
 
 import (
-	"std"
+	"chain/runtime"
 	"strings"
 
 	"gno.land/p/demo/grc/grc20"
@@ -19,59 +19,50 @@ func init() {
 	privateLedger.Mint(Ownable.Owner(), 1_000_000*10_000)
 }
 
-func TotalSupply() int64 {
-	crossing()
+func TotalSupply(cur realm) int64 {
 
 	return UserTeller.TotalSupply()
 }
 
-func BalanceOf(owner std.Address) int64 {
-	crossing()
+func BalanceOf(cur realm, owner address) int64 {
 
 	return UserTeller.BalanceOf(owner)
 }
 
-func Transfer(to std.Address, amount int64) {
-	crossing()
+func Transfer(cur realm, to address, amount int64) {
 
 	checkErr(UserTeller.Transfer(to, amount))
 }
 
-func Allowance(owner, spender std.Address) int64 {
-	crossing()
+func Allowance(cur realm, owner, spender address) int64 {
 
 	return UserTeller.Allowance(owner, spender)
 }
 
-func Approve(spender std.Address, amount int64) {
-	crossing()
+func Approve(cur realm, spender address, amount int64) {
 
 	checkErr(UserTeller.Approve(spender, amount))
 }
 
-func TransferFrom(from, to std.Address, amount int64) {
-	crossing()
+func TransferFrom(cur realm, from, to address, amount int64) {
 
 	checkErr(UserTeller.TransferFrom(from, to, amount))
 }
 
-func Faucet() {
-	crossing()
+func Faucet(cur realm) {
 
-	caller := std.PreviousRealm().Address()
+	caller := runtime.PreviousRealm().Address()
 	amount := int64(1_000 * 10_000)
 	checkErr(privateLedger.Mint(caller, amount))
 }
 
-func Mint(to std.Address, amount int64) {
-	crossing()
+func Mint(cur realm, to address, amount int64) {
 
 	Ownable.AssertOwnedByCurrent()
 	checkErr(privateLedger.Mint(to, amount))
 }
 
-func Burn(from std.Address, amount int64) {
-	crossing()
+func Burn(cur realm, from address, amount int64) {
 
 	Ownable.AssertOwnedByCurrent()
 	checkErr(privateLedger.Burn(from, amount))
@@ -85,7 +76,7 @@ func Render(path string) string {
 	case path == "":
 		return Token.RenderHome()
 	case c == 2 && parts[0] == "balance":
-		owner := std.Address(parts[1])
+		owner := address(parts[1])
 		balance := UserTeller.BalanceOf(owner)
 		return ufmt.Sprintf("%d\n", balance)
 	default:

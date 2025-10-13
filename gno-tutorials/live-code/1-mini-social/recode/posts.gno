@@ -1,7 +1,7 @@
 package minisocial
 
 import (
-	"std"
+	"chain/runtime"
 	"strconv"
 
 	"gno.land/p/moul/md"
@@ -26,7 +26,7 @@ func CreatePost(_ realm, title string, content string) {
 		id:      id,
 		title:   title,
 		content: content,
-		author:  std.PreviousRealm().Address(),
+		author:  runtime.PreviousRealm().Address(),
 	}
 
 	posts.Set(id.String(), &post)
@@ -39,7 +39,7 @@ func DeletePost(_ realm, id string) {
 	}
 
 	post := raw.(*Post)
-	if std.PreviousRealm().Address() != post.author {
+	if runtime.PreviousRealm().Address() != post.author {
 		panic("DeletePost: Unauthorized")
 	}
 
@@ -53,7 +53,7 @@ func UpdatePost(_ realm, id string, content string) {
 	}
 
 	post := raw.(*Post)
-	if std.PreviousRealm().Address() != post.author {
+	if runtime.PreviousRealm().Address() != post.author {
 		panic("UpdatePost: Unauthorized")
 	}
 

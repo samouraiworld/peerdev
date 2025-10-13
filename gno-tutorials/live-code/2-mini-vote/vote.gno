@@ -1,7 +1,7 @@
 package vote
 
 import (
-	"std"
+	"chain/runtime"
 	"strconv"
 	"time"
 
@@ -96,7 +96,7 @@ func CreatePublicProposal(title string,
 	deadline time.Time,
 	actionID uint64,
 	conditionID uint64,
-	roles map[std.Address]Role,
+	roles map[address]Role,
 ) {
 	new_roles := avl.NewTree()
 	for addr, role := range roles {
@@ -123,8 +123,8 @@ func CreateProposal(title string,
 	deadline time.Time,
 	actionID uint64,
 	conditionID uint64,
-	allowedVoters []std.Address,
-	roles map[std.Address]Role) {
+	allowedVoters []address,
+	roles map[address]Role) {
 	new_roles := avl.NewTree()
 	for addr, role := range roles {
 		new_roles.Set(addr.String(), role)
@@ -151,7 +151,7 @@ func CreateProposal(title string,
 
 func CastVote(proposalID uint64, vote Ballot) {
 	proposal := getProposal(proposalID)
-	addr := std.PreviousRealm().Address()
+	addr := runtime.PreviousRealm().Address()
 	ballot, hasBallot := proposal.Voters.Get(addr.String())
 
 	// Only allowed voters can vote on private proposals
@@ -173,7 +173,7 @@ func CastVote(proposalID uint64, vote Ballot) {
 func EditProposal(proposalID uint64, title string, content string, deadline time.Time) {
 	proposal := getProposal(proposalID)
 
-	prevAddr := std.PreviousRealm().Address()
+	prevAddr := runtime.PreviousRealm().Address()
 	role, hasRole := proposal.Roles.Get(prevAddr.String())
 	if !hasRole {
 		panic(prevAddr.String() + " has no role.")
@@ -198,7 +198,7 @@ func EditProposal(proposalID uint64, title string, content string, deadline time
 func CloseProposal(proposalID uint64) {
 	proposal := getProposal(proposalID)
 
-	prevAddr := std.PreviousRealm().Address()
+	prevAddr := runtime.PreviousRealm().Address()
 	role, hasRole := proposal.Roles.Get(prevAddr.String())
 	if !hasRole {
 		panic(prevAddr.String() + " has no role.")

@@ -1,7 +1,6 @@
 package blog
 
 import (
-	"std"
 	"strings"
 	"testing"
 
@@ -13,7 +12,7 @@ func TestAddPost(t *testing.T) {
 	aliceAddr := testutils.TestAddress("alice")
 
 	// TestSetRealm sets the realm caller, in this case Alice
-	testing.SetRealm(std.NewUserRealm(aliceAddr))
+	testing.SetRealm(testing.NewUserRealm(aliceAddr))
 
 	// Content for our new post
 	title := "Hello World!"

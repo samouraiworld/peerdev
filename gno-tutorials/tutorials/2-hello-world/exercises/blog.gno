@@ -1,7 +1,7 @@
 package blog
 
 import (
-	"std"
+	"chain/runtime"
 	"time"
 )
 
@@ -9,7 +9,7 @@ import (
 type Post struct {
 	Title     string
 	Content   string
-	Author    std.Address
+	Author    address
 	CreatedAt time.Time
 }
 
@@ -22,7 +22,7 @@ func AddPost(cur realm, title, content string) {
 		Title:   title,
 		Content: content,
 		// The author of the address is the previous realm, the realm that called this one
-		Author:    std.PreviousRealm().Address(),
+		Author:    runtime.PreviousRealm().Address(),
 		CreatedAt: time.Now(),
 	}
 	Posts = append(Posts, *newPost)

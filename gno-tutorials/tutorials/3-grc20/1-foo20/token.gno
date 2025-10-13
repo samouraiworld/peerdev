@@ -3,7 +3,7 @@
 package foo20
 
 import (
-	"std"
+	"chain/runtime"
 	"strings"
 
 	"gno.land/p/demo/grc/grc20"
@@ -27,40 +27,40 @@ func TotalSupply(cur realm) int64 {
 	return UserTeller.TotalSupply()
 }
 
-func BalanceOf(cur realm, owner std.Address) int64 {
+func BalanceOf(cur realm, owner address) int64 {
 	return UserTeller.BalanceOf(owner)
 }
 
-func Transfer(cur realm, to std.Address, amount int64) {
+func Transfer(cur realm, to address, amount int64) {
 	checkErr(UserTeller.Transfer(to, amount))
 }
 
-func Allowance(cur realm, owner, spender std.Address) int64 {
+func Allowance(cur realm, owner, spender address) int64 {
 	return UserTeller.Allowance(owner, spender)
 }
 
-func Approve(cur realm, spender std.Address, amount int64) {
+func Approve(cur realm, spender address, amount int64) {
 	checkErr(UserTeller.Approve(spender, amount))
 }
 
-func TransferFrom(cur realm, from, to std.Address, amount int64) {
+func TransferFrom(cur realm, from, to address, amount int64) {
 	checkErr(UserTeller.TransferFrom(from, to, amount))
 }
 
 // Faucet is distributing foo20 tokens without restriction (unsafe).
 // For a real token faucet, you should take care of setting limits are asking payment.
 func Faucet(cur realm) {
-	caller := std.PreviousRealm().Address()
+	caller := runtime.PreviousRealm().Address()
 	amount := int64(1_000 * 10_000)
 	checkErr(privateLedger.Mint(caller, amount))
 }
 
-func Mint(cur realm, to std.Address, amount int64) {
+func Mint(cur realm, to address, amount int64) {
 	Ownable.AssertOwnedByCurrent()
 	checkErr(privateLedger.Mint(to, amount))
 }
 
-func Burn(cur realm, from std.Address, amount int64) {
+func Burn(cur realm, from address, amount int64) {
 	Ownable.AssertOwnedByCurrent()
 	checkErr(privateLedger.Burn(from, amount))
 }
@@ -73,7 +73,7 @@ func Render(path string) string {
 	case path == "":
 		return Token.RenderHome()
 	case c == 2 && parts[0] == "balance":
-		owner := std.Address(parts[1])
+		owner := address(parts[1])
 		balance := UserTeller.BalanceOf(owner)
 		return ufmt.Sprintf("%d\n", balance)
 	default:

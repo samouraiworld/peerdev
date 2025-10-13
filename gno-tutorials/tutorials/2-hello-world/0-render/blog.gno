@@ -1,15 +1,12 @@
 package blog
 
-import (
-	"std"
-	"time"
-)
+import "time"
 
 // Post represents a single blog entry.
 type Post struct {
 	Title     string
 	Content   string
-	Author    std.Address
+	Author    address
 	CreatedAt time.Time
 }
 
@@ -18,13 +15,13 @@ var Posts []Post = []Post{
 	{
 		Title:     "First Post",
 		Content:   "Welcome to my blog!",
-		Author:    std.Address("g1authoraddress123"),
+		Author:    address("g1authoraddress123"),
 		CreatedAt: time.Now(),
 	},
 	{
 		Title:     "Second Post",
 		Content:   "This is another post.",
-		Author:    std.Address("g1authoraddress456"),
+		Author:    address("g1authoraddress456"),
 		CreatedAt: time.Now(),
 	},
 }

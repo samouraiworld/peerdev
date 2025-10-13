@@ -1,15 +1,14 @@
 package vote
 
 import (
-	"std"
 	"testing"
 	"time"
 )
 
 func TestCreatePublicProposal(t *testing.T) {
 	// Setup roles
-	roles := map[std.Address]Role{
-		std.Address("addr1"): 1, // Admin
+	roles := map[address]Role{
+		address("addr1"): 1, // Admin
 	}
 
 	// Add dummy action and condition

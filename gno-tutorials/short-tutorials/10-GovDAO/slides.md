@@ -25,9 +25,9 @@ GovDAO is how the Gno.land community makes decisions together
 
 **DAO** = **D**ecentralized **A**utonomous **O**rganization
 
-- **Members vote** - Everyone has a voice
+- **Members vote** on **Proposal**
 - Automatic execution through **Smart contracts**
-- **No central authority** - Community decides
+- **No central authority**
 
 ## Two Types:
 - **Permissioned** - Only invited members can participate
@@ -43,7 +43,7 @@ DAOs let communities govern themselves without traditional leadership
 
 **GovDAO** is the **Governance DAO of Gno.land**
 
-It is a **permissioned** DAO - only invited members can participate
+It is a **permissioned** DAO
 
 ## How it works:
 1. 📝 Community submits **proposals**
@@ -83,7 +83,7 @@ GovDAO is specifically for governing the Gno.land blockchain
 
 </div>
 
-**Genesis Invitation Points** is determined at genesis
+z**Genesis Invitation Points** is determined at genesis
 
 <!--
 Different tiers have different voting power based on their contribution
@@ -91,12 +91,12 @@ Different tiers have different voting power based on their contribution
 
 ---
 
-# 🎯 What can GovDAO do?
+# 🎯 What can GovDAO vote on?
 
-- 🛡️ **Protocol Updates** - Change blockchain parameters
-- 💰 **Treasury Management** - Decide how funds are spent  
-- 🚀 **Feature Development** - Approve new features
-- ⚖️ **Governance Rules** - Update how voting works
+- Blockchain changes
+- Fund projects
+- New features
+- Voting rules
 
 <!--
 These are real decisions that affect the entire Gno.land ecosystem
@@ -110,9 +110,6 @@ These are real decisions that affect the entire Gno.land ecosystem
 - **The DAO (2016)** - First major experiment on Ethereum
 - **MakerDAO** - Decentralized finance and stablecoin governance
 - **Uniswap DAO** - Decentralized exchange governance
-- **Compound DAO** - Lending protocol governance
-- **Aragon DAO** - DAO creation platform
-- **Token DAOs** - Voting power through token ownership
 
 ## Common Pattern:
 1. **Propose** something → 2. **Vote** on it → 3. **Execute** if approved

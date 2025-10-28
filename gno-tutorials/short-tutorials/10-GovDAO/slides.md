@@ -43,8 +43,8 @@ Membership is typically granted by following a publicly stated procedure, most c
 
 **GovDAO** is the **Governance DAO of Gno.land**
 
-It is a **permissioned** DAO with **3 tiers** optional based voting
-Built with a **proxy pattern** for upgradeability and safety
+- It is a **permissioned** DAO with **3 tiers** optional based voting
+- Built with a **proxy pattern** for upgradeability and safety
 
 
 ## How it works:

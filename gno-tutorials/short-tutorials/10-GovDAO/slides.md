@@ -103,25 +103,20 @@ The tier system ensures that critical decisions (like adding T1 members) require
 
 ---
 
-# 🔄 GovDAO Flow Overview
+# 🔄 GovDAO Flow: Creation & Voting
 
 ```mermaid
 graph LR
     A[👤 Member Creates Proposal] --> B[r/gov/dao Proxy]
-    B -->|Stores proposals| C[r/gov/dao/v3/impl]
-    C -->|Validates member| D{Voting Setup}
-    D -->|Sets permissions| E[🗳️ Members Vote YES/NO]
-    E --> F{Supermajority Reached?}
-    F -->|YES ≥ 66%| G[✅ Proposal Passed]
-    F -->|NO ≥ 66%| H[❌ Proposal Denied]
-    G -->|Manual trigger| I[⚡ Execute Proposal]
-    F -->|Not yet| E
+    B --> C[r/gov/dao/v3/impl]
+    C --> D{Voting Setup}
+
+    F[🗳️ Voting] --> G{Supermajority Reached?}
+    G -->|YES ≥ 66%| H[✅ Proposal Passed]
+    G -->|NO ≥ 66%| I[❌ Proposal Denied]
+    G -->|Not yet| F
+    H -->|Manual trigger| J[⚡ Execute Proposal]
 ```
-
-<!--
-This flow shows how a proposal moves through the GovDAO system from creation to execution
--->
-
 ---
 
 # 📝 How to Create a Proposal

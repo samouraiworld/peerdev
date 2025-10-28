@@ -1,0 +1,6 @@
+- What is GovDAO
+- Use case
+- Other DAO in Blockchain - the DAO, DAO tokens <=> Eth
+- Little sneak peak of daokit
+- Overview of GovDao code step by step
+- Gnolove GovDao integration 

@@ -106,7 +106,7 @@ The tier system ensures that critical decisions (like adding T1 members) require
 # 🔄 GovDAO Flow Overview
 
 ```mermaid
-graph TD
+graph LR
     A[👤 Member Creates Proposal] --> B[r/gov/dao Proxy]
     B -->|Stores proposals| C[r/gov/dao/v3/impl]
     C -->|Validates member| D{Voting Setup}
@@ -116,12 +116,6 @@ graph TD
     F -->|NO ≥ 66%| H[❌ Proposal Denied]
     G -->|Manual trigger| I[⚡ Execute Proposal]
     F -->|Not yet| E
-    
-    style A fill:#a8dadc
-    style B fill:#457b9d
-    style C fill:#1d3557
-    style G fill:#2a9d8f
-    style H fill:#e76f51
 ```
 
 <!--
@@ -133,7 +127,7 @@ This flow shows how a proposal moves through the GovDAO system from creation to 
 # 📝 How to Create a Proposal
 
 ## Step 1: Prepare Your Executor
-```gno
+```go
 // Simple Executor - basic execution
 executor := dao.NewSimpleExecutor(
     func(realm) error {
@@ -143,12 +137,16 @@ executor := dao.NewSimpleExecutor(
     "Description of what this will do",
 )
 
-// OR Safe Executor - only allowed DAOs can execute (Not used in v3)
+// OR Safe Executor - only allowed DAOs can execute (Not usable in v3)
 safeExecutor := dao.NewSafeExecutor(executor)
 ```
 
+---
+
+# 📝 How to Create a Proposal
+
 ## Step 2: Create the Request
-```gno
+```go
 // Basic request
 request := dao.NewProposalRequest(
     "Proposal Title",
@@ -167,45 +165,51 @@ request := dao.NewProposalRequestWithFilter(
 
 ---
 
-# 📝 How to Create a Proposal (cont.)
+# 📝 How to Create a Proposal
 
 ## Step 3: Submit (Members Only!)
-```gno
+```go
 proposalID, err := dao.CreateProposal(request)
 ```
-
-✅ Member check happens automatically  
-✅ Proposal gets unique ID  
-✅ Voting permissions configured based on filter
 
 
 ---
 
 # 🗳️ How to Vote on a Proposal
 
-## Step 1: Find the Proposal ID
-Check the DAO render page or query proposals
+## Find the proposal ID & submit your vote:
 
-## Step 2: Choose Your Vote
-- `YES` - Support the proposal
-- `NO` - Reject the proposal
-- `ABSTAIN` - No preference (not commonly used)
-
-## Step 3: Submit Your Vote
-```gno
-// Using VoteRequest (programmatic)
-dao.VoteOnProposal(dao.VoteRequest{
-    ProposalID: proposalID,
-    Option: dao.YesVote, // or dao.NoVote
-})
-
-// OR using gnokey (command line - simpler!)
-dao.MustVoteOnProposalSimple(proposalID, "YES") // or "NO"
+```go
+// Simple CLI voting
+dao.MustVoteOnProposalSimple(proposalID, "YES") // or "NO", "ABSTAIN"
 ```
 
-- Automatic checks: member status, namespace, tier permissions  
-- One vote per member enforced  
-- Cannot vote on closed proposals
+```bash
+# Example gnokey command:
+gnokey maketx call \
+  -pkgpath "gno.land/r/gov/dao" \
+  -func "MustVoteOnProposalSimple" \
+  -args "123" \
+  -args "YES" \
+  -gas-fee "1000000ugnot" \
+  -gas-wanted "2000000" \
+  -broadcast \
+  -chainid "staging" \
+  -remote "https://rpc.test9.testnets.gno.land:443" \
+  yourkeyname
+```
+
+---
+
+# 🗳️ How to Vote on a Proposal
+
+## Requirements:
+
+- Must be a member  
+- Must have a namespace (identity)  
+- Your tier must be allowed for this proposal  
+- One vote per member  
+- Proposal must still be open
 
 <!--
 Only YES and NO votes count toward supermajority
@@ -215,32 +219,34 @@ Only YES and NO votes count toward supermajority
 
 # 🎯 What can GovDAO vote on?
 
-## **1. Treasury Operations** 💰
+- Treasury Operations
+- Member Management
+- Protocol Parameters
+- Governance Rules
+- System Configuration
+
+<!--
 - Fund transfers (GNOT + GRC20 tokens)
 - Developer grants and payments
 - Community event funding
 - Infrastructure costs
 
-## **2. Member Management** 👥
 - Add/promote members across tiers
 - Manage invitation points
 - Set membership criteria
 
-## **3. Protocol Parameters** ⚙️
 - Supermajority threshold changes
 - Voting eligibility rules
 - Treasury spending limits
 
-## **4. Governance Rules** �
 - Tier-based voting access
 - Proposal requirements
 - Execution requirements
 
-## **5. System Configuration** 🔧
 - Supported tokens in treasury
 - Cross-realm integrations
 - AllowedDAOs security list
-
+-->
 ---
 
 # 💡 Execution Through Proposals
@@ -248,7 +254,7 @@ Only YES and NO votes count toward supermajority
 **Any programmable action** within Gno can be voted on!
 
 ## Example: Treasury Payment
-```gno
+```go
 executor := dao.NewSafeExecutor(
     dao.NewSimpleExecutor(
         func(cur realm) error {

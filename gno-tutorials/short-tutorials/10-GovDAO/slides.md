@@ -14,9 +14,8 @@ layout: cover
 ## Decentralized Governance on Gno.land
 
 <!--
-GovDAO is how the Gno.land community makes decisions together
+GovDAO is the governance system for Gno.land that allows members to propose, vote on, and execute actions that shape the future of the ecosystem
 -->
-
 ---
 
 # What is a DAO?
@@ -24,8 +23,8 @@ GovDAO is how the Gno.land community makes decisions together
 **DAO** = **D**ecentralized **A**utonomous **O**rganization
 
 - **No central authority**
-- **Members vote** on **Proposal** 
-- Manual execution through **Smart contracts**
+- **Members vote** on **Proposal** that can be **Executed** if passed
+- Execution through **Smart contracts**
 
 ## Two Types:
 - **Permissioned** - Only invited members can participate
@@ -35,6 +34,8 @@ GovDAO is how the Gno.land community makes decisions together
 DAOs let communities govern themselves without traditional leadership
 in part by decentralized computer programs
 Membership is typically granted by following a publicly stated procedure, most commonly by owning the DAO's governance token
+
+KYC
 -->
 
 ---
@@ -44,13 +45,13 @@ Membership is typically granted by following a publicly stated procedure, most c
 **GovDAO** is the **Governance DAO of Gno.land**
 
 - It is a **permissioned** DAO with **3 tiers** optional based voting
-- Built with a **proxy pattern** for upgradeability and safety
+- Built with a **proxy pattern** for upgradeability
 
 
 ## How it works:
 1. 📝 DAO's members submit **proposals** through the proxy
 2. 🗳️ Members **vote** based on their tier privileges  
-3. 🚀 Approved proposals can be executed with **supermajority** (66%)
+3. 🚀 Proposals can be **executed** with **supermajority** (66%)
 
 - All voters must have **registered namespaces**
 
@@ -109,7 +110,6 @@ The tier system ensures that critical decisions (like adding T1 members) require
 graph LR
     A[👤 Member Creates Proposal] --> B[r/gov/dao Proxy]
     B --> C[r/gov/dao/v3/impl]
-    C --> D{Voting Setup}
 
     F[🗳️ Voting] --> G{Supermajority Reached?}
     G -->|YES ≥ 66%| H[✅ Proposal Passed]
@@ -172,12 +172,23 @@ proposalID, err := dao.CreateProposal(request)
 
 # 🗳️ How to Vote on a Proposal
 
-## Find the proposal ID & submit your vote:
+## Requirements:
 
-```go
-// Simple CLI voting
-dao.MustVoteOnProposalSimple(proposalID, "YES") // or "NO", "ABSTAIN"
-```
+- Must be a member  
+- Must have a namespace (identity)  
+- Your tier must be allowed for this proposal  
+- One vote per member  
+- Proposal must still be open
+
+<!--
+Only YES and NO votes count toward supermajority
+-->
+
+---
+
+# 🗳️ How to Vote on a Proposal
+
+## Find the proposal ID & submit your vote:
 
 ```bash
 # Example gnokey command:
@@ -194,21 +205,9 @@ gnokey maketx call \
   yourkeyname
 ```
 
----
-
-# 🗳️ How to Vote on a Proposal
-
-## Requirements:
-
-- Must be a member  
-- Must have a namespace (identity)  
-- Your tier must be allowed for this proposal  
-- One vote per member  
-- Proposal must still be open
-
-<!--
-Only YES and NO votes count toward supermajority
--->
+```go
+dao.MustVoteOnProposalSimple(proposalID, "YES") // or "NO", "ABSTAIN"
+```
 
 ---
 
@@ -217,7 +216,6 @@ Only YES and NO votes count toward supermajority
 - Treasury Operations
 - Member Management
 - Protocol Parameters
-- Governance Rules
 - System Configuration
 
 <!--
@@ -248,21 +246,33 @@ Only YES and NO votes count toward supermajority
 
 **Any programmable action** within Gno can be voted on!
 
-## Example: Treasury Payment
-```go
-executor := dao.NewSafeExecutor(
-    dao.NewSimpleExecutor(
-        func(cur realm) error {
-            return treasury.Send(cross, treasury.Payment{
-                BankerID: "coins",
-                To: "g1developer...",
-                Amount: "1000000ugnot",
-                Memo: "Development grant",
-            })
-        },
-        "Pay developer 1000 GNOT",
-    ),
+### Example: Treasury Payment Proposal
+```go {1-12|14-19|21-25|all}{lines:true, maxHeight:'350px'}
+// Step 1: Create the executor
+executor := dao.NewSimpleExecutor(
+    func(cur realm) error {
+        return treasury.Send(cross, treasury.Payment{
+            BankerID: "coins",
+            To: "g1developer...",
+            Amount: "1000000ugnot",
+            Memo: "Development grant",
+        })
+    },
+    "Pay developer 1000 GNOT",
 )
+
+// Step 2: Create the proposal request
+request := dao.NewProposalRequest(
+    "Grant Payment Q4 2025",
+    "Payment for development work on GovDAO improvements",
+    executor,
+)
+
+// Step 3: Submit the proposal
+proposalID, err := dao.CreateProposal(request)
+if err != nil {
+    panic(err)
+}
 ```
 
 ---
@@ -271,7 +281,7 @@ executor := dao.NewSafeExecutor(
 
 ## Examples:
 - **The DAO (2016)** - First major experiment on Ethereum
-- **MakerDAO** - Decentralized finance and stablecoin governance
+- **SKY** (Formerly MakerDAO) - Decentralized finance and stablecoin governance
 - **Uniswap DAO** - Decentralized exchange governance
 
 <!--

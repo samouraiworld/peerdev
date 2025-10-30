@@ -11,7 +11,7 @@ layout: cover
 ---
 
 # 🏛️ GovDAO
-## Decentralized Governance on Gno.land
+## Decentralized Governance Organization on Gno.land
 
 <!--
 GovDAO is the governance system for Gno.land that allows members to propose, vote on, and execute actions that shape the future of the ecosystem

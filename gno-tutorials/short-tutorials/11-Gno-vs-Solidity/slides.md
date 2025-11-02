@@ -78,31 +78,6 @@ Both are statically typed but Gno uses familiar Go syntax and patterns
 
 ---
 
-# ⚔️ Gno vs Solidity: Execution
-
-<div class="grid grid-cols-2 gap-4">
-<div>
-
-## Solidity (EVM):
-
-<<< @/snippets/execution-solidity.sol solidity {maxHeight:'600'}
-
-</div>
-<div>
-
-## Gno (Interpreted):
-
-<<< @/snippets/execution-gno.gno go {monaco}{maxHeight:'350px'}
-
-</div>
-</div>
-
-<!--
-Gno code is interpreted, making it easier to debug and reason about
--->
-
----
-
 # 📦 Pattern 1: Basic Counter
 
 <div class="grid grid-cols-2 gap-4">

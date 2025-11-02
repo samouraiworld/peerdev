@@ -3,9 +3,9 @@ package counter
 var count int
 
 func Increment() {
-    count++
+	count++
 }
 
 func GetCount() int {
-    return count
+	return count
 }

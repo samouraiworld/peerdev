@@ -1,6 +1,6 @@
 # Gno vs Solitidy
 
-Show all famous Solidity patern in Gno.land for an easy on-boarding for experienced Solitidy Developper.
+Show all famous Solidity patern in Gno.land for an easy on-boarding for experienced Solidity Developper.
 
 - Introduction: This is oriented for Solidity developper
 - Explain what is Gno

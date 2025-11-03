@@ -12,11 +12,11 @@ aspectRatio: 16/9
 A deep dive into Gno’s realm system and rules
 
 <!--
-Added in master.2250
+Interrealm is a specification in Gno that add a synthax to explicit the realm context modification.
+It protects users by avoiding implicit realm scope modification, that could led to unseen reentrency attack.
+Let's see what is it, highlight the security benifits and understand the interrealm behavior.
 
-Define what a realm is: isolated state and logic. 
-Highlight benefits like security, traceability, and logical isolation. 
-This sets the foundation for understanding interrealm behavior.
+Added in master.2250
 -->
 
 ---
@@ -29,18 +29,39 @@ This sets the foundation for understanding interrealm behavior.
   - Controls mutation access through realm context
   - Has a dedicated coin address
 
+<div class="grid grid-cols-2 gap-4">
+
+<div>
+
 ```mermaid 
 flowchart TD
-  subgraph Realm_A["Realm A"]
-    D1[Global Data]
+  subgraph Realm["Realm"]
+    D1[Public Function]
     L1[Local State]
   end
 ```
- <!-- 
-Show how realm A can call into realm B. Emphasize the layered provenance stack.
 
-Realms are like smart contract containers — fully isolated and self-governed.
-Think secure micro world.
+</div>
+
+<div>
+
+```mermaid 
+flowchart TD
+  subgraph Package["Pure Package"]
+    D1[Public Function]
+  end
+```
+
+</div>
+
+</div>
+
+ <!-- 
+Multi-context virtual machine
+Each realm is fully isolated and self-governed, like a container.
+
+You would need to do a context change, which can be compared to machine context in distributed computing.
+
  --> 
 
 ---
@@ -71,7 +92,7 @@ flowchart LR
 kanban
   column1[Provenance stack]
         Top[Current Realm: **B**]
-        B[Called from: **A**]
+        B[Previous Realm: **A**]
         C[Origin: **User Realm**]
 ```
 
@@ -79,7 +100,7 @@ kanban
 
 # Interrealm Flow
 
-### Package method call
+### Pure Package method call
 ```mermaid
 flowchart LR
   subgraph User Realm
@@ -99,7 +120,7 @@ flowchart LR
 ```mermaid
 kanban
   column1[Provenance stack]
-        Top[Current Realm: *A**]
+        Top[Current Realm: **A**]
         C[Origin: **User Realm**]
 ```
 
@@ -179,7 +200,7 @@ kanban
 # Crossing
 
 * **Explicitly switch** into another realm.
-* **Crossing** = `cross(fn)(...)` or functions marked with `crossing()`.
+* **Crossing** = `cross(fn)(...)`.
 * Gain full **write access** to the realm’s global storage like it used to.
 * Use for **creating new objects** or performing realm-specific logic.
 
@@ -233,7 +254,7 @@ realmB.CreatePost(cross, "Hello Gno")
 func CreatePost(title string) {
 	newPost := Post{
 		Title: title,
-	}
+  }
 	Posts = append(Posts, *newPost)
 }
 ```
@@ -244,6 +265,7 @@ func CreatePost(cur realm, title string) {
   }
 	Posts = append(Posts, *newPost)
 }
+```
 ````
 ---
 
@@ -254,11 +276,12 @@ func CreatePost(cur realm, title string) {
 | Modify existing object        | ✅ via method call         | ✅                               |
 | Create new unattached object  | ❌                         | ✅                               |
 | Implicit realm context change | No (temporary for method) | Yes (permanent inside fn)       |
-| Method syntax                 | `obj.Method()`            | `cross(fn)(...)` + `crossing()` |
+| Method syntax                 | `obj.Method()`            | `cross(fn)(...)` + `cur realm` parameter |
 
 ---
 
-# Code Example: Borrowing
+# Code Example
+## Borrowing
 
 ```go
 // In realmB
@@ -271,9 +294,7 @@ book := &realmB.Book{}
 book.SetTitle("Hello Gno")
 ```
 
----
-
-# Code Example: Crossing
+## Crossing
 
 ```go
 // In realmB

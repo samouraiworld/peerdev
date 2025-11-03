@@ -311,7 +311,7 @@ realmB.CreateUser(cross, "alice")
 # Summary
 
 * **Realms** = isolated code.
-* **Borrowing** = temporary, object-scoped access (Object operations)
-* **Crossing** = explicit realm switch for full access (Public mutators)
+* **Borrowing** = temporary, limited scoped access 
+* **Crossing** = explicit realm switch for full access 
 * Choose the right approach for **security** and **clarity**.
 

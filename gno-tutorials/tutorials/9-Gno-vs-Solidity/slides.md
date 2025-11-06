@@ -85,14 +85,14 @@ Both are statically typed but Gno uses familiar Go syntax and patterns
 
 ## Solidity
 
-<<< @/snippets/counter-solidity.sol solidity {maxHeight:'350px'}
+<<< @/snippets/counter/counter-solidity.sol solidity {maxHeight:'350px'}
 
 </div>
 <div>
 
 ## Gno
 
-<<< @/snippets/counter-gno.gno go {monaco}{maxHeight:'350px'}
+<<< @/snippets/counter/counter-gno.gno go {monaco}{maxHeight:'350px'}
 
 </div>
 </div>
@@ -106,14 +106,14 @@ Both are statically typed but Gno uses familiar Go syntax and patterns
 
 ## Solidity
 
-<<< @/snippets/ownable-solidity.sol solidity {maxHeight:'350px'}
+<<< @/snippets/ownable/ownable-solidity.sol solidity {maxHeight:'350px'}
 
 </div>
 <div>
 
 ## Gno
 
-<<< @/snippets/ownable-gno.gno go {monaco}{maxHeight:'350px'}
+<<< @/snippets/ownable/ownable-gno.gno go {monaco}{maxHeight:'350px'}
 
 </div>
 </div>
@@ -127,14 +127,14 @@ Both are statically typed but Gno uses familiar Go syntax and patterns
 
 ## Solidity
 
-<<< @/snippets/statelock-solidity.sol solidity {maxHeight:'350px'}
+<<< @/snippets/statelock/statelock-solidity.sol solidity {maxHeight:'350px'}
 
 </div>
 <div>
 
 ## Gno
 
-<<< @/snippets/statelock-gno.gno go {monaco}{maxHeight:'350px'}
+<<< @/snippets/statelock/statelock-gno.gno go {monaco}{maxHeight:'350px'}
 
 </div>
 </div>
@@ -148,14 +148,14 @@ Both are statically typed but Gno uses familiar Go syntax and patterns
 
 ## Solidity
 
-<<< @/snippets/events-solidity.sol solidity {maxHeight:'350px'}
+<<< @/snippets/events/events-solidity.sol solidity {maxHeight:'350px'}
 
 </div>
 <div>
 
 ## Gno
 
-<<< @/snippets/events-gno.gno go {monaco}{maxHeight:'350px'}
+<<< @/snippets/events/events-gno.gno go {monaco}{maxHeight:'350px'}
 
 </div>
 </div>
@@ -169,14 +169,14 @@ Both are statically typed but Gno uses familiar Go syntax and patterns
 
 ## Solidity
 
-<<< @/snippets/factory-solidity.sol solidity {maxHeight:'350px'}
+<<< @/snippets/factory/factory-solidity.sol solidity {maxHeight:'350px'}
 
 </div>
 <div>
 
 ## Gno
 
-<<< @/snippets/factory-gno.gno go {monaco}{maxHeight:'350px'}
+<<< @/snippets/factory/factory-gno.gno go {monaco}{maxHeight:'350px'}
 
 </div>
 </div>
@@ -190,14 +190,14 @@ Both are statically typed but Gno uses familiar Go syntax and patterns
 
 ## Solidity (ERC20)
 
-<<< @/snippets/erc20-solidity.sol solidity {maxHeight:'350px'}
+<<< @/snippets/erc20-grc20/erc20-solidity.sol solidity {maxHeight:'350px'}
 
 </div>
 <div>
 
 ## Gno (GRC20)
 
-<<< @/snippets/grc20-gno.gno go {monaco}{maxHeight:'350px'}
+<<< @/snippets/erc20-grc20/grc20-gno.gno go {monaco}{maxHeight:'350px'}
 
 </div>
 </div>
@@ -211,14 +211,14 @@ Both are statically typed but Gno uses familiar Go syntax and patterns
 
 ## Solidity
 
-<<< @/snippets/reentrancy-solidity.sol solidity {maxHeight:'350px'}
+<<< @/snippets/reentrancy/reentrancy-solidity.sol solidity {maxHeight:'350px'}
 
 </div>
 <div>
 
 ## Gno
 
-<<< @/snippets/reentrancy-gno.gno go {monaco}{maxHeight:'350px'}
+<<< @/snippets/reentrancy/reentrancy-gno.gno go {monaco}{maxHeight:'350px'}
 
 </div>
 </div>
@@ -232,14 +232,14 @@ Both are statically typed but Gno uses familiar Go syntax and patterns
 
 ## Solidity
 
-<<< @/snippets/wallet-withdraw-solidity.sol solidity {maxHeight:'350px'}
+<<< @/snippets/wallet-withdraw/wallet-withdraw-solidity.sol solidity {maxHeight:'350px'}
 
 </div>
 <div>
 
 ## Gno
 
-<<< @/snippets/wallet-withdraw-gno.gno go {monaco}{maxHeight:'350px'}
+<<< @/snippets/wallet-withdraw/wallet-withdraw-gno.gno go {monaco}{maxHeight:'350px'}
 
 </div>
 </div>
@@ -253,14 +253,14 @@ Both are statically typed but Gno uses familiar Go syntax and patterns
 
 ## Solidity
 
-<<< @/snippets/wallet-deposit-solidity.sol solidity {maxHeight:'350px'}
+<<< @/snippets/wallet-deposit/wallet-deposit-solidity.sol solidity {maxHeight:'350px'}
 
 </div>
 <div>
 
 ## Gno
 
-<<< @/snippets/wallet-deposit-gno.gno go {monaco}{maxHeight:'350px'}
+<<< @/snippets/wallet-deposit/wallet-deposit-gno.gno go {monaco}{maxHeight:'350px'}
 
 </div>
 </div>
@@ -274,14 +274,14 @@ Both are statically typed but Gno uses familiar Go syntax and patterns
 
 ## Solidity
 
-<<< @/snippets/mapping-solidity.sol solidity {maxHeight:'350px'}
+<<< @/snippets/mapping/mapping-solidity.sol solidity {maxHeight:'350px'}
 
 </div>
 <div>
 
 ## Gno
 
-<<< @/snippets/mapping-gno.gno go {monaco}{maxHeight:'350px'}
+<<< @/snippets/mapping/mapping-gno.gno go {monaco}{maxHeight:'350px'}
 
 </div>
 </div>
@@ -295,14 +295,14 @@ Both are statically typed but Gno uses familiar Go syntax and patterns
 
 ## Solidity
 
-<<< @/snippets/guardcheck-solidity.sol solidity {maxHeight:'350px'}
+<<< @/snippets/guardcheck/guardcheck-solidity.sol solidity {maxHeight:'350px'}
 
 </div>
 <div>
 
 ## Gno
 
-<<< @/snippets/guardcheck-gno.gno go {monaco}{maxHeight:'350px'}
+<<< @/snippets/guardcheck/guardcheck-gno.gno go {monaco}{maxHeight:'350px'}
 
 </div>
 </div>
@@ -316,14 +316,14 @@ Both are statically typed but Gno uses familiar Go syntax and patterns
 
 ## Solidity
 
-<<< @/snippets/proxy-solidity.sol solidity {maxHeight:'350px'}
+<<< @/snippets/proxy/proxy-solidity.sol solidity {maxHeight:'350px'}
 
 </div>
 <div>
 
 ## Gno
 
-<<< @/snippets/proxy-gno.gno go {monaco}{maxHeight:'350px'}
+<<< @/snippets/proxy/proxy-gno.gno go {monaco}{maxHeight:'350px'}
 
 </div>
 </div>
@@ -337,14 +337,14 @@ Both are statically typed but Gno uses familiar Go syntax and patterns
 
 ## Solidity
 
-<<< @/snippets/emergency-solidity.sol solidity {maxHeight:'350px'}
+<<< @/snippets/emergency/emergency-solidity.sol solidity {maxHeight:'350px'}
 
 </div>
 <div>
 
 ## Gno
 
-<<< @/snippets/emergency-gno.gno go {monaco}{maxHeight:'350px'}
+<<< @/snippets/emergency/emergency-gno.gno go {monaco}{maxHeight:'350px'}
 
 </div>
 </div>
@@ -358,14 +358,14 @@ Both are statically typed but Gno uses familiar Go syntax and patterns
 
 ## Solidity
 
-<<< @/snippets/speedbump-solidity.sol solidity {maxHeight:'350px'}
+<<< @/snippets/speedbump/speedbump-solidity.sol solidity {maxHeight:'350px'}
 
 </div>
 <div>
 
 ## Gno
 
-<<< @/snippets/speedbump-gno.gno go {monaco}{maxHeight:'350px'}
+<<< @/snippets/speedbump/speedbump-gno.gno go {monaco}{maxHeight:'350px'}
 
 </div>
 </div>

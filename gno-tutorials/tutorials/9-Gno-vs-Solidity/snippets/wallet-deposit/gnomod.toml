@@ -1,0 +1,2 @@
+module = "gno.land/r/demo/wallet_deposit"
+gno = "0.9"

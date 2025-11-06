@@ -1,14 +1,13 @@
 package events
 
 import (
+	"chain"
 	"chain/runtime"
-
-	"gno.land/p/demo/emit"
 )
 
 func Transfer(to address, amount uint64) {
 	// Transfer logic
-	emit.Emit("Transfer",
+	chain.Emit("Transfer",
 		"from", runtime.PreviousRealm().Addr().String(),
 		"to", to.String(),
 		"amount", amount,

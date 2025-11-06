@@ -1,6 +1,6 @@
 package factory
 
-import "gno.land/p/demo/avl"
+import "gno.land/p/nt/avl"
 
 var contracts avl.Tree // realm_path -> instance
 

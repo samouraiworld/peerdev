@@ -32,3 +32,5 @@ Others I've in mind:
 - Emergency Stop -- block execution of a function in case of a known exploit
 - Speed Bump -- delay between action to mitigate attack
 
+- Private / Public Function
+- Add comments on every part

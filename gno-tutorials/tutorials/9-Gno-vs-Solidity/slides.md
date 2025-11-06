@@ -85,287 +85,308 @@ Both are statically typed but Gno uses familiar Go syntax and patterns
 
 ## Solidity
 
-<<< @/snippets/counter/counter-solidity.sol solidity {maxHeight:'350px'}
+<<< @/snippets/counter/counter-solidity.sol solidity {all}{maxHeight:'350px'}
 
 </div>
 <div>
 
 ## Gno
 
-<<< @/snippets/counter/counter-gno.gno go {monaco}{maxHeight:'350px'}
+<<< @/snippets/counter/counter-gno.gno go {all}{maxHeight:'350px'}
 
 </div>
 </div>
 
 ---
 
-# 🔒 Pattern 2: Ownable / Access Control
+# 🔒 Pattern 2: Private vs Public
 
 <div class="grid grid-cols-2 gap-4">
 <div>
 
 ## Solidity
 
-<<< @/snippets/ownable/ownable-solidity.sol solidity {maxHeight:'350px'}
+<<< @/snippets/private-vs-public/visibility-solidity.sol solidity {all}{maxHeight:'350px'}
 
 </div>
 <div>
 
 ## Gno
 
-<<< @/snippets/ownable/ownable-gno.gno go {monaco}{maxHeight:'350px'}
+<<< @/snippets/private-vs-public/visibility-gno.gno go {all}{maxHeight:'350px'}
 
 </div>
 </div>
 
 ---
 
-# 🔐 Pattern 3: State Lock
+# �🔒 Pattern 3: Ownable / Access Control
 
 <div class="grid grid-cols-2 gap-4">
 <div>
 
 ## Solidity
 
-<<< @/snippets/statelock/statelock-solidity.sol solidity {maxHeight:'350px'}
+<<< @/snippets/ownable/ownable-solidity.sol solidity {all}{maxHeight:'350px'}
 
 </div>
 <div>
 
 ## Gno
 
-<<< @/snippets/statelock/statelock-gno.gno go {monaco}{maxHeight:'350px'}
+<<< @/snippets/ownable/ownable-gno.gno go {all}{maxHeight:'350px'}
 
 </div>
 </div>
 
 ---
 
-# 📢 Pattern 4: Emit Events
+# 🔐 Pattern 4: State Lock
 
 <div class="grid grid-cols-2 gap-4">
 <div>
 
 ## Solidity
 
-<<< @/snippets/events/events-solidity.sol solidity {maxHeight:'350px'}
+<<< @/snippets/statelock/statelock-solidity.sol solidity {all}{maxHeight:'350px'}
 
 </div>
 <div>
 
 ## Gno
 
-<<< @/snippets/events/events-gno.gno go {monaco}{maxHeight:'350px'}
+<<< @/snippets/statelock/statelock-gno.gno go {all}{maxHeight:'350px'}
 
 </div>
 </div>
 
 ---
 
-# 🏭 Pattern 5: Factory Pattern
+# 📢 Pattern 5: Emit Events
 
 <div class="grid grid-cols-2 gap-4">
 <div>
 
 ## Solidity
 
-<<< @/snippets/factory/factory-solidity.sol solidity {maxHeight:'350px'}
+<<< @/snippets/events/events-solidity.sol solidity {all}{maxHeight:'350px'}
 
 </div>
 <div>
 
 ## Gno
 
-<<< @/snippets/factory/factory-gno.gno go {monaco}{maxHeight:'350px'}
+<<< @/snippets/events/events-gno.gno go {all}{maxHeight:'350px'}
 
 </div>
 </div>
 
 ---
 
-# 💰 Pattern 6: Token (ERC20 → GRC20)
+# 🏭 Pattern 6: Factory Pattern
+
+<div class="grid grid-cols-2 gap-4">
+<div>
+
+## Solidity
+
+<<< @/snippets/factory/factory-solidity.sol solidity {all}{maxHeight:'350px'}
+
+</div>
+<div>
+
+## Gno
+
+<<< @/snippets/factory/factory-gno.gno go {all}{maxHeight:'350px'}
+
+</div>
+</div>
+
+---
+
+# 💰 Pattern 7: Token (ERC20 → GRC20)
 
 <div class="grid grid-cols-2 gap-4">
 <div>
 
 ## Solidity (ERC20)
 
-<<< @/snippets/erc20-grc20/erc20-solidity.sol solidity {maxHeight:'350px'}
+<<< @/snippets/erc20-grc20/erc20-solidity.sol solidity {all}{maxHeight:'350px'}
 
 </div>
 <div>
 
 ## Gno (GRC20)
 
-<<< @/snippets/erc20-grc20/grc20-gno.gno go {monaco}{maxHeight:'350px'}
+<<< @/snippets/erc20-grc20/grc20-gno.gno go {all}{maxHeight:'350px'}
 
 </div>
 </div>
 
 ---
 
-# 🛡️ Pattern 7: Reentrancy Guard
+# 🛡️ Pattern 8: Reentrancy Guard
 
 <div class="grid grid-cols-2 gap-4">
 <div>
 
 ## Solidity
 
-<<< @/snippets/reentrancy/reentrancy-solidity.sol solidity {maxHeight:'350px'}
+<<< @/snippets/reentrancy/reentrancy-solidity.sol solidity {all}{maxHeight:'350px'}
 
 </div>
 <div>
 
 ## Gno
 
-<<< @/snippets/reentrancy/reentrancy-gno.gno go {monaco}{maxHeight:'350px'}
+<<< @/snippets/reentrancy/reentrancy-gno.gno go {all}{maxHeight:'350px'}
 
 </div>
 </div>
 
 ---
 
-# 💸 Pattern 8: Wallet - Withdraw
+# 💸 Pattern 9: Wallet - Withdraw
 
 <div class="grid grid-cols-2 gap-4">
 <div>
 
 ## Solidity
 
-<<< @/snippets/wallet-withdraw/wallet-withdraw-solidity.sol solidity {maxHeight:'350px'}
+<<< @/snippets/wallet-withdraw/wallet-withdraw-solidity.sol solidity {all}{maxHeight:'350px'}
 
 </div>
 <div>
 
 ## Gno
 
-<<< @/snippets/wallet-withdraw/wallet-withdraw-gno.gno go {monaco}{maxHeight:'350px'}
+<<< @/snippets/wallet-withdraw/wallet-withdraw-gno.gno go {all}{maxHeight:'350px'}
 
 </div>
 </div>
 
 ---
 
-# 💸 Pattern 9: Wallet - Deposit
+# 💸 Pattern 10: Wallet - Deposit
 
 <div class="grid grid-cols-2 gap-4">
 <div>
 
 ## Solidity
 
-<<< @/snippets/wallet-deposit/wallet-deposit-solidity.sol solidity {maxHeight:'350px'}
+<<< @/snippets/wallet-deposit/wallet-deposit-solidity.sol solidity {all}{maxHeight:'350px'}
 
 </div>
 <div>
 
 ## Gno
 
-<<< @/snippets/wallet-deposit/wallet-deposit-gno.gno go {monaco}{maxHeight:'350px'}
+<<< @/snippets/wallet-deposit/wallet-deposit-gno.gno go {all}{maxHeight:'350px'}
 
 </div>
 </div>
 
 ---
 
-# 🗺️ Pattern 10: Mapping (AVL Tree)
+# 🗺️ Pattern 11: Mapping (AVL Tree)
 
 <div class="grid grid-cols-2 gap-4">
 <div>
 
 ## Solidity
 
-<<< @/snippets/mapping/mapping-solidity.sol solidity {maxHeight:'350px'}
+<<< @/snippets/mapping/mapping-solidity.sol solidity {all}{maxHeight:'350px'}
 
 </div>
 <div>
 
 ## Gno
 
-<<< @/snippets/mapping/mapping-gno.gno go {monaco}{maxHeight:'350px'}
+<<< @/snippets/mapping/mapping-gno.gno go {all}{maxHeight:'350px'}
 
 </div>
 </div>
 
 ---
 
-# ✅ Pattern 11: Guard Check
+# ✅ Pattern 12: Guard Check
 
 <div class="grid grid-cols-2 gap-4">
 <div>
 
 ## Solidity
 
-<<< @/snippets/guardcheck/guardcheck-solidity.sol solidity {maxHeight:'350px'}
+<<< @/snippets/guardcheck/guardcheck-solidity.sol solidity {all}{maxHeight:'350px'}
 
 </div>
 <div>
 
 ## Gno
 
-<<< @/snippets/guardcheck/guardcheck-gno.gno go {monaco}{maxHeight:'350px'}
+<<< @/snippets/guardcheck/guardcheck-gno.gno go {all}{maxHeight:'350px'}
 
 </div>
 </div>
 
 ---
 
-# 🔄 Pattern 12: Proxy Pattern
+# 🔄 Pattern 13: Proxy Pattern
 
 <div class="grid grid-cols-2 gap-4">
 <div>
 
 ## Solidity
 
-<<< @/snippets/proxy/proxy-solidity.sol solidity {maxHeight:'350px'}
+<<< @/snippets/proxy/proxy-solidity.sol solidity {all}{maxHeight:'350px'}
 
 </div>
 <div>
 
 ## Gno
 
-<<< @/snippets/proxy/proxy-gno.gno go {monaco}{maxHeight:'350px'}
+<<< @/snippets/proxy/proxy-gno.gno go {all}{maxHeight:'350px'}
 
 </div>
 </div>
 
 ---
 
-# 🚨 Pattern 13: Emergency Stop
+# 🚨 Pattern 14: Emergency Stop
 
 <div class="grid grid-cols-2 gap-4">
 <div>
 
 ## Solidity
 
-<<< @/snippets/emergency/emergency-solidity.sol solidity {maxHeight:'350px'}
+<<< @/snippets/emergency/emergency-solidity.sol solidity {all}{maxHeight:'350px'}
 
 </div>
 <div>
 
 ## Gno
 
-<<< @/snippets/emergency/emergency-gno.gno go {monaco}{maxHeight:'350px'}
+<<< @/snippets/emergency/emergency-gno.gno go {all}{maxHeight:'350px'}
 
 </div>
 </div>
 
 ---
 
-# ⏱️ Pattern 14: Speed Bump
+# ⏱️ Pattern 15: Speed Bump
 
 <div class="grid grid-cols-2 gap-4">
 <div>
 
 ## Solidity
 
-<<< @/snippets/speedbump/speedbump-solidity.sol solidity {maxHeight:'350px'}
+<<< @/snippets/speedbump/speedbump-solidity.sol solidity {all}{maxHeight:'350px'}
 
 </div>
 <div>
 
 ## Gno
 
-<<< @/snippets/speedbump/speedbump-gno.gno go {monaco}{maxHeight:'350px'}
+<<< @/snippets/speedbump/speedbump-gno.gno go {all}{maxHeight:'350px'}
 
 </div>
 </div>

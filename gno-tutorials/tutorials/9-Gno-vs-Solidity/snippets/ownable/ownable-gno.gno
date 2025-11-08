@@ -1,20 +1,22 @@
 package ownable
 
-import "chain/runtime"
+import (
+	"chain/runtime"
+)
 
 var owner address
 
 func init() {
-	owner = runtime.PreviousRealm().Addr()
+	owner = runtime.PreviousRealm().Address()
 }
 
 func AssertIsOwner() {
-	if runtime.PreviousRealm().Addr() != owner {
+	if runtime.PreviousRealm().Address() != owner {
 		panic("not owner")
 	}
 }
 
-func RestrictedAction() error {
+func RestrictedAction(cur realm) error {
 	AssertIsOwner()
 	// Only owner can call
 	return nil

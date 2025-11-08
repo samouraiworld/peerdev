@@ -1,15 +1,17 @@
 package mapping
 
-import "gno.land/p/demo/avl"
+import "gno.land/p/nt/avl"
 
-var balances avl.Tree // Address -> uint64
-var registry avl.Tree // string -> Address
+var balances avl.Tree // address -> int64
 
-func Set(key string, value address) {
-	registry.Set(key, value)
+func SetBalance(cur realm, addr address, amount int64) {
+	balances.Set(addr.String(), amount)
 }
 
-func Get(key string) address {
-	val, _ := registry.Get(key)
-	return val.(address)
+func GetBalance(addr address) int64 {
+	balance, exists := balances.Get(addr.String())
+	if !exists {
+		return 0
+	}
+	return balance.(int64)
 }

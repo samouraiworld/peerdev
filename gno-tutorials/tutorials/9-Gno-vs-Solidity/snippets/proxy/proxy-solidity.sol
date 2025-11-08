@@ -1,19 +1,23 @@
 contract Proxy {
     address public implementation;
+    address public owner;
+    
+    constructor() {
+        owner = msg.sender;
+    }
+    
+    modifier onlyOwner() {
+        require(msg.sender == owner, "not owner");
+        _;
+    }
     
     function upgrade(address newImpl) public onlyOwner {
         implementation = newImpl;
     }
     
+    // Delegates all calls to implementation contract
     fallback() external payable {
-        address impl = implementation;
-        assembly {
-            calldatacopy(0, 0, calldatasize())
-            let result := delegatecall(gas(), impl, 0, calldatasize(), 0, 0)
-            returndatacopy(0, 0, returndatasize())
-            switch result
-            case 0 { revert(0, returndatasize()) }
-            default { return(0, returndatasize()) }
-        }
+        (bool success, ) = implementation.delegatecall(msg.data);
+        require(success, "delegatecall failed");
     }
 }

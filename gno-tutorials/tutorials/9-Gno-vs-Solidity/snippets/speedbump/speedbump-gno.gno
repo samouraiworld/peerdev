@@ -4,14 +4,14 @@ import (
 	"chain/runtime"
 	"time"
 
-	"gno.land/p/demo/avl"
+	"gno.land/p/nt/avl"
 )
 
 var lastActionTime avl.Tree // Address -> time.Time
 const DELAY = 24 * time.Hour
 
 func AssertRateLimit() {
-	caller := runtime.PreviousRealm().Addr()
+	caller := runtime.PreviousRealm().Address()
 	lastTime, exists := lastActionTime.Get(caller.String())
 
 	now := time.Now()
@@ -21,7 +21,7 @@ func AssertRateLimit() {
 	lastActionTime.Set(caller.String(), now)
 }
 
-func Withdraw() {
+func Withdraw(cur realm) {
 	AssertRateLimit()
 	// Withdrawal logic
 }

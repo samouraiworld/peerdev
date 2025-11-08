@@ -1,8 +1,9 @@
 package emergency
 
-import "gno.land/p/demo/ownable"
+import "gno.land/p/nt/ownable"
 
 var stopped bool = false
+var owner = ownable.New()
 
 func AssertNotStopped() {
 	if stopped {
@@ -10,17 +11,17 @@ func AssertNotStopped() {
 	}
 }
 
-func EmergencyStop() {
-	ownable.AssertCallerIsOwner()
+func EmergencyStop(cur realm) {
+	owner.AssertOwnedByPrevious()
 	stopped = true
 }
 
-func Resume() {
-	ownable.AssertCallerIsOwner()
+func Resume(cur realm) {
+	owner.AssertOwnedByPrevious()
 	stopped = false
 }
 
-func DoSomething() {
+func DoSomething(cur realm) {
 	AssertNotStopped()
 	// Normal logic
 }

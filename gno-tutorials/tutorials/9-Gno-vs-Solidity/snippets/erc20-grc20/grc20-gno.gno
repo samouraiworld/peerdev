@@ -1,14 +1,28 @@
 package grc20
 
 import (
-	"chain/runtime"
-
-	"gno.land/p/demo/grc/grc20"
+	"gno.land/p/demo/tokens/grc20"
 )
 
-var banker *grc20.Banker
+var (
+	Token, privateLedger = grc20.NewToken("MyToken", "MTK", 6)
+	UserTeller           = Token.CallerTeller()
+)
 
-func Transfer(to address, amount uint64) error {
-	caller := runtime.PreviousRealm().Addr()
-	return banker.Transfer(caller, to, amount)
+func Transfer(cur realm, to address, amount int64) {
+	checkErr(UserTeller.Transfer(to, amount))
+}
+
+func BalanceOf(addr address) int64 {
+	return UserTeller.BalanceOf(addr)
+}
+
+func Mint(cur realm, to address, amount int64) {
+	checkErr(privateLedger.Mint(to, amount))
+}
+
+func checkErr(err error) {
+	if err != nil {
+		panic(err.Error())
+	}
 }

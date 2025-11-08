@@ -2,7 +2,7 @@ package counter
 
 var count int
 
-func Increment() {
+func Increment(cur realm) {
 	count++
 }
 

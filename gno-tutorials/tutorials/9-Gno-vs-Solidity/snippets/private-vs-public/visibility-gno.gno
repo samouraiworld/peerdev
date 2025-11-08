@@ -7,7 +7,7 @@ var Balance int = 1000
 var transactionCount int = 0
 
 // Public function
-func Withdraw(amount int) {
+func Withdraw(cur realm, amount int) {
 	Balance -= amount
 	incrementTxCount()
 }

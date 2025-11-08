@@ -13,7 +13,7 @@ func Unlock() {
 	locked = false
 }
 
-func Withdraw() {
+func Withdraw(cur realm) {
 	AssertNotLocked()
 	defer Unlock()
 	// Safe withdrawal

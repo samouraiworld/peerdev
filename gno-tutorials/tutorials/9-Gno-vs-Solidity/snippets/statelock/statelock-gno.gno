@@ -16,7 +16,7 @@ func AssertState(expected State) {
 	}
 }
 
-func DoSomething() {
+func DoSomething(cur realm) {
 	AssertState(Open)
 	// Only callable when Open
 }

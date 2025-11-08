@@ -1,14 +1,36 @@
 package factory
 
-import "gno.land/p/nt/avl"
+import (
+	"chain"
+	"chain/runtime"
 
-var contracts avl.Tree // realm_path -> instance
+	"gno.land/p/nt/avl"
+	"gno.land/p/nt/fqname"
+)
 
-func CreateContract(name string) string {
-	// Create new realm dynamically
-	path := "gno.land/r/demo/" + name
-	// Note: Dynamic realm creation not yet supported
-	// Use sub-packages or registry pattern instead
-	contracts.Set(path, &Contract{})
-	return path
+var registry = avl.NewTree() // pkgPath[.slug] -> *Contract
+
+// Register allows contracts to register themselves in the factory
+func Register(cur realm, contract *Contract, slug string) {
+	pkgPath := runtime.PreviousRealm().PkgPath()
+	key := fqname.Construct(pkgPath, slug)
+	registry.Set(key, contract)
+	chain.Emit(
+		"register",
+		"pkgpath", pkgPath,
+		"slug", slug,
+	)
+}
+
+func Get(key string) *Contract {
+	contract, ok := registry.Get(key)
+	if !ok {
+		return nil
+	}
+	return contract.(*Contract)
+}
+
+type Contract struct {
+	Name string
+	// Add your contract fields here
 }

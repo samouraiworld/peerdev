@@ -1,20 +1,27 @@
 package proxy
 
-import "gno.land/p/demo/ownable"
+import "gno.land/p/nt/ownable"
 
-var implementation string // realm path
+var implementation address // implementation address
+var owner = ownable.New()
 
-func Upgrade(newImpl string) {
-	ownable.AssertCallerIsOwner()
+func Upgrade(cur realm, newImpl address) {
+	owner.AssertOwnedByPrevious()
 	implementation = newImpl
 }
 
-func Call(method string, args ...interface{}) interface{} {
-	// Delegate to implementation realm
-	// Note: Direct delegation not yet supported
-	// Use interface-based composition instead
-	return callRealm(implementation, method, args...)
+func GetImplementation() address {
+	return implementation
 }
 
-// Alternative: Use DAO pattern like GovDAO
-// with UpdateImpl() to switch implementations
+// Note: Gno doesn't support delegatecall like Solidity
+// Instead, use interface-based composition:
+//
+// type Logic interface {
+//     Execute(args string) string
+// }
+//
+// func Call(args string) string {
+//     // Import and call the implementation realm directly
+//     return implRealm.Execute(args)
+// }

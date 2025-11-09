@@ -4,14 +4,18 @@ pragma solidity ^0.8.0;
 contract ReentrancyGuard {
     bool private locked;
     
-    modifier noReentrant() {
+    function assertNotLocked() private {
         require(!locked, "Reentrant call");
         locked = true;
-        _;
+    }
+    
+    function unlock() private {
         locked = false;
     }
     
-    function withdraw() public noReentrant {
+    function withdraw() public {
+        assertNotLocked();
         // Safe withdrawal
+        unlock();
     }
 }

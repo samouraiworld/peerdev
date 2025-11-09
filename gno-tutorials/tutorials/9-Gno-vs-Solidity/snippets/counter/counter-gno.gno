@@ -1,11 +1,11 @@
 package counter
 
-var count int
+var count uint64
 
 func Increment(cur realm) {
 	count++
 }
 
-func GetCount() int {
+func GetCount() uint64 {
 	return count
 }

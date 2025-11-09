@@ -1,26 +1,28 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-contract Proxy {
-    address public implementation;
-    address public owner;
+import "@openzeppelin/contracts/access/Ownable.sol";
+
+// Interface that implementations must follow
+interface ILogic {
+    function execute(string memory args) external;
+}
+
+contract Proxy is Ownable {
+    ILogic private implContract;
     
-    constructor() {
-        owner = msg.sender;
+    constructor() Ownable(msg.sender) {}
+    
+    function upgrade(ILogic newImpl) public onlyOwner {
+        implContract = newImpl;
     }
     
-    modifier onlyOwner() {
-        require(msg.sender == owner, "not owner");
-        _;
+    function getImplementation() public view returns (ILogic) {
+        return implContract;
     }
     
-    function upgrade(address newImpl) public onlyOwner {
-        implementation = newImpl;
-    }
-    
-    // Delegates all calls to implementation contract
-    fallback() external payable {
-        (bool success, ) = implementation.delegatecall(msg.data);
-        require(success, "delegatecall failed");
+    function execute(string memory args) public {
+        require(address(implContract) != address(0), "No implementation set");
+        implContract.execute(args);
     }
 }

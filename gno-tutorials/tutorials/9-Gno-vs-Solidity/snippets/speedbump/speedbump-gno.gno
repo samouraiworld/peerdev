@@ -14,11 +14,11 @@ func AssertRateLimit() {
 	caller := runtime.PreviousRealm().Address()
 	lastTime, exists := lastActionTime.Get(caller.String())
 
-	now := time.Now()
-	if exists && now.Sub(lastTime.(time.Time)) < DELAY {
+	timeNow := time.Now()
+	if exists && timeNow.Sub(lastTime.(time.Time)) < DELAY {
 		panic("rate limit: please wait")
 	}
-	lastActionTime.Set(caller.String(), now)
+	lastActionTime.Set(caller.String(), timeNow)
 }
 
 func Withdraw(cur realm) {

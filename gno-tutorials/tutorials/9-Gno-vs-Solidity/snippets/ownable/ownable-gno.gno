@@ -1,23 +1,27 @@
 package ownable
 
 import (
-	"chain/runtime"
+	"gno.land/p/nt/ownable"
 )
 
-var owner address
+var o *ownable.Ownable
 
 func init() {
-	owner = runtime.PreviousRealm().Address()
+	o = ownable.NewWithOrigin()
 }
 
-func AssertIsOwner() {
-	if runtime.PreviousRealm().Address() != owner {
-		panic("not owner")
+func RestrictedAction(cur realm) {
+	o.AssertOwnedByPrevious()
+	// Only owner can call
+}
+
+func TransferOwnership(cur realm, newOwner address) {
+	err := o.TransferOwnership(newOwner)
+	if err != nil {
+		panic(err)
 	}
 }
 
-func RestrictedAction(cur realm) error {
-	AssertIsOwner()
-	// Only owner can call
-	return nil
+func GetOwner() address {
+	return o.Owner()
 }

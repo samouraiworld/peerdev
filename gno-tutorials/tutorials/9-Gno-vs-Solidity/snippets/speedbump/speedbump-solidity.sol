@@ -2,16 +2,21 @@
 pragma solidity ^0.8.0;
 
 contract SpeedBump {
-    mapping(address => uint256) public lastActionTime;
-    uint256 public constant DELAY = 1 days;
+    mapping(address => uint256) private lastActionTime;
+    uint256 private constant DELAY = 24 hours;
     
-    modifier rateLimit() {
-        require(block.timestamp >= lastActionTime[msg.sender] + DELAY);
-        _;
-        lastActionTime[msg.sender] = block.timestamp;
+    function assertRateLimit() private {
+        address caller = msg.sender;
+        uint256 lastTime = lastActionTime[caller];
+        
+        uint256 timeNow = block.timestamp;
+        require(lastTime == 0 || timeNow - lastTime >= DELAY, "Rate limit: please wait");
+        
+        lastActionTime[caller] = timeNow;
     }
     
-    function withdraw() public rateLimit {
+    function withdraw() public {
+        assertRateLimit();
         // Withdrawal logic
     }
 }

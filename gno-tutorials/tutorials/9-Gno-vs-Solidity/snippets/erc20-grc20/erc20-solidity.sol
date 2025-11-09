@@ -15,4 +15,8 @@ contract ERC20 {
     function mint(address to, uint256 amount) public {
         balanceOf[to] += amount;
     }
+
+    function getBalanceOf(address addr) public view returns (uint256) {
+        return balanceOf[addr];
+    }
 }

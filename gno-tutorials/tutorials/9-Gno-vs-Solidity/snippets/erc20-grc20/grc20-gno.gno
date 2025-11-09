@@ -10,19 +10,19 @@ var (
 )
 
 func Transfer(cur realm, to address, amount int64) {
-	checkErr(UserTeller.Transfer(to, amount))
+	err := UserTeller.Transfer(to, amount)
+	if err != nil {
+		panic(err.Error())
+	}
+}
+
+func Mint(cur realm, to address, amount int64) {
+	err := privateLedger.Mint(to, amount)
+	if err != nil {
+		panic(err.Error())
+	}
 }
 
 func BalanceOf(addr address) int64 {
 	return UserTeller.BalanceOf(addr)
-}
-
-func Mint(cur realm, to address, amount int64) {
-	checkErr(privateLedger.Mint(to, amount))
-}
-
-func checkErr(err error) {
-	if err != nil {
-		panic(err.Error())
-	}
 }

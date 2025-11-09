@@ -2,26 +2,28 @@ package proxy
 
 import "gno.land/p/nt/ownable"
 
-var implementation address // implementation address
+var implRealm Logic
 var owner = ownable.New()
 
-func Upgrade(cur realm, newImpl address) {
+type Logic interface {
+	Execute(args string) error
+}
+
+func Upgrade(cur realm, newImpl Logic) {
 	owner.AssertOwnedByPrevious()
-	implementation = newImpl
+	implRealm = newImpl
 }
 
-func GetImplementation() address {
-	return implementation
+func GetImplementation() Logic {
+	return implRealm
 }
 
-// Note: Gno doesn't support delegatecall like Solidity
-// Instead, use interface-based composition:
-//
-// type Logic interface {
-//     Execute(args string) string
-// }
-//
-// func Call(args string) string {
-//     // Import and call the implementation realm directly
-//     return implRealm.Execute(args)
-// }
+func Execute(cur realm, args string) {
+	if implRealm == nil {
+		panic("no implementation set")
+	}
+	err := implRealm.Execute(args)
+	if err != nil {
+		panic(err.Error())
+	}
+}

@@ -1,22 +1,15 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-contract EmergencyStop {
-    bool public stopped = false;
-    address public owner;
+import "@openzeppelin/contracts/access/Ownable.sol";
+
+contract EmergencyStop is Ownable {
+    bool private stopped = false;
     
-    constructor() {
-        owner = msg.sender;
-    }
+    constructor() Ownable(msg.sender) {}
     
-    modifier onlyOwner() {
-        require(msg.sender == owner, "Not owner");
-        _;
-    }
-    
-    modifier stopInEmergency() {
+    function assertNotStopped() private view {
         require(!stopped, "Contract stopped");
-        _;
     }
     
     function emergencyStop() public onlyOwner {
@@ -27,7 +20,8 @@ contract EmergencyStop {
         stopped = false;
     }
     
-    function doSomething() public stopInEmergency {
+    function doSomething() public {
+        assertNotStopped();
         // Normal logic
     }
 }

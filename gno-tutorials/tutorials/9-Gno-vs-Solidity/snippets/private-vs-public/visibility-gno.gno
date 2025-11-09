@@ -1,18 +1,19 @@
 package visibility
 
 // Public - Uppercase
-var Balance int = 1000
-
 // private - lowercase
+var Balance int = 1000
 var transactionCount int = 0
 
-// Public function
 func Withdraw(cur realm, amount int) {
 	Balance -= amount
 	incrementTxCount()
 }
 
-// private function
 func incrementTxCount() {
 	transactionCount++
+}
+
+func GetBalance() int {
+	return Balance
 }

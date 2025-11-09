@@ -398,14 +398,14 @@ Both are statically typed but Gno uses familiar Go syntax and patterns
 
 | Solidity | Gno |
 |----------|-----|
-| `msg.sender` | `std.PrevRealm().Addr()` |
+| `msg.sender` | `runtime.PreviousRealm().Address()` |
 | `require()` | `if !condition { panic() }` |
 | `modifier` | Function calls with `Assert*()` |
 | `mapping` | `avl.Tree` |
-| `emit Event` | `emit.Emit()` |
-| `contract` | `package` + `realm` |
+| `emit Event` | `chain.Emit()` |
+| `contract` | `realm` + `pure package` |
 | `constructor` | `init()` function |
-| `payable` | `std.GetOrigSend()` |
+| `msg.value` | `banker.OriginSend()` |
 
 ---
 
@@ -424,22 +424,6 @@ Both are statically typed but Gno uses familiar Go syntax and patterns
 <!--
 Embrace Go patterns and idioms for cleaner Gno code
 -->
-
----
-
-# 📚 Resources
-
-## Learning More:
-
-- **Gno Documentation**: [docs.gno.land](https://docs.gno.land)
-- **Gno by Example**: [gno.land/r/demo](https://gno.land/r/demo)
-- **Standard Library**: `gno.land/p/demo/*`
-- **Example Realms**: `gno.land/r/demo/*`
-
-## Key Packages:
-- `gno.land/p/demo/avl` - AVL tree (like mapping)
-- `gno.land/p/demo/ownable` - Ownership pattern
-- `gno.land/p/demo/grc/grc20` - Token standard
 
 ---
 

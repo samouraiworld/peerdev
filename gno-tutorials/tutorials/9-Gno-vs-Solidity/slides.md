@@ -85,14 +85,14 @@ Both are statically typed but Gno uses familiar Go syntax and patterns
 
 ## Solidity
 
-<<< @/snippets/counter/counter-solidity.sol solidity {all}{maxHeight:'350px'}
+<<< @/snippets/counter/counter-solidity.sol solidity {all}{maxHeight:'450px'}
 
 </div>
 <div>
 
 ## Gno
 
-<<< @/snippets/counter/counter-gno.gno go {all}{maxHeight:'350px'}
+<<< @/snippets/counter/counter-gno.gno go {all}{maxHeight:'450px'}
 
 </div>
 </div>
@@ -106,14 +106,14 @@ Both are statically typed but Gno uses familiar Go syntax and patterns
 
 ## Solidity
 
-<<< @/snippets/private-vs-public/visibility-solidity.sol solidity {all}{maxHeight:'350px'}
+<<< @/snippets/private-vs-public/visibility-solidity.sol solidity {all}{maxHeight:'450px'}
 
 </div>
 <div>
 
 ## Gno
 
-<<< @/snippets/private-vs-public/visibility-gno.gno go {all}{maxHeight:'350px'}
+<<< @/snippets/private-vs-public/visibility-gno.gno go {all}{maxHeight:'450px'}
 
 </div>
 </div>
@@ -127,14 +127,14 @@ Both are statically typed but Gno uses familiar Go syntax and patterns
 
 ## Solidity
 
-<<< @/snippets/ownable/ownable-solidity.sol solidity {all}{maxHeight:'350px'}
+<<< @/snippets/ownable/ownable-solidity.sol solidity {all}{maxHeight:'450px'}
 
 </div>
 <div>
 
 ## Gno
 
-<<< @/snippets/ownable/ownable-gno.gno go {all}{maxHeight:'350px'}
+<<< @/snippets/ownable/ownable-gno.gno go {all}{maxHeight:'450px'}
 
 </div>
 </div>
@@ -148,14 +148,14 @@ Both are statically typed but Gno uses familiar Go syntax and patterns
 
 ## Solidity
 
-<<< @/snippets/statelock/statelock-solidity.sol solidity {all}{maxHeight:'350px'}
+<<< @/snippets/statelock/statelock-solidity.sol solidity {all}{maxHeight:'450px'}
 
 </div>
 <div>
 
 ## Gno
 
-<<< @/snippets/statelock/statelock-gno.gno go {all}{maxHeight:'350px'}
+<<< @/snippets/statelock/statelock-gno.gno go {all}{maxHeight:'450px'}
 
 </div>
 </div>
@@ -169,14 +169,14 @@ Both are statically typed but Gno uses familiar Go syntax and patterns
 
 ## Solidity
 
-<<< @/snippets/mapping/mapping-solidity.sol solidity {all}{maxHeight:'350px'}
+<<< @/snippets/mapping/mapping-solidity.sol solidity {all}{maxHeight:'450px'}
 
 </div>
 <div>
 
 ## Gno
 
-<<< @/snippets/mapping/mapping-gno.gno go {all}{maxHeight:'350px'}
+<<< @/snippets/mapping/mapping-gno.gno go {all}{maxHeight:'450px'}
 
 </div>
 </div>
@@ -190,14 +190,14 @@ Both are statically typed but Gno uses familiar Go syntax and patterns
 
 ## Solidity
 
-<<< @/snippets/events/events-solidity.sol solidity {all}{maxHeight:'350px'}
+<<< @/snippets/events/events-solidity.sol solidity {all}{maxHeight:'450px'}
 
 </div>
 <div>
 
 ## Gno
 
-<<< @/snippets/events/events-gno.gno go {all}{maxHeight:'350px'}
+<<< @/snippets/events/events-gno.gno go {all}{maxHeight:'450px'}
 
 </div>
 </div>
@@ -211,14 +211,14 @@ Both are statically typed but Gno uses familiar Go syntax and patterns
 
 ## Solidity
 
-<<< @/snippets/factory/factory-solidity.sol solidity {all}{maxHeight:'350px'}
+<<< @/snippets/factory/factory-solidity.sol solidity {all}{maxHeight:'450px'}
 
 </div>
 <div>
 
 ## Gno
 
-<<< @/snippets/factory/factory-gno.gno go {all}{maxHeight:'350px'}
+<<< @/snippets/factory/factory-gno.gno go {all}{maxHeight:'450px'}
 
 </div>
 </div>
@@ -232,14 +232,14 @@ Both are statically typed but Gno uses familiar Go syntax and patterns
 
 ## Solidity (ERC20)
 
-<<< @/snippets/erc20-grc20/erc20-solidity.sol solidity {all}{maxHeight:'350px'}
+<<< @/snippets/erc20-grc20/erc20-solidity.sol solidity {all}{maxHeight:'450px'}
 
 </div>
 <div>
 
 ## Gno (GRC20)
 
-<<< @/snippets/erc20-grc20/grc20-gno.gno go {all}{maxHeight:'350px'}
+<<< @/snippets/erc20-grc20/grc20-gno.gno go {all}{maxHeight:'450px'}
 
 </div>
 </div>
@@ -253,14 +253,14 @@ Both are statically typed but Gno uses familiar Go syntax and patterns
 
 ## Solidity
 
-<<< @/snippets/reentrancy/reentrancy-solidity.sol solidity {all}{maxHeight:'350px'}
+<<< @/snippets/reentrancy/reentrancy-solidity.sol solidity {all}{maxHeight:'450px'}
 
 </div>
 <div>
 
 ## Gno
 
-<<< @/snippets/reentrancy/reentrancy-gno.gno go {all}{maxHeight:'350px'}
+<<< @/snippets/reentrancy/reentrancy-gno.gno go {all}{maxHeight:'450px'}
 
 </div>
 </div>
@@ -274,14 +274,14 @@ Both are statically typed but Gno uses familiar Go syntax and patterns
 
 ## Solidity
 
-<<< @/snippets/wallet-withdraw/wallet-withdraw-solidity.sol solidity {all}{maxHeight:'350px'}
+<<< @/snippets/wallet-withdraw/wallet-withdraw-solidity.sol solidity {all}{maxHeight:'450px'}
 
 </div>
 <div>
 
 ## Gno
 
-<<< @/snippets/wallet-withdraw/wallet-withdraw-gno.gno go {all}{maxHeight:'350px'}
+<<< @/snippets/wallet-withdraw/wallet-withdraw-gno.gno go {all}{maxHeight:'450px'}
 
 </div>
 </div>
@@ -295,20 +295,17 @@ Both are statically typed but Gno uses familiar Go syntax and patterns
 
 ## Solidity
 
-<<< @/snippets/wallet-deposit/wallet-deposit-solidity.sol solidity {all}{maxHeight:'350px'}
+<<< @/snippets/wallet-deposit/wallet-deposit-solidity.sol solidity {all}{maxHeight:'450px'}
 
 </div>
 <div>
 
 ## Gno
 
-<<< @/snippets/wallet-deposit/wallet-deposit-gno.gno go {all}{maxHeight:'350px'}
+<<< @/snippets/wallet-deposit/wallet-deposit-gno.gno go {all}{maxHeight:'450px'}
 
 </div>
 </div>
-
----
-
 
 ---
 
@@ -319,14 +316,14 @@ Both are statically typed but Gno uses familiar Go syntax and patterns
 
 ## Solidity
 
-<<< @/snippets/guardcheck/guardcheck-solidity.sol solidity {all}{maxHeight:'350px'}
+<<< @/snippets/guardcheck/guardcheck-solidity.sol solidity {all}{maxHeight:'450px'}
 
 </div>
 <div>
 
 ## Gno
 
-<<< @/snippets/guardcheck/guardcheck-gno.gno go {all}{maxHeight:'350px'}
+<<< @/snippets/guardcheck/guardcheck-gno.gno go {all}{maxHeight:'450px'}
 
 </div>
 </div>
@@ -340,14 +337,14 @@ Both are statically typed but Gno uses familiar Go syntax and patterns
 
 ## Solidity
 
-<<< @/snippets/proxy/proxy-solidity.sol solidity {all}{maxHeight:'350px'}
+<<< @/snippets/proxy/proxy-solidity.sol solidity {all}{maxHeight:'400px'}
 
 </div>
 <div>
 
 ## Gno
 
-<<< @/snippets/proxy/proxy-gno.gno go {all}{maxHeight:'350px'}
+<<< @/snippets/proxy/proxy-gno.gno go {all}{maxHeight:'450px'}
 
 </div>
 </div>
@@ -361,14 +358,14 @@ Both are statically typed but Gno uses familiar Go syntax and patterns
 
 ## Solidity
 
-<<< @/snippets/emergency/emergency-solidity.sol solidity {all}{maxHeight:'350px'}
+<<< @/snippets/emergency/emergency-solidity.sol solidity {all}{maxHeight:'450px'}
 
 </div>
 <div>
 
 ## Gno
 
-<<< @/snippets/emergency/emergency-gno.gno go {all}{maxHeight:'350px'}
+<<< @/snippets/emergency/emergency-gno.gno go {all}{maxHeight:'450px'}
 
 </div>
 </div>
@@ -382,14 +379,14 @@ Both are statically typed but Gno uses familiar Go syntax and patterns
 
 ## Solidity
 
-<<< @/snippets/speedbump/speedbump-solidity.sol solidity {all}{maxHeight:'350px'}
+<<< @/snippets/speedbump/speedbump-solidity.sol solidity {all}{maxHeight:'450px'}
 
 </div>
 <div>
 
 ## Gno
 
-<<< @/snippets/speedbump/speedbump-gno.gno go {all}{maxHeight:'350px'}
+<<< @/snippets/speedbump/speedbump-gno.gno go {all}{maxHeight:'450px'}
 
 </div>
 </div>

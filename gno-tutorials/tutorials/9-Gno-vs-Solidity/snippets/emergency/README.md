@@ -1,5 +1,16 @@
 # Emergency Stop
 
-Circuit breaker pattern for pausing contract functionality in emergencies.
+Emergency pause functionality for critical situations.
 
-**Key Difference:** Solidity uses `modifier`, Gno uses explicit `panic()` for guard checks.
+**Key Difference:** Solidity uses boolean flags with modifiers, Gno uses boolean state with explicit checks.
+
+## Testing
+
+Run from the tutorial root directory:
+```bash
+# Test Gno version
+./test-snippets.sh 8 gno
+
+# Test Solidity version
+./test-snippets.sh 8 sol
+```

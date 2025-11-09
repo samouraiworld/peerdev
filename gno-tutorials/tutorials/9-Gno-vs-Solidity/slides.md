@@ -162,7 +162,28 @@ Both are statically typed but Gno uses familiar Go syntax and patterns
 
 ---
 
-# 📢 Pattern 5: Emit Events
+# 🗺️ Pattern 5: Mapping (AVL Tree)
+
+<div class="grid grid-cols-2 gap-4">
+<div>
+
+## Solidity
+
+<<< @/snippets/mapping/mapping-solidity.sol solidity {all}{maxHeight:'350px'}
+
+</div>
+<div>
+
+## Gno
+
+<<< @/snippets/mapping/mapping-gno.gno go {all}{maxHeight:'350px'}
+
+</div>
+</div>
+
+---
+
+# 📢 Pattern 6: Emit Events
 
 <div class="grid grid-cols-2 gap-4">
 <div>
@@ -183,7 +204,7 @@ Both are statically typed but Gno uses familiar Go syntax and patterns
 
 ---
 
-# 🏭 Pattern 6: Factory Pattern
+# 🏭 Pattern 7: Factory Pattern
 
 <div class="grid grid-cols-2 gap-4">
 <div>
@@ -204,7 +225,7 @@ Both are statically typed but Gno uses familiar Go syntax and patterns
 
 ---
 
-# 💰 Pattern 7: Token (ERC20 → GRC20)
+# 💰 Pattern 8: Token (ERC20 → GRC20)
 
 <div class="grid grid-cols-2 gap-4">
 <div>
@@ -225,7 +246,7 @@ Both are statically typed but Gno uses familiar Go syntax and patterns
 
 ---
 
-# 🛡️ Pattern 8: Reentrancy Guard
+# 🛡️ Pattern 9: Reentrancy Guard
 
 <div class="grid grid-cols-2 gap-4">
 <div>
@@ -246,7 +267,7 @@ Both are statically typed but Gno uses familiar Go syntax and patterns
 
 ---
 
-# 💸 Pattern 9: Wallet - Withdraw
+# 💸 Pattern 10: Wallet - Withdraw
 
 <div class="grid grid-cols-2 gap-4">
 <div>
@@ -267,7 +288,7 @@ Both are statically typed but Gno uses familiar Go syntax and patterns
 
 ---
 
-# 💸 Pattern 10: Wallet - Deposit
+# 💸 Pattern 11: Wallet - Deposit
 
 <div class="grid grid-cols-2 gap-4">
 <div>
@@ -288,24 +309,6 @@ Both are statically typed but Gno uses familiar Go syntax and patterns
 
 ---
 
-# 🗺️ Pattern 11: Mapping (AVL Tree)
-
-<div class="grid grid-cols-2 gap-4">
-<div>
-
-## Solidity
-
-<<< @/snippets/mapping/mapping-solidity.sol solidity {all}{maxHeight:'350px'}
-
-</div>
-<div>
-
-## Gno
-
-<<< @/snippets/mapping/mapping-gno.gno go {all}{maxHeight:'350px'}
-
-</div>
-</div>
 
 ---
 
